@@ -1,18 +1,18 @@
 import streamlit as st
 import json
 import openai
-from dotenv import load_dotenv
 import os
 from typing import List
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+import re
 
-# Load OpenAI API key
+# Load OpenAI API key from Streamlit secrets or environment
 openai.api_key = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY"))
 
 # Load chunked aviation content
-@st.cache_data
+@st.cache_data(show_spinner=False)
 def load_chunks():
     with open("tc_chunks.json", "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -21,15 +21,21 @@ def load_chunks():
 chunks = load_chunks()
 chunk_texts = [chunk['content'] for chunk in chunks]
 
-# Embed and search
-vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
+# Cache vectorizer and matrix for performance
+@st.cache_data(show_spinner=False)
+def get_vectorizer_and_matrix(texts):
+    vectorizer = TfidfVectorizer().fit(texts)
+    matrix = vectorizer.transform(texts)
+    return vectorizer, matrix
+
+vectorizer, matrix = get_vectorizer_and_matrix(chunk_texts)
+
 def search_chunks(query: str, k: int = 5) -> List[str]:
-    query_vec = TfidfVectorizer().fit(chunk_texts).transform([query])
-    sims = cosine_similarity(query_vec, vectorizer).flatten()
+    query_vec = vectorizer.transform([query])
+    sims = cosine_similarity(query_vec, matrix).flatten()
     top_indices = sims.argsort()[-k:][::-1]
     return [chunk_texts[i] for i in top_indices]
 
-# Ask OpenAI to answer based on top chunks
 def ask_tutor(question):
     top_chunks = search_chunks(question)
     context = "\n\n".join(top_chunks)
@@ -41,21 +47,112 @@ Context:
 
 Question: {question}
 Answer:"""
-    
+
     response = openai.chat.completions.create(
-    model="gpt-4",
-    messages=[{"role": "user", "content": prompt}],
-    temperature=0.3,
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.3,
     )
     return response.choices[0].message.content.strip()
 
-# Streamlit UI
-st.title("🇨🇦 PPL Aviation Tutor (Transport Canada)")
-st.write("Ask questions about aviation theory and get clear, simple explanations based on Canadian documents.")
+def generate_quiz_questions(topic, n=5):
+    prompt = f"""
+Generate {n} multiple choice questions for a Private Pilot License student on the topic: {topic}.  
+Provide each question with 4 answer choices labeled A, B, C, D. Indicate the correct answer after each question.
+"""
+    response = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7,
+    )
+    return response.choices[0].message.content.strip()
 
-question = st.text_input("✈️ Ask a question about aviation...")
-if question:
-    with st.spinner("Thinking like a flight instructor..."):
-        answer = ask_tutor(question)
-    st.markdown("### 🧠 Answer")
-    st.write(answer)
+def parse_quiz(text):
+    # Basic parser to split questions and answers
+    questions = re.split(r"\n\s*\d+\.\s", text)
+    parsed = []
+    for q in questions[1:]:  # skip before first question number
+        lines = q.strip().split('\n')
+        question_text = lines[0]
+        choices = {}
+        answer = None
+        for line in lines[1:]:
+            m = re.match(r"([A-D])\.\s*(.*)", line)
+            if m:
+                choices[m.group(1)] = m.group(2)
+            elif line.lower().startswith("correct answer:"):
+                answer = line.split(":")[-1].strip()
+        parsed.append({'question': question_text, 'choices': choices, 'answer': answer})
+    return parsed
+
+def explain_topic(topic, chunks, max_chunks=5):
+    relevant_chunks = [chunk['content'] for chunk in chunks if topic.lower() in chunk['content'].lower()]
+    if not relevant_chunks:
+        return "Sorry, no relevant content found for this topic."
+    combined_text = "\n\n".join(relevant_chunks[:max_chunks])
+
+    prompt = f"""
+Explain the following content about {topic} in simple terms for a student:
+
+{combined_text}
+"""
+    response = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.3,
+    )
+    return response.choices[0].message.content.strip()
+
+# Extract categories from chunks dynamically
+all_categories = sorted(set(chunk.get('category', 'Uncategorized') for chunk in chunks))
+
+st.title("🇨🇦 PPL Aviation Tutor (Transport Canada)")
+
+mode = st.sidebar.radio(
+    "Select Study Mode",
+    ['Ask a Question', 'Quiz Me', 'Explain a Topic', 'Study by Category']
+)
+
+if mode == 'Ask a Question':
+    st.write("Ask questions about aviation theory and get clear, simple explanations based on Canadian documents.")
+    question = st.text_input("✈️ Ask a question about aviation...")
+    if question:
+        with st.spinner("Thinking like a flight instructor..."):
+            answer = ask_tutor(question)
+        st.markdown("### 🧠 Answer")
+        st.write(answer)
+
+elif mode == 'Quiz Me':
+    st.write("Generate multiple choice quiz questions on a topic.")
+    topic = st.text_input("Enter topic for quiz questions:")
+    n = st.slider("Number of questions", 1, 10, 5)
+    if topic:
+        if st.button("Generate Quiz"):
+            with st.spinner("Generating quiz questions..."):
+                quiz_text = generate_quiz_questions(topic, n)
+                quiz = parse_quiz(quiz_text)
+                for i, q in enumerate(quiz, 1):
+                    st.markdown(f"**Q{i}. {q['question']}**")
+                    for key, val in q['choices'].items():
+                        st.write(f"{key}. {val}")
+                    if q['answer']:
+                        st.markdown(f"*Correct answer: {q['answer']}*")
+                    st.write("---")
+
+elif mode == 'Explain a Topic':
+    st.write("Get a simple explanation of a topic based on your study material.")
+    topic = st.text_input("Enter topic to explain:")
+    if topic:
+        if st.button("Explain"):
+            with st.spinner(f"Explaining {topic}..."):
+                explanation = explain_topic(topic, chunks)
+                st.markdown("### Explanation")
+                st.write(explanation)
+
+elif mode == 'Study by Category':
+    st.write("Browse content by category.")
+    category = st.selectbox("Select category:", all_categories)
+    category_chunks = [chunk['content'] for chunk in chunks if chunk.get('category', 'Uncategorized') == category]
+    st.write(f"Showing {len(category_chunks)} chunks in category **{category}**:")
+    for text in category_chunks:
+        st.write(text)
