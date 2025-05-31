@@ -126,18 +126,45 @@ elif mode == 'Quiz Me':
     st.write("Generate multiple choice quiz questions on a topic.")
     topic = st.text_input("Enter topic for quiz questions:")
     n = st.slider("Number of questions", 1, 10, 5)
-    if topic:
-        if st.button("Generate Quiz"):
-            with st.spinner("Generating quiz questions..."):
-                quiz_text = generate_quiz_questions(topic, n)
-                quiz = parse_quiz(quiz_text)
-                for i, q in enumerate(quiz, 1):
-                    st.markdown(f"**Q{i}. {q['question']}**")
-                    for key, val in q['choices'].items():
-                        st.write(f"{key}. {val}")
-                    if q['answer']:
-                        st.markdown(f"*Correct answer: {q['answer']}*")
-                    st.write("---")
+
+    if topic and st.button("Generate Quiz"):
+        with st.spinner("Generating quiz questions..."):
+            quiz_text = generate_quiz_questions(topic, n)
+            quiz = parse_quiz(quiz_text)
+            st.session_state['quiz'] = quiz
+            st.session_state['answers'] = [None] * len(quiz)
+            st.session_state['submitted'] = False
+
+    if 'quiz' in st.session_state and st.session_state['quiz']:
+        st.markdown("### Quiz")
+        for i, q in enumerate(st.session_state['quiz'], 1):
+            st.markdown(f"**Q{i}. {q['question']}**")
+            options = list(q['choices'].items())  # List of tuples (A, choice text)
+            selected = st.radio(
+                label=f"Select answer for question {i}",
+                options=[opt[0] for opt in options],
+                format_func=lambda x: f"{x}. {q['choices'][x]}",
+                key=f"q{i}"
+            )
+            st.session_state['answers'][i-1] = selected
+
+        if st.button("Submit Answers"):
+            st.session_state['submitted'] = True
+
+        if st.session_state.get('submitted', False):
+            score = 0
+            for i, q in enumerate(st.session_state['quiz']):
+                correct = q['answer']
+                user_ans = st.session_state['answers'][i]
+                is_correct = user_ans == correct
+                if is_correct:
+                    score += 1
+                st.markdown(
+                    f"Q{i+1} Correct answer: **{correct}** | Your answer: **{user_ans}** "
+                    + ("✅" if is_correct else "❌")
+                )
+            st.markdown(f"### Your score: {score} / {len(st.session_state['quiz'])}")
+
 
 elif mode == 'Explain a Topic':
     st.write("Get a simple explanation of a topic based on your study material.")
