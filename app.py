@@ -6,13 +6,12 @@ from typing import List
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
-import re
 
-# Load OpenAI API key from Streamlit secrets or environment
+# Load OpenAI API key
 openai.api_key = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY"))
 
 # Load chunked aviation content
-@st.cache_data(show_spinner=False)
+@st.cache_data
 def load_chunks():
     with open("tc_chunks.json", "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -21,18 +20,12 @@ def load_chunks():
 chunks = load_chunks()
 chunk_texts = [chunk['content'] for chunk in chunks]
 
-# Cache vectorizer and matrix for performance
-@st.cache_data(show_spinner=False)
-def get_vectorizer_and_matrix(texts):
-    vectorizer = TfidfVectorizer().fit(texts)
-    matrix = vectorizer.transform(texts)
-    return vectorizer, matrix
-
-vectorizer, matrix = get_vectorizer_and_matrix(chunk_texts)
+# Vectorizer & embeddings for search
+vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
 
 def search_chunks(query: str, k: int = 5) -> List[str]:
-    query_vec = vectorizer.transform([query])
-    sims = cosine_similarity(query_vec, matrix).flatten()
+    query_vec = TfidfVectorizer().fit(chunk_texts).transform([query])
+    sims = cosine_similarity(query_vec, vectorizer).flatten()
     top_indices = sims.argsort()[-k:][::-1]
     return [chunk_texts[i] for i in top_indices]
 
@@ -47,7 +40,7 @@ Context:
 
 Question: {question}
 Answer:"""
-
+    
     response = openai.chat.completions.create(
         model="gpt-4",
         messages=[{"role": "user", "content": prompt}],
@@ -55,46 +48,64 @@ Answer:"""
     )
     return response.choices[0].message.content.strip()
 
-def generate_quiz_questions(topic, n=5):
+# --- New Quiz Generation & Parsing Functions ---
+
+def generate_quiz_questions(topic: str, num_questions: int = 5):
     prompt = f"""
-Generate {n} multiple choice questions for a Private Pilot License student on the topic: {topic}.  
-Provide each question with 4 answer choices labeled A, B, C, D. Indicate the correct answer after each question.
+You are an expert aviation instructor creating a quiz for Canadian Private Pilot License (PPL) students. 
+Generate {num_questions} multiple-choice questions on the topic "{topic}".
+Each question should have 4 answer choices labeled A, B, C, and D.
+Indicate the correct answer explicitly.
+Return the quiz in valid JSON format as a list of objects with fields: question, choices (dict with keys A-D), correct_answer (A/B/C/D).
+
+Example:
+[
+  {{
+    "question": "What is the minimum visibility required for VFR flight?",
+    "choices": {{
+      "A": "3 statute miles",
+      "B": "1 statute mile",
+      "C": "5 statute miles",
+      "D": "10 statute miles"
+    }},
+    "correct_answer": "A"
+  }},
+  ...
+]
+
+Begin:
 """
     response = openai.chat.completions.create(
         model="gpt-4",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.7,
+        temperature=0.4,
     )
     return response.choices[0].message.content.strip()
 
-def parse_quiz(text):
-    # Basic parser to split questions and answers
-    questions = re.split(r"\n\s*\d+\.\s", text)
-    parsed = []
-    for q in questions[1:]:  # skip before first question number
-        lines = q.strip().split('\n')
-        question_text = lines[0]
-        choices = {}
-        answer = None
-        for line in lines[1:]:
-            m = re.match(r"([A-D])\.\s*(.*)", line)
-            if m:
-                choices[m.group(1)] = m.group(2)
-            elif line.lower().startswith("correct answer:"):
-                answer = line.split(":")[-1].strip()
-        parsed.append({'question': question_text, 'choices': choices, 'answer': answer})
-    return parsed
+def parse_quiz(raw_quiz_text):
+    import json
+    try:
+        quiz = json.loads(raw_quiz_text)
+        # Validate basic structure
+        for q in quiz:
+            assert "question" in q and "choices" in q and "correct_answer" in q
+        return quiz
+    except Exception as e:
+        st.error(f"Error parsing quiz JSON: {e}")
+        return []
 
-def explain_topic(topic, chunks, max_chunks=5):
-    relevant_chunks = [chunk['content'] for chunk in chunks if topic.lower() in chunk['content'].lower()]
-    if not relevant_chunks:
-        return "Sorry, no relevant content found for this topic."
-    combined_text = "\n\n".join(relevant_chunks[:max_chunks])
+# --- Explain a Topic (chunk + summarize) ---
 
+def explain_topic(topic):
+    top_chunks = search_chunks(topic, k=5)
+    context = "\n\n".join(top_chunks)
     prompt = f"""
-Explain the following content about {topic} in simple terms for a student:
+You are an aviation tutor for Canadian PPL students. Explain the following topic clearly and simply, using the context below.
 
-{combined_text}
+Context:
+{context}
+
+Explain the topic: {topic}
 """
     response = openai.chat.completions.create(
         model="gpt-4",
@@ -103,17 +114,37 @@ Explain the following content about {topic} in simple terms for a student:
     )
     return response.choices[0].message.content.strip()
 
-# Extract categories from chunks dynamically
-all_categories = sorted(set(chunk.get('category', 'Uncategorized') for chunk in chunks))
+# --- Study by Category (list subtopics and generate content) ---
+
+def study_by_category(category):
+    prompt = f"""
+You are an aviation tutor for Canadian PPL students. Provide a clear, concise summary of the key subtopics in the category "{category}". 
+Then give a brief explanation of each subtopic.
+
+Format:
+1. Subtopic name: explanation
+
+Begin:
+"""
+    response = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.3,
+    )
+    return response.choices[0].message.content.strip()
+
+# --- Streamlit UI ---
 
 st.title("🇨🇦 PPL Aviation Tutor (Transport Canada)")
 
-mode = st.sidebar.radio(
-    "Select Study Mode",
-    ['Ask a Question', 'Quiz Me', 'Explain a Topic', 'Study by Category']
-)
+mode = st.sidebar.selectbox("Select Study Mode", [
+    "🔎 Ask a Question",
+    "🧠 Quiz Me",
+    "🧾 Explain a Topic",
+    "📚 Study by Category"
+])
 
-if mode == 'Ask a Question':
+if mode == "🔎 Ask a Question":
     st.write("Ask questions about aviation theory and get clear, simple explanations based on Canadian documents.")
     question = st.text_input("✈️ Ask a question about aviation...")
     if question:
@@ -122,64 +153,64 @@ if mode == 'Ask a Question':
         st.markdown("### 🧠 Answer")
         st.write(answer)
 
-elif mode == 'Quiz Me':
-    st.write("Generate multiple choice quiz questions on a topic.")
-    topic = st.text_input("Enter topic for quiz questions:")
-    n = st.slider("Number of questions", 1, 10, 5)
-
-    if topic and st.button("Generate Quiz"):
+elif mode == "🧠 Quiz Me":
+    st.write("Get a multiple choice quiz on a topic. Select your answer and get immediate feedback.")
+    topic = st.text_input("Enter a quiz topic (e.g., Air Law, Weather, Navigation)")
+    num_questions = st.slider("Number of questions", 1, 10, 5)
+    if st.button("Generate Quiz"):
         with st.spinner("Generating quiz questions..."):
-            quiz_text = generate_quiz_questions(topic, n)
-            quiz = parse_quiz(quiz_text)
-            st.session_state['quiz'] = quiz
-            st.session_state['answers'] = [None] * len(quiz)
-            st.session_state['submitted'] = False
-
+            raw_quiz = generate_quiz_questions(topic, num_questions)
+            quiz = parse_quiz(raw_quiz)
+            if quiz:
+                st.session_state['quiz'] = quiz
+                st.session_state['current_q'] = 0
+                st.session_state['score'] = 0
+            else:
+                st.warning("Could not generate quiz. Try a different topic.")
     if 'quiz' in st.session_state and st.session_state['quiz']:
-        st.markdown("### Quiz")
-        for i, q in enumerate(st.session_state['quiz'], 1):
-            st.markdown(f"**Q{i}. {q['question']}**")
-            options = list(q['choices'].items())  # List of tuples (A, choice text)
-            selected = st.radio(
-                label=f"Select answer for question {i}",
-                options=[opt[0] for opt in options],
-                format_func=lambda x: f"{x}. {q['choices'][x]}",
-                key=f"q{i}"
-            )
-            st.session_state['answers'][i-1] = selected
+        quiz = st.session_state['quiz']
+        current_q = st.session_state['current_q']
 
-        if st.button("Submit Answers"):
-            st.session_state['submitted'] = True
+        question_data = quiz[current_q]
+        st.markdown(f"**Question {current_q+1} of {len(quiz)}:**")
+        st.write(question_data['question'])
+        
+        user_answer = st.radio("Select your answer:", 
+                               options=["A", "B", "C", "D"], 
+                               format_func=lambda x: f"{x}: {question_data['choices'][x]}")
 
-        if st.session_state.get('submitted', False):
-            score = 0
-            for i, q in enumerate(st.session_state['quiz']):
-                correct = q['answer']
-                user_ans = st.session_state['answers'][i]
-                is_correct = user_ans == correct
-                if is_correct:
-                    score += 1
-                st.markdown(
-                    f"Q{i+1} Correct answer: **{correct}** | Your answer: **{user_ans}** "
-                    + ("✅" if is_correct else "❌")
-                )
-            st.markdown(f"### Your score: {score} / {len(st.session_state['quiz'])}")
+        if st.button("Submit Answer"):
+            correct = question_data['correct_answer']
+            if user_answer == correct:
+                st.success("✅ Correct!")
+                st.session_state['score'] += 1
+            else:
+                st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
 
+            if current_q + 1 < len(quiz):
+                st.session_state['current_q'] += 1
+            else:
+                st.markdown(f"### Quiz complete! Your score: {st.session_state['score']} / {len(quiz)}")
+                # Clear quiz from session state to allow new quiz generation
+                del st.session_state['quiz']
+                del st.session_state['current_q']
+                del st.session_state['score']
 
-elif mode == 'Explain a Topic':
-    st.write("Get a simple explanation of a topic based on your study material.")
-    topic = st.text_input("Enter topic to explain:")
+elif mode == "🧾 Explain a Topic":
+    st.write("Enter a topic and get a simple explanation based on Canadian aviation documents.")
+    topic = st.text_input("Enter a topic to explain...")
     if topic:
-        if st.button("Explain"):
-            with st.spinner(f"Explaining {topic}..."):
-                explanation = explain_topic(topic, chunks)
-                st.markdown("### Explanation")
-                st.write(explanation)
+        with st.spinner("Generating explanation..."):
+            explanation = explain_topic(topic)
+        st.markdown("### Explanation")
+        st.write(explanation)
 
-elif mode == 'Study by Category':
-    st.write("Browse content by category.")
-    category = st.selectbox("Select category:", all_categories)
-    category_chunks = [chunk['content'] for chunk in chunks if chunk.get('category', 'Uncategorized') == category]
-    st.write(f"Showing {len(category_chunks)} chunks in category **{category}**:")
-    for text in category_chunks:
-        st.write(text)
+elif mode == "📚 Study by Category":
+    st.write("Select an aviation category to study. Get key subtopics and brief explanations.")
+    categories = ["Air Law", "Weather", "Navigation", "Aircraft Performance", "Human Factors", "Meteorology", "Flight Instruments"]
+    category = st.selectbox("Select category", categories)
+    if st.button("Show Study Content"):
+        with st.spinner("Fetching study content..."):
+            study_content = study_by_category(category)
+        st.markdown(f"### Study: {category}")
+        st.write(study_content)
