@@ -19,7 +19,7 @@ def load_chunks():
     return data
 
 chunks = load_chunks()
-chunk_texts = [chunk['text'] for chunk in chunks]
+chunk_texts = [chunk['content'] for chunk in chunks]
 
 # Embed and search
 vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
