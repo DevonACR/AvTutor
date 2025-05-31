@@ -14,7 +14,7 @@ openai.api_key = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY"))
 # Load chunked aviation content
 @st.cache_data
 def load_chunks():
-    with open("aviation_chunks.json", "r", encoding="utf-8") as f:
+    with open("tc_chunks.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     return data
 
