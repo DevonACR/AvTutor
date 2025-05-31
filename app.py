@@ -165,36 +165,71 @@ elif mode == "🧠 Quiz Me":
                 st.session_state['quiz'] = quiz
                 st.session_state['current_q'] = 0
                 st.session_state['score'] = 0
+                st.session_state['answers'] = [None] * len(quiz)  # Store user answers
+                st.session_state['submitted'] = [False] * len(quiz)  # Track submitted state per question
             else:
                 st.warning("Could not generate quiz. Try a different topic.")
+
     if 'quiz' in st.session_state and st.session_state['quiz']:
         quiz = st.session_state['quiz']
         current_q = st.session_state['current_q']
 
         question_data = quiz[current_q]
-        st.markdown(f"**Question {current_q+1} of {len(quiz)}:**")
+        st.markdown(f"**Question {current_q + 1} of {len(quiz)}:**")
         st.write(question_data['question'])
-        
-        user_answer = st.radio("Select your answer:", 
-                               options=["A", "B", "C", "D"], 
-                               format_func=lambda x: f"{x}: {question_data['choices'][x]}")
 
-        if st.button("Submit Answer"):
-            correct = question_data['correct_answer']
-            if user_answer == correct:
-                st.success("✅ Correct!")
-                st.session_state['score'] += 1
+        # Load saved answer or None
+        user_answer = st.radio(
+            "Select your answer:",
+            options=["A", "B", "C", "D"],
+            index=["A", "B", "C", "D"].index(st.session_state['answers'][current_q]) if st.session_state['answers'][current_q] else 0,
+            format_func=lambda x: f"{x}: {question_data['choices'][x]}"
+        )
+
+        # Update stored answer when changed
+        if user_answer != st.session_state['answers'][current_q]:
+            st.session_state['answers'][current_q] = user_answer
+            # Reset submitted status if user changes answer after submitting
+            st.session_state['submitted'][current_q] = False
+
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col1:
+            if st.button("⬅️ Previous") and current_q > 0:
+                st.session_state['current_q'] -= 1
+        with col2:
+            if not st.session_state['submitted'][current_q]:
+                if st.button("Submit Answer"):
+                    correct = question_data['correct_answer']
+                    if user_answer == correct:
+                        st.success("✅ Correct!")
+                        # Increase score only if first time submit and correct
+                        if not st.session_state['submitted'][current_q]:
+                            st.session_state['score'] += 1
+                    else:
+                        st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
+                    st.session_state['submitted'][current_q] = True
             else:
-                st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
+                # Show feedback if already submitted
+                correct = question_data['correct_answer']
+                if user_answer == correct:
+                    st.success("✅ Correct!")
+                else:
+                    st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
 
-            if current_q + 1 < len(quiz):
+        with col3:
+            if st.button("Next ➡️") and current_q < len(quiz) - 1:
                 st.session_state['current_q'] += 1
-            else:
-                st.markdown(f"### Quiz complete! Your score: {st.session_state['score']} / {len(quiz)}")
-                # Clear quiz from session state to allow new quiz generation
+
+        # Show final score if all questions submitted
+        if all(st.session_state['submitted']):
+            st.markdown(f"### Quiz complete! Your score: {st.session_state['score']} / {len(quiz)}")
+            if st.button("Restart Quiz"):
                 del st.session_state['quiz']
                 del st.session_state['current_q']
                 del st.session_state['score']
+                del st.session_state['answers']
+                del st.session_state['submitted']
+
 
 elif mode == "🧾 Explain a Topic":
     st.write("Enter a topic and get a simple explanation based on Canadian aviation documents.")
