@@ -42,10 +42,10 @@ Context:
 Question: {question}
 Answer:"""
     
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.3,
+    response = openai.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": prompt}],
+    temperature=0.3,
     )
     return response.choices[0].message['content'].strip()
 
