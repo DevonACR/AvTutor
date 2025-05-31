@@ -192,33 +192,47 @@ elif mode == "🧠 Quiz Me":
             # Reset submitted status if user changes answer after submitting
             st.session_state['submitted'][current_q] = False
 
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col1:
-            if st.button("⬅️ Previous") and current_q > 0:
-                st.session_state['current_q'] -= 1
-        with col2:
-            if not st.session_state['submitted'][current_q]:
-                if st.button("Submit Answer"):
-                    correct = question_data['correct_answer']
-                    if user_answer == correct:
-                        st.success("✅ Correct!")
-                        # Increase score only if first time submit and correct
-                        if not st.session_state['submitted'][current_q]:
-                            st.session_state['score'] += 1
-                    else:
-                        st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
-                    st.session_state['submitted'][current_q] = True
-            else:
-                # Show feedback if already submitted
-                correct = question_data['correct_answer']
-                if user_answer == correct:
-                    st.success("✅ Correct!")
-                else:
-                    st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
+        # Navigation buttons and logic
+col1, col2, col3 = st.columns([1, 2, 1])
 
-        with col3:
-            if st.button("Next ➡️") and current_q < len(quiz) - 1:
-                st.session_state['current_q'] += 1
+with col1:
+    st.button("⬅️ Previous", key="prev_q")
+
+with col3:
+    st.button("Next ➡️", key="next_q")
+
+with col2:
+    if not st.session_state['submitted'][current_q]:
+        st.button("Submit Answer", key="submit_answer")
+    else:
+        correct = question_data['correct_answer']
+        if user_answer == correct:
+            st.success("✅ Correct!")
+        else:
+            st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
+
+# Process button actions after UI render
+if st.session_state.get("submit_answer"):
+    correct = question_data['correct_answer']
+    if user_answer == correct:
+        st.success("✅ Correct!")
+        if not st.session_state['submitted'][current_q]:
+            st.session_state['score'] += 1
+    else:
+        st.error(f"❌ Incorrect. Correct answer: {correct}: {question_data['choices'][correct]}")
+    st.session_state['submitted'][current_q] = True
+    st.session_state["submit_answer"] = False  # reset after action
+
+if st.session_state.get("prev_q"):
+    if current_q > 0:
+        st.session_state['current_q'] -= 1
+    st.session_state["prev_q"] = False  # reset
+
+if st.session_state.get("next_q"):
+    if current_q < len(quiz) - 1:
+        st.session_state['current_q'] += 1
+    st.session_state["next_q"] = False  # reset
+
 
         # Show final score if all questions submitted
         if all(st.session_state['submitted']):
