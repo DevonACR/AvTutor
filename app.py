@@ -47,7 +47,7 @@ Answer:"""
     messages=[{"role": "user", "content": prompt}],
     temperature=0.3,
     )
-    return response.choices[0].message['content'].strip()
+    return response.choices[0].message.content.strip()
 
 # Streamlit UI
 st.title("🇨🇦 PPL Aviation Tutor (Transport Canada)")
