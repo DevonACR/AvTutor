@@ -1,5 +1,6 @@
 import streamlit as st
 st.set_page_config(page_title="PPL Aviation Tutor 🇨🇦", layout="centered")
+
 import json
 import openai
 from dotenv import load_dotenv
@@ -10,6 +11,9 @@ from typing import List, Dict
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Now it's safe to use Streamlit functions like @st.cache_data, st.title, etc.
+
 
 # Load OpenAI API key
 openai.api_key = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY"))
