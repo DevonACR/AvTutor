@@ -1,0 +1,1255 @@
+[
+  {
+    "question": "Unless otherwise specified, a control zone is",
+    "options": [
+      "A. the same as a control area.",
+      "B. controlled airspace around an aerodrome that extends vertically from the surface to 3,000 feet AGL.",
+      "C. always Class D airspace.",
+      "D. controlled airspace along airways above 2,200 feet ASL."
+    ],
+    "answer": "B",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "Would the Regulations be violated, if a pilot voluntarily landed an aircraft in bright moonlight at an aerodrome where the length of the landing area was indicated by a single row of white lights?",
+    "options": [
+      "A. There would be no violation, provided the lights were in the centre of the landing area.",
+      "B. There would be no violation, provided the aeroplane was equipped with a functioning landing light.",
+      "C. Yes, the CAR for aerodrome minimum lighting would have been violated.",
+      "D. There would be no violation, provided air to ground communication was available."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "\u201cDay\u201d in Canada is defined as that period of time between",
+    "options": [
+      "A. sunrise and sunset.",
+      "B. one hour before sunrise and one hour after sunset.",
+      "C. the end of morning civil twilight and the beginning of evening civil twilight.",
+      "D. the beginning of morning civil twilight and the end of evening civil twilight."
+    ],
+    "answer": "D",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "No person shall walk, drive or park a vehicle on any part of an uncontrolled aerodrome used for the movement of aircraft except in accordance with permission given by",
+    "options": [
+      "A. the operator of the aerodrome.",
+      "B. a qualified representative of a commercial air service being operated from the aerodrome.",
+      "C. a Federal Peace Officer.",
+      "D. the aerodrome UNICOM operator."
+    ],
+    "answer": "A",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "No person shall fly or attempt to act as a flight crew member of an aircraft if that person",
+    "options": [
+      "A. is less than 18 years of age.",
+      "B. has consumed alcohol or drugs 48 hours prior to take-off.",
+      "C. is suffering or is likely to suffer from fatigue.",
+      "D. is over 60 years of age."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "A person may conduct aerobatic manoeuvres in an aircraft",
+    "options": [
+      "A. only when no passengers are carried.",
+      "B. over a built-up area above 2,000 feet AGL.",
+      "C. within Class F advisory airspace when visibility is 3 miles or greater.",
+      "D. within Class C advisory airspace when the visibility is greater than 1 NM."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "When two aircraft are converging at approximately the same altitude, the aircraft that has the other on its right shall give way except that",
+    "options": [
+      "A. aeroplanes shall give way to rotary wing aircraft.",
+      "B. helicopters shall give way to aeroplanes.",
+      "C. gliders shall give way to aeroplanes.",
+      "D. power-driven heavier-than-air aircraft shall give way to airships, gliders and balloons."
+    ],
+    "answer": "D",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "When two aircraft are approaching head-on or approximately so and there is danger of collision, each pilot shall",
+    "options": [
+      "A. alter heading to the right.",
+      "B. alter heading to the left.",
+      "C. avoid the other by changing altitude.",
+      "D. turn on the anti-collision lights."
+    ],
+    "answer": "A",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "Pilots are responsible for taking action as necessary to avoid a collision",
+    "options": [
+      "A. unless flying in accordance with an ATC clearance.",
+      "B. only when flying in VFR conditions.",
+      "C. except when within visual range of the control tower.",
+      "D. at all times."
+    ],
+    "answer": "D",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "Unless conducting a take-off, approach or landing, no person shall fly an aeroplane over a built-up area unless the aeroplane is operated at an altitude that is not lower than . . . . . above the highest obstacle within a radius of . . . . . from the aircraft.",
+    "options": [
+      "A. 500 ft, 500 ft",
+      "B. 1,000 ft, 2,000 ft",
+      "C. 2,000 ft, 1,000 ft",
+      "D. 3,000 ft, 1 mile"
+    ],
+    "answer": "B",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "What is the minimum fuel required on an aeroplane, other than an ultra-light, at the commencement of a day VFR flight? Sufficient fuel to fly to the destination",
+    "options": [
+      "A. at minimum cruising speed.",
+      "B. plus 45 minutes at normal cruising speed.",
+      "C. plus 30 minutes at normal cruising speed.",
+      "D. and then to a specified alternate."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "The signal to an aircraft in flight which means \u201cgive way to other aircraft and continue circling\u201d is",
+    "options": [
+      "A. a steady red light.",
+      "B. a series of green flashes.",
+      "C. an intermittent white light.",
+      "D. a succession of pyrotechnics showing red and green stars on bursting."
+    ],
+    "answer": "A",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "Any person holding a licence, permit or certificate issued under the authority of the CARs shall produce such document for inspection, upon demand by",
+    "options": [
+      "A. an airport owner or operator.",
+      "B. any pilot holding a senior licence.",
+      "C. a peace officer, or immigration officer.",
+      "D. a pilot holding a valid instructor rating."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "If your Private Pilot Licence is endorsed for night flying you may carry passengers at night provided you have completed at least . . . . . take-offs and landings by night in the same category and class of aircraft during the . . . . . months immediately preceding the flight.",
+    "options": [
+      "A. 2, 3",
+      "B. 3, 4",
+      "C. 5, 6",
+      "D. 10, 12"
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "An ATC clearance authorizing SVFR",
+    "options": [
+      "A. relieves the pilot of the responsibility for avoiding weather conditions beyond the pilot\u2019s own flying capabilities.",
+      "B. relieves the pilot of the responsibility of avoiding other aircraft.",
+      "C. relieves the pilot of the responsibility of complying with the CARs.",
+      "D. permits a pilot to fly in below VFR weather conditions without complying with instrument flight rules."
+    ],
+    "answer": "D",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "In Southern Domestic Airspace, the selection of a cruising altitude above 3,000 feet AGL shall be based on the",
+    "options": [
+      "A. true track.",
+      "B. true heading.",
+      "C. magnetic track.",
+      "D. magnetic heading."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "The minimum flight visibility for VFR flight in a control area is",
+    "options": [
+      "A. 1 mile.",
+      "B. 2 miles.",
+      "C. 3 miles.",
+      "D. 4 miles."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "When in VFR flight within the altimeter setting region, the altimeter should be set to",
+    "options": [
+      "A. the current altimeter setting of the nearest station along the route of flight.",
+      "B. 29.92 in. Hg. or 1013.2 mb.",
+      "C. the station pressure of the nearest weather reporting station.",
+      "D. the standard altimeter setting."
+    ],
+    "answer": "A",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "In Southern Domestic Airspace, runway 27 at an aerodrome would have a bearing of approximately",
+    "options": [
+      "A. 027\u00baT.",
+      "B. 270\u00baT.",
+      "C. 027\u00baM.",
+      "D. 270\u00baM."
+    ],
+    "answer": "D",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "Unless otherwise authorized, a pilot on a VFR flight entering Class C airspace must",
+    "options": [
+      "A. request a clearance from the appropriate ATC unit immediately after entering.",
+      "B. establish radio contact with the appropriate ATC unit only when transiting the associated control zone.",
+      "C. receive a clearance from the appropriate ATC unit prior to entering.",
+      "D. contact radar service only when taking off or landing at the associated airport."
+    ],
+    "answer": "C",
+    "category": "Air Law",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "If an aeroplane stalls while descending in a co-ordinated left turn, it may enter",
+    "options": [
+      "A. an incipient right spin.",
+      "B. an incipient left spin.",
+      "C. a steep right spiral.",
+      "D. a shallow left spiral."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "The manoeuvring speed for an aeroplane is the maximum",
+    "options": [
+      "A. speed at which the aeroplane can be safely operated in smooth air.",
+      "B. speed at which full travel of the flight controls may be used without exceeding the design load factor.",
+      "C. speed at which the aeroplane may be flown with the flaps lowered.",
+      "D. safe speed at which the aeroplane should be operated."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "If ice has accumulated on an aerofoil in flight, the stalling speed will",
+    "options": [
+      "A. remain unchanged.",
+      "B. decrease in all flight conditions.",
+      "C. increase in level flight only.",
+      "D. increase in all flight conditions."
+    ],
+    "answer": "D",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "The indicated stalling speed of an aeroplane",
+    "options": [
+      "A. is higher when flying downwind than upwind.",
+      "B. increases with altitude.",
+      "C. decreases with altitude.",
+      "D. does not change with change of altitude."
+    ],
+    "answer": "D",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "The stalling speed of an aeroplane",
+    "options": [
+      "A. is the same in a co-ordinated turn as in straight and level flight.",
+      "B. is less in a co-ordinated turn than in straight and level flight.",
+      "C. is greater in a co-ordinated turn than in straight and level flight.",
+      "D. increases in climbing turns, decreases in gliding turns."
+    ],
+    "answer": "C",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "The use of low octane fuel in a high compression engine may result in",
+    "options": [
+      "A. too lean a mixture for best operation.",
+      "B. carburettor icing.",
+      "C. fouling of the spark plugs.",
+      "D. detonation."
+    ],
+    "answer": "D",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "If one magneto should fail on an engine equipped with dual ignition",
+    "options": [
+      "A. a slight loss of power would result.",
+      "B. there would be no effect on the engine.",
+      "C. the engine would stop.",
+      "D. half of the cylinders would not fire."
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "The use of carburettor heat will",
+    "options": [
+      "A. increase manifold pressure and enrich the mixture.",
+      "B. increase manifold pressure and lean out the mixture.",
+      "C. decrease manifold pressure and enrich the mixture.",
+      "D. decrease manifold pressure and lean out the mixture."
+    ],
+    "answer": "C",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "Under which conditions would the most serious carburettor icing be expected? Outside air temperature range of . . . . . and . . . . . humidity.",
+    "options": [
+      "A. -5\u00b0C to 15\u00b0C, high",
+      "B. 5\u00b0C to 27\u00b0C, low",
+      "C. -21\u00b0C to 0\u00b0C, low",
+      "D. -21\u00b0C to 0\u00b0C, high"
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "It is possible for carburettor icing to occur",
+    "options": [
+      "A. in clear air with high relative humidity at above freezing temperatures.",
+      "B. only when precipitation is present at freezing temperatures.",
+      "C. only in cloud with high relative humidity.",
+      "D. only when water droplets are in suspension in the air."
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "Prolonged idling of an aircraft engine would most likely cause",
+    "options": [
+      "A. detonation.",
+      "B. backfiring in the induction system.",
+      "C. fouled plugs.",
+      "D. pre-ignition."
+    ],
+    "answer": "C",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "Ground effect will enable an aeroplane to become airborne below normal flying speed primarily due to",
+    "options": [
+      "A. a decreased lift/drag ratio.",
+      "B. a decrease in induced drag.",
+      "C. an increase in downwash.",
+      "D. an increase in wing tip vortices."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "The correct height above sea level is indicated on a pressure altimeter set to 29.92 in. Hg only when",
+    "options": [
+      "A. the conditions of a standard atmosphere exist.",
+      "B. a standard lapse rate exists.",
+      "C. you are in the Standard Pressure Region.",
+      "D. the barometric pressure is 29.92 in. Hg."
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "The altimeter setting is 29.70 in. Hg. If the pilot inadvertently sets 30.70 in. Hg on the altimeter subscale, the altimeter will read",
+    "options": [
+      "A. 1,000 ft too high.",
+      "B. 1,000 ft too low.",
+      "C. 100 ft too high.",
+      "D. 100 ft too low."
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "A major early symptom of hypoxia is",
+    "options": [
+      "A. drowziness.",
+      "B. dizziness.",
+      "C. euphoria.",
+      "D. hyperventilation."
+    ],
+    "answer": "C",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "If you are looking at a featureless sky during hazy or dark conditions, your eyes will tend to focus at a point approximately . . . . . ft away.",
+    "options": [
+      "A. 3 to 5",
+      "B. 30 to 50",
+      "C. 300 to 500",
+      "D. 3,000 to 5,000"
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "The effects of one drink of alcohol at sea level will",
+    "options": [
+      "A. increase with an increase in altitude.",
+      "B. decrease with an increase in altitude.",
+      "C. remain the same with an increase in altitude.",
+      "D. remain constant to 6,000 feet ASL."
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "During an approach to land on an upsloping runway, the pilot may experience the illusion that the aeroplane is . . . . . than it actually is.",
+    "options": [
+      "A. higher",
+      "B. lower",
+      "C. closer in",
+      "D. approaching faster"
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "When turning from downwind to into-wind at low altitude, a pilot may experience an illusion of",
+    "options": [
+      "A. slipping and decreasing airspeed.",
+      "B. skidding and decreasing airspeed.",
+      "C. slipping and increasing airspeed.",
+      "D. skidding and increasing airspeed."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "Wheelbarrowing on landing may result from a",
+    "options": [
+      "A. low approach speed.",
+      "B. shallow approach angle.",
+      "C. high approach speed.",
+      "D. strong cross-wind."
+    ],
+    "answer": "C",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "Wake turbulence caused by a departing aeroplane is most severe immediately",
+    "options": [
+      "A. following full power application.",
+      "B. before rotation.",
+      "C. following rotation.",
+      "D. above its flight path."
+    ],
+    "answer": "C",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "An aircraft flying an approach into a strong head wind encounters a sudden tailwind near the ground. The wind shear hazard to be expected is a sudden",
+    "options": [
+      "A. increase in groundspeed and increase in lift.",
+      "B. decrease in groundspeed and loss of lift.",
+      "C. increase in airspeed and increase in lift.",
+      "D. decrease in airspeed and loss of lift."
+    ],
+    "answer": "D",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "Appendix:  AIRSPEED INDICATOR (DIAGRAM #1). The upper limit of the white arc on an airspeed indicator is the maximum",
+    "options": [
+      "A. normal operating speed.",
+      "B. flap extension speed.",
+      "C. manoeuvring speed.",
+      "D. range speed."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "Appendix:  AIRSPEED INDICATOR (DIAGRAM #1)",
+    "image": "page_25.png"
+  },
+  {
+    "question": "Refer to the Appendix: TURN CO-ORDINATOR (DIAGRAM #1). The turn co-ordinator indicates that the aircraft is in a",
+    "options": [
+      "A. slipping left turn.",
+      "B. skidding left turn.",
+      "C. slipping right turn.",
+      "D. skidding right turn."
+    ],
+    "answer": "D",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "Appendix: TURN CO-ORDINATOR (DIAGRAM #1)",
+    "image": "page_25.png"
+  },
+  {
+    "question": "Deceleration errors in the magnetic compass would be most pronounced on headings of",
+    "options": [
+      "A. north and south.",
+      "B. east and north.",
+      "C. east and west.",
+      "D. west and south."
+    ],
+    "answer": "C",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "Aerodrome elevation 4,600 feet ASL Altimeter Setting 29.52 in. Hg Using the above information, what is the pressure altitude?",
+    "options": [
+      "A. 5,000 ft.",
+      "B. 4,640 ft.",
+      "C. 4,560 ft.",
+      "D. 4,200 ft."
+    ],
+    "answer": "A",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "Pressure Altitude 4,500 ft Temperature 20\u00b0C Using the above information, what is the density altitude?",
+    "options": [
+      "A. 7,300 ft.",
+      "B. 6,100 ft.",
+      "C. 5,100 ft.",
+      "D. 4,500 ft."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": ""
+  },
+  {
+    "question": "Refer to the Appendix:  CROSS-WIND GRAPH #2. For a take-off on runway 31 with the wind from 270\u00b0 at 20 kt, the aircraft would be subject to head wind and cross-wind components respectively of",
+    "options": [
+      "A. 20 and 15 kt.",
+      "B. 15 and 13 kt.",
+      "C. 15 and 20 kt.",
+      "D. 13 and 15 kt."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "Appendix:  CROSS-WIND GRAPH #2",
+    "image": "page_26.png"
+  },
+  {
+    "question": "Refer to the Appendix: TAKE-OFF DISTANCE (Table #1). Runway level, dry grass Aerodrome Pressure Altitude 4,000 ft Temperature 20\u00b0C Head wind component 9 kt Aeroplane weight 1600 lb Using the above data, the total distance to clear a 50 foot obstacle is",
+    "options": [
+      "A. 1,912 ft.",
+      "B. 2,063 ft.",
+      "C. 2,199 ft.",
+      "D. 2,444 ft."
+    ],
+    "answer": "B",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": "Appendix: TAKE-OFF DISTANCE (Table #1)",
+    "image": "page_27.png"
+  },
+  {
+    "question": "Refer to the Appendix: LOADING GRAPH #4 & CENTRE OF GRAVITY MOMENT ENVELOPE #6. Load Details Weight lb. Moment 1000 lb in. Basic empty weight (includes full oil/unusable fuel) 1,365 51.0 Usable fuel at take-off \u2013 38 U.S. gal. \u2013 \u2013 Pilot & front Passenger 360 \u2013 Two rear seat passengers 282 \u2013 Baggage 50 \u2013 Using the above data the aeroplane",
+    "options": [
+      "A. is within the weight limits for the utility category only.",
+      "B. is within the weight limits but is not within the CG limits.",
+      "C. exceeds both the weight limits and the CG limits.",
+      "D. is within both the weight and the CG limits."
+    ],
+    "answer": "D",
+    "category": "Aeronautics \u2013 General Knowledge",
+    "reference": " Appendix:  LOADING GRAPH #4 & CENTRE OF GRAVITY MOMENT ENVELOPE #6",
+    "image": "page_28.png"
+  },
+  {
+    "question": "Relative humidity is the",
+    "options": [
+      "A. amount of moisture present in the air.",
+      "B. weight of water present in the air.",
+      "C. amount of moisture present in the air compared to the amount the air could hold at that temperature and pressure.",
+      "D. temperature to which the air must be lowered to bring about saturation."
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "The cloud type usually associated with steady rain is",
+    "options": [
+      "A. altostratus.",
+      "B. altocumulus.",
+      "C. stratocumulus.",
+      "D. nimbostratus."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "Clouds form when moist warm air overruns cold air because the warm air",
+    "options": [
+      "A. is cooled by the cold air underneath.",
+      "B. is cooled by the surrounding cold air aloft.",
+      "C. becomes unstable as a result of cooling from below.",
+      "D. cools as a result of expansion as it rises."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "Advection fog forms when",
+    "options": [
+      "A. moist air moves from a warm surface to a colder surface.",
+      "B. the cold ground cools the air in contact with it at night.",
+      "C. moist air is influenced by orographic effect.",
+      "D. moist cool air moves from a cold surface to a warm surface."
+    ],
+    "answer": "A",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "Radiation fog forms as a result of the",
+    "options": [
+      "A. passage of cold air over a warm surface.",
+      "B. air becoming moist as it moves over the sea.",
+      "C. clouds becoming cold and heavy at night so that they settle to the ground.",
+      "D. ground becoming cold at night and cooling the air in contact with it."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "In the northern hemisphere, the winds blow",
+    "options": [
+      "A. clockwise around high and low pressure areas.",
+      "B. counter-clockwise around high and low pressure areas.",
+      "C. clockwise around a high pressure area and counter-clockwise around a low pressure area.",
+      "D. counter-clockwise around a high pressure area and clockwise around a low pressure area."
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "During a descent from 2,000 feet AGL to the surface, you will usually find that the wind",
+    "options": [
+      "A. veers and increases.",
+      "B. backs and increases.",
+      "C. veers and decreases.",
+      "D. backs and decreases."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "The diurnal change of surface wind velocity is such that during the day the surface wind will usually",
+    "options": [
+      "A. veer and increase in speed.",
+      "B. veer and decrease in speed.",
+      "C. back and increase in speed.",
+      "D. back and decrease in speed."
+    ],
+    "answer": "A",
+    "category": "Meteorology",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "In the standard atmosphere, the temperature at an altitude of 5,000 feet will be closest to",
+    "options": [
+      "A. 0\u00baC.",
+      "B. 5\u00baC.",
+      "C. 8\u00baC.",
+      "D. 10\u00baC."
+    ],
+    "answer": "B",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "The conditions required for the formation of thunderstorms are",
+    "options": [
+      "A. moist air, high temperature, and an inversion.",
+      "B. stratus cloud, high humidity and a lifting force.",
+      "C. unstable air, high humidity and a lifting force.",
+      "D. a mixing of two different air masses."
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "A condition when the air temperature aloft is higher than that of the lower atmosphere is generally referred to as",
+    "options": [
+      "A. a low pressure area.",
+      "B. an inversion.",
+      "C. a reverse temperature condition.",
+      "D. an inverse convection condition."
+    ],
+    "answer": "B",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "Air masses that are being cooled from below are characterized by",
+    "options": [
+      "A. strong winds, cumulus cloud, good visibility.",
+      "B. uniform temperature, good visibility.",
+      "C. continuous rain, freezing temperature.",
+      "D. fog, poor visibility and layer cloud."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "A front is a",
+    "options": [
+      "A. narrow zone of fog between a cyclone and an anticyclone.",
+      "B. line of thunderstorms.",
+      "C. narrow transition zone between two air masses.",
+      "D. mass of layer cloud which is very thick and which covers a wide area."
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "During the passage of a cold front",
+    "options": [
+      "A. warm air is compressed as cold air rides over it.",
+      "B. temperature rises owing to increased pressure.",
+      "C. fog will always form from the interaction of warm and cold air.",
+      "D. warm air is lifted as colder air pushes under it."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "The following sequence of clouds is observed at an airport: cirrus, altostratus, nimbostratus. The observer should expect",
+    "options": [
+      "A. the passage of a cold front.",
+      "B. anticyclonic weather.",
+      "C. the passage of a warm front.",
+      "D. clearing skies and a decrease in temperature."
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "Cloud heights in Canadian Aerodrome Forecasts (TAF) are given in",
+    "options": [
+      "A. feet AGL.",
+      "B. feet ASL.",
+      "C. metres AGL.",
+      "D. metres ASL."
+    ],
+    "answer": "A",
+    "category": "Meteorology",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "Failure to adjust the altimeter when flying from an area of low pressure to an area of higher pressure will result in the altimeter indicating",
+    "options": [
+      "A. too high.",
+      "B. too low.",
+      "C. the pressure altitude.",
+      "D. the true altitude."
+    ],
+    "answer": "B",
+    "category": "Air Law",
+    "reference": ""
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (FD). The average wind applicable to a direct flight from Winnipeg (CYWG) to Brandon (CYBR) at 5,500 ft would be",
+    "options": [
+      "A. 290\u00b0M at 30 kt.",
+      "B. 290\u00b0T at 30 kt.",
+      "C. 310\u00b0M at 31 kt.",
+      "D. 310\u00b0T at 31 kt."
+    ],
+    "answer": "B",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (FD)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "The forecast surface wind will be included in a GFA if it has a sustained speed of at least . . . . . kt.",
+    "options": [
+      "A. 5",
+      "B. 10",
+      "C. 15",
+      "D. 20"
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (GFA). The center of the low pressure system is . . . . . between 1800Z and 0000Z.",
+    "options": [
+      "A. stationary",
+      "B. moving south-easterly",
+      "C. moving north-westerly",
+      "D. moving easterly"
+    ],
+    "answer": "B",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (GFA)",
+    "images": ["page_31.png", "page_32.png", "page_33.png", "page_34.png"]
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (GFA). This forecast covers a period of . . . . . hours and includes a . . . . . hour IFR outlook.",
+    "options": [
+      "A. 24, 12",
+      "B. 24, 6",
+      "C. 12, 12",
+      "D. 12, 24"
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (GFA)",
+    "images": ["page_29.png", "page_30.png", "page_31.png", "page_32.png", "page_33.png", "page_34.png"]
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (TAF). The cloud condition at Churchhill (CYYQ) is forecast to",
+    "options": [
+      "A. remain clear.",
+      "B. thicken and lower.",
+      "C. remain scattered until 0900Z.",
+      "D. become overcast at 200 ft."
+    ],
+    "answer": "B",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (TAF)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (TAF). The forecast visibility at Churchhill (CYYQ) between 1500Z and 2100Z is",
+    "options": [
+      "A. 15 SM in wet snow.",
+      "B. 15 NM in wet snow.",
+      "C. greater than 6 NM.",
+      "D. greater than 6 SM."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (TAF)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (TAF). The Gillam (CYGX) aerodrome forecast covers a period of . . . . . hours.",
+    "options": [
+      "A. 24",
+      "B. 12",
+      "C. 10",
+      "D. 6"
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (TAF)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (TAF). The Gillam (CYGX) 1800Z wind is forecast to be",
+    "options": [
+      "A. 260\u00b0T at 10 kt.",
+      "B. 260\u00b0M at 10 kt.",
+      "C. variable at 3 kt.",
+      "D. calm."
+    ],
+    "answer": "A",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (TAF)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (METAR/TAF). The 1500Z Portage La Prairie (CYPG) METAR indicates that the",
+    "options": [
+      "A. visibility is greater than forecast.",
+      "B. ceiling is lower than forecast.",
+      "C. winds are weaker than forecast.",
+      "D. ceiling is as forecast."
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (METAR/TAF)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (METAR). The ceiling at Brandon (CYBR) at 1500Z is",
+    "options": [
+      "A. 200 ft.",
+      "B. 1,000 ft.",
+      "C. 2,000 ft.",
+      "D. 10,000 ft."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (METAR)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (METAR). The 1500Z temperature/dewpoint spread at Portage La Prairie (CYPG) is",
+    "options": [
+      "A. 24\u00b0C.",
+      "B. 20\u00b0C.",
+      "C. 15\u00b0C.",
+      "D. 4\u00b0C."
+    ],
+    "answer": "D",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (METAR)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "Refer to the Appendix: WEATHER SYNOPSIS # 100 (METAR). The altimeter setting at Winnipeg (CYWG) is",
+    "options": [
+      "A. 30.43 in. Hg.",
+      "B. 30.43 mb.",
+      "C. 933.2 in. Hg.",
+      "D. 1332.0 mb."
+    ],
+    "answer": "A",
+    "category": "Meteorology",
+    "reference": "Appendix: WEATHER SYNOPSIS # 100 (METAR)",
+    "image": "page_35.png"
+  },
+  {
+    "question": "A METAR describes the weather",
+    "options": [
+      "A. expected at a station at a given time.",
+      "B. expected at a station over a 12 hour period.",
+      "C. observed at a station at the time of the report.",
+      "D. observed at a station during the previous day."
+    ],
+    "answer": "C",
+    "category": "Meteorology",
+    "reference": ""
+  },
+  {
+    "question": "If a heading of 250\u00b0M maintains your outbound track of 242\u00b0M, the required heading to maintain the reciprocal track back to your departure point would be",
+    "options": [
+      "A. 078\u00b0M.",
+      "B. 070\u00b0M.",
+      "C. 062\u00b0M.",
+      "D. 054\u00b0M."
+    ],
+    "answer": "D",
+    "category": "Navigation",
+    "reference": ""
+  },
+  {
+    "question": "Refer to the VNC. What is the distance between the following two geographic co-ordinates: N44\u00ba00\u2019 W78\u00ba00\u2019 and N45\u00ba00\u2019 W78\u00ba00\u2019?",
+    "options": [
+      "A. 10 NM.",
+      "B. 10 SM.",
+      "C. 60 NM.",
+      "D. 60 SM."
+    ],
+    "answer": "C",
+    "category": "Navigation",
+    "reference": "VNC",
+    "images": "page_36.png"
+  },
+  {
+    "question": "Refer to the Appendix: CFS \u2013 Lindsay, Ont. (CNF4). Select the correct statements with respect to the aerodrome information.",
+    "options": [
+      "A. Circuits are right hand on runways 13 and 20.",
+      "B. Aircraft radio controlled aerodrome lighting is available.",
+      "C. There are PAPI lights on runways 31 and 13.",
+      "D. Customs service is available.",
+      "E. There is an FSS at the aerodrome.",
+      "F. Aviation gasoline is available.",
+      "(1) A, B, F.",
+      "(2) B, E, F.",
+      "(3) C, D, F.",
+      "(4) A, B, D."
+    ],
+    "answer": "1",
+    "category": "Navigation",
+    "reference": "Appendix:  CFS – Lindsay, Ont. (CNF4)",
+    "image": "page_37.png"
+  },
+  {
+    "question": "Refer to the VNC. The hypsometric tinting on the chart indicates that between the Lindsay and Gananoque aerodromes the flight will be conducted over ground which is between",
+    "options": [
+      "A. sea level and 1,000 ft.",
+      "B. sea level and 1,500 ft.",
+      "C. 1,000 ft and 2,000 ft.",
+      "D. sea level and 2,000 ft."
+    ],
+    "answer": "A",
+    "category": "Navigation",
+    "reference": "VNC, CROSS COUNTRY FLIGHT",
+    "image": "page_36.png"
+  },
+  {
+    "question": "Wind 250\u00b0T at 20 kt. True Air Speed 105 kt. Track 010\u00b0T. Using the above information the computed heading and groundspeed en route Oshawa to Lindsay is nearest to",
+    "options": [
+      "A. 010\u00b0M and 105 kt.",
+      "B. 360\u00b0M and 112 kt.",
+      "C. 012\u00b0M and 114 kt.",
+      "D. 031\u00b0M and 105 kt."
+    ],
+    "answer": "C",
+    "category": "Navigation",
+    "reference": "CROSS COUNTRY FLIGHT",
+    "image": "page_36.png"
+  },
+  {
+    "question": "Refer to the VNC. En route from Oshawa to Lindsay you pass through CYA 520(T). You must be more alert for",
+    "options": [
+      "A. aircraft on approach to Lester B. Pearson International Airport (Toronto).",
+      "B. civilian flight training activity.",
+      "C. aerobatic activity.",
+      "D. military flight training activity."
+    ],
+    "answer": "B",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC. What is the magnetic track from Lindsay (CNF4) to Gananoque (CNN8)?",
+    "options": [
+      "A. 281\u00b0",
+      "B. 077\u00b0",
+      "C. 089\u00b0",
+      "D. 101\u00b0"
+    ],
+    "answer": "D",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC. The estimated flight time from Lindsay to Gananoque at 5,500 ft with a groundspeed of 100 kt is nearest to NOTE: Add an extra 2 minutes for each 1,000 ft of climb.",
+    "options": [
+      "A. 1 hour and 05 minutes.",
+      "B. 1 hour and 15 minutes.",
+      "C. 1 hour and 20 minutes.",
+      "D. 1 hour and 25 minutes."
+    ],
+    "answer": "B",
+    "category": "Navigation",
+    "reference": "VNC, CROSS COUNTRY FLIGHT",
+    "image": "page_36.png"
+  },
+  {
+    "question": "Average fuel consumption 5.5 gph\nTotal flight time 1 hour and 50 minutes\nNOTE: Add 2.0 gal for taxi, take-off and climb at Oshawa.\nAdd 2.0 gal for taxi, take-off and climb at Lindsay.\nUsing the above information, calculate the day VFR fuel requirements for a flight from Oshawa to Gananoque with a stop at Lindsay.",
+    "options": [
+      "A. 18.1 gal.",
+      "B. 16.9 gal.",
+      "C. 14.1 gal.",
+      "D. 12.8 gal."
+    ],
+    "answer": "B",
+    "category": "Navigation",
+    "reference": "CROSS COUNTRY FLIGHT",
+    "image": "page_36.png"
+  },
+  {
+    "question": "Pressure Altitude 6,500 ft\nOutside Air Temperature 15\u00b0C\nIndicated Airspeed 100 kt\nUsing the above information, what is the true airspeed? Assume indicated airspeed is equal to calibrated airspeed.",
+    "options": [
+      "A. 89 kt",
+      "B. 94 kt",
+      "C. 106 kt",
+      "D. 113 kt"
+    ],
+    "answer": "D",
+    "category": "Navigation",
+    "reference": "",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC. The highest obstacle within 5 NM either side of your track from Lindsay to Gananoque is",
+    "options": [
+      "A. 1,857 feet ASL.",
+      "B. 1,600 feet ASL.",
+      "C. 1,475 feet ASL.",
+      "D. 1,246 feet AGL."
+    ],
+    "answer": "A",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "While on track abeam Peterborough (N44\u00ba13\u2019 W78\u00ba21\u2019), you wish to obtain the latest weather for Kingston (N44\u00ba13\u2019 W76\u00ba35\u2019) to get some indication of what conditions will be at Gananoque. What would be the most appropriate station and frequency to call for this information?",
+    "options": [
+      "A. Peterborough UNICOM 122.8 MHz.",
+      "B. London Radio 126.7 MHz.",
+      "C. Campbellford Radio 113.5 MHz.",
+      "D. Trenton Tower 128.7 MHz."
+    ],
+    "answer": "B",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC. Your aircraft crosses the town of Bridgenorth (N44\u00b023\u2019 W78\u00b023\u2019) at 1810Z. At 1822Z your aircraft is abeam the town of Norwood (N44\u00b023\u2019 W77\u00b059\u2019). Your ETA at Gananoque aerodrome will be closest to",
+    "options": [
+      "A. 1902Z.",
+      "B. 1908Z.",
+      "C. 1914Z.",
+      "D. 1920Z."
+    ],
+    "answer": "C",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC. You are north of track over the town of Marlbank (N44\u00b026\u2019 W77\u00b005\u2019). Using the opening and closing angles method, you should alter heading to the right",
+    "options": [
+      "A. 2\u00b0.",
+      "B. 5\u00b0.",
+      "C. 8\u00b0.",
+      "D. 10\u00b0."
+    ],
+    "answer": "B",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC. What class of airspace would you be flying through when your aircraft is at 5,500 feet ASL, over Marlbank (N44\u00b026\u2019 W77\u00b005\u2019)?",
+    "options": [
+      "A. D",
+      "B. E",
+      "C. F",
+      "D. G"
+    ],
+    "answer": "B",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC. With the VOR receiver tuned to the Coehill VOR (N44\u00ba40\u2019 W77\u00ba50\u2019), when you are over the town of Marlbank (N44\u00b026\u2019 W77\u00b005\u2019) the CDI should be",
+    "options": [
+      "A. centred with a \u201cFROM\u201d indication when the OBS is 123\u00b0.",
+      "B. centred with a \u201cFROM\u201d indication when the OBS is 303\u00b0.",
+      "C. deflected full left when the OBS is 123\u00b0.",
+      "D. deflected full right when the OBS is 303\u00b0."
+    ],
+    "answer": "A",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC or to the Appendix: CFS \u2013 Kingston, Ont. (CYGK). Due to deteriorating weather you decide to divert to Kingston (N44\u00ba13\u2019 W76\u00ba35\u2019), but you become disoriented. To assist in locating the airport, Kingston FSS could give you a",
+    "options": [
+      "A. radar vector.",
+      "B. ADF steer.",
+      "C. DF steer.",
+      "D. VOR vector."
+    ],
+    "answer": "C",
+    "category": "Navigation",
+    "reference": "Appendix:  CFS – Kingston, Ont. (CYGK)",
+    "image": "page_38.png"
+  },
+  {
+    "question": "When a VFR flight plan has been filed and no search and rescue time has been specified in the flight plan, the pilot-in-command shall file an arrival report with the appropriate ATS unit not later than",
+    "options": [
+      "A. 30 minutes after the last reported ETA.",
+      "B. 1 hour after the last reported ETA.",
+      "C. 12 hours after landing.",
+      "D. 24 hours after landing."
+    ],
+    "answer": "B",
+    "category": "Navigation",
+    "reference": ""
+  },
+  {
+    "question": "Refer to the VNC. What class of airspace is CYR 503, located 3 NM east of the Kingston airport (N44\u00ba13\u2019 W76\u00ba35\u2019)?",
+    "options": [
+      "A. D",
+      "B. E",
+      "C. F",
+      "D. G"
+    ],
+    "answer": "C",
+    "category": "Navigation",
+    "reference": "VNC",
+    "image": ""
+  },
+  {
+    "question": "Refer to the VNC or to the Appendix: CFS \u2013 Kingston, Ont. (CYGK). The reported ceiling at Kingston is 1,000 ft broken and visibility is 4 miles. To remain VFR in controlled airspace, an aircraft must join the circuit at Kingston",
+    "options": [
+      "A. at 800 ft ASL.",
+      "B. at 1,300 ft ASL.",
+      "C. in accordance with SVFR.",
+      "D. as high as possible without entering cloud."
+    ],
+    "answer": "A",
+    "category": "Navigation",
+    "reference": "Appendix:  CFS – Kingston, Ont. (CYGK)",
+    "image": "page_38.png"
+  }
+]
