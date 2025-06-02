@@ -188,7 +188,7 @@ elif mode == "🧪 PPL Sample Exams":
 
     questions = load_sample_exam_questions()
     total_available = len(questions)
-    num_questions = st.slider("How many questions would you like to attempt?", 1, min(25, total_available), 10)
+    num_questions = st.slider("How many questions would you like to attempt?", 1, min(100, total_available), 10)
 
     if "sample_exam_set" not in st.session_state or st.session_state.get("sample_exam_len") != num_questions:
         st.session_state.sample_exam_set = random.sample(questions, num_questions)
@@ -204,11 +204,11 @@ elif mode == "🧪 PPL Sample Exams":
 
     if "images" in current_question:
         for img in current_question["images"]:
-            url = f"https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/exam_visuals/{img}"
-            st.image(url, use_column_width=True)
+            url = f"https://raw.githubusercontent.com/DevonACR/AvTutor/main/exam_visuals/{img}"
+            st.image(url, use_container_width=True)
     elif "image" in current_question:
-        url = f"https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/exam_visuals/{current_question['image']}"
-        st.image(url, use_column_width=True)
+        url = f"https://raw.githubusercontent.com/DevonACR/AvTutor/main/exam_visuals/{current_question['image']}"
+        st.image(url, use_container_width=True)
 
     user_selection = st.radio("Select your answer:", current_question["options"], key=f"sample_q_{q_index}")
 
