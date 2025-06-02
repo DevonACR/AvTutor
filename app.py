@@ -1,5 +1,6 @@
 import streamlit as st
 st.set_page_config(page_title="PPL Aviation Tutor 🇨🇦", layout="centered")
+st.title("🇨🇦 PPL Aviation Tutor")
 
 import json
 import openai
@@ -81,9 +82,6 @@ def get_questions_by_category(category: str, limit: int = 25) -> List[Dict]:
     return sampled
 
 # Streamlit UI
-st.set_page_config(page_title="PPL Aviation Tutor 🇨🇦", layout="centered")
-st.title("🇨🇦 PPL Aviation Tutor")
-
 mode = st.sidebar.radio("Choose Study Mode", ["🔎 Ask a Question", "🧠 Quiz Me", "🧾 Explain a Topic", "📚 Study by Category", "🧪 PPL Sample Exams"])
 
 if mode == "🔎 Ask a Question":
