@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title="PPL Aviation Tutor 🇨🇦", layout="centered")
 import json
 import openai
 from dotenv import load_dotenv
