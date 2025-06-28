@@ -22,8 +22,10 @@ st.write("🔐 Secret starts with:", gemini_secret[:50])
 
 # 3. Write the JSON string to a temporary file
 key_path = "/tmp/gemini-key.json"
+# Convert escaped newlines into real ones before saving
+fixed_secret = gemini_secret.replace("\\n", "\n")
 with open(key_path, "w") as f:
-    f.write(gemini_secret)
+    f.write(fixed_secret)
 
 # 4. Set environment variable so Vertex AI uses the key
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
