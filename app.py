@@ -262,3 +262,48 @@ elif mode == "🧪 PPL Sample Exams":
             st.success("✅ You passed the sample exam! (70%+)")
         else:
             st.error("❌ You did not pass. Review the references and try again.")
+
+elif mode == "🧩 Flashcards":
+    st.subheader("🧩 Flashcard Study Mode")
+
+    # Shuffle flashcards only once
+    if "flashcards" not in st.session_state:
+        flashcards = chunks.copy()
+        random.shuffle(flashcards)
+        st.session_state.flashcards = flashcards
+        st.session_state.flash_index = 0
+        st.session_state.show_answer = False
+
+    cards = st.session_state.flashcards
+    idx = st.session_state.flash_index
+
+    if idx < len(cards):
+        card = cards[idx]
+        front = card["content"].strip().split(".")[0] + "."  # First sentence
+        back = card["content"].strip()
+        source = card.get("source", "Unknown")
+
+        st.markdown(f"**Card {idx + 1} of {len(cards)}**")
+
+        if not st.session_state.show_answer:
+            st.info(front)
+            if st.button("🔄 Show Answer"):
+                st.session_state.show_answer = True
+        else:
+            st.success(back)
+            st.caption(f"📘 Reference: {source}")
+            if st.button("🔁 Hide Answer"):
+                st.session_state.show_answer = False
+
+        # Navigation
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("⬅️ Previous") and idx > 0:
+                st.session_state.flash_index -= 1
+                st.session_state.show_answer = False
+        with col2:
+            if st.button("Next ➡️") and idx < len(cards) - 1:
+                st.session_state.flash_index += 1
+                st.session_state.show_answer = False
+    else:
+        st.warning("No more flashcards found.")
