@@ -1,23 +1,22 @@
 import streamlit as st
 st.set_page_config(page_title="PPL Aviation Tutor 🇨🇦", layout="centered")
-st.title("🇨🇦 PPL Aviation Tutor")
 
 import json
-import openai
-from dotenv import load_dotenv
-import os
 import random
 import requests
+import os
 from typing import List, Dict
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Now it's safe to use Streamlit functions like @st.cache_data, st.title, etc.
+# ✅ Gemini 2.5 (Pro) via Vertex AI
+from vertexai.generative_models import GenerativeModel
+import vertexai
 
-
-# Load OpenAI API key
-openai.api_key = st.secrets.get("OPENAI_API_KEY", os.getenv("OPENAI_API_KEY"))
+# Init Vertex AI with your project
+vertexai.init(project="gen-lang-client-0636505424", location="us-central1")
+gemini_model = GenerativeModel(model_name="gemini-2.5-pro")
 
 # Load theory chunks from tc_chunks.json
 @st.cache_data
@@ -54,20 +53,22 @@ def ask_tutor(question):
     sources = [chunk['source'] for chunk in top_chunks]
 
     prompt = f"""
-You are an aviation tutor for Canadian PPL students, explaining in simple language.
+You are a Canadian PPL aviation tutor. Explain concepts clearly and simply.
 
 Context:
 {context}
 
 Question: {question}
-Answer with explanation first, then end with: \n\nStudy Source(s): {', '.join(sources)}
+
+Answer with explanation, then end with:
+
+Study Source(s): {', '.join(sources)}
 """
-    response = openai.chat.completions.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.3,
-    )
-    return response.choices[0].message.content.strip()
+    try:
+        response = gemini_model.generate_content(prompt)
+        return response.text.strip()
+    except Exception as e:
+        return f"⚠️ Gemini Error: {e}"
 
 def get_categories():
     cats = [chunk.get("category", "General") for chunk in chunks]
