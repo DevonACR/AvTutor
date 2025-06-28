@@ -11,7 +11,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # ✅ Gemini 2.5 (Pro) via Vertex AI
-pip install -U google-cloud-aiplatform
 from vertexai.generative_models import GenerativeModel
 import vertexai
 
