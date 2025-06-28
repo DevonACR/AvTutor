@@ -5,53 +5,26 @@ import json
 import random
 import requests
 import os
+import base64
 from typing import List, Dict
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# -----------------------------
-# 🔐 Authenticate with Gemini (Vertex AI)
-# -----------------------------
-
-# 1. Read secret from Streamlit Secrets
-gemini_secret = st.secrets.get("GOOGLE_APPLICATION_CREDENTIALS_JSON", "")
-
-# 2. Show a quick preview for debugging (remove this later if desired)
-st.write("🔐 Secret starts with:", gemini_secret[:50])
-
-# 3. Write the JSON string to a temporary file
-key_path = "/tmp/gemini-key.json"
-# Convert escaped newlines into real ones before saving
-raw_secret = st.secrets["GOOGLE_APPLICATION_CREDENTIALS_JSON"]
-fixed_secret = raw_secret.replace("\\n", "\n")
-
-with open("/tmp/gemini-key.json", "w") as f:
-    f.write(fixed_secret)
-
+# ✅ DECODE GOOGLE CREDENTIALS
+b64_key = st.secrets["GOOGLE_KEY_B64"]
+decoded_key = base64.b64decode(b64_key)
+with open("/tmp/gemini-key.json", "wb") as f:
+    f.write(decoded_key)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/gemini-key.json"
 
-
-# 4. Set environment variable so Vertex AI uses the key
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
-
-# 5. Validate that the key parses correctly (optional)
-try:
-    with open(key_path, "r") as f:
-        creds = json.load(f)
-    st.success("✅ Service account JSON parsed successfully!")
-except Exception as e:
-    st.error(f"❌ Failed to parse service account JSON: {e}")
-
-# -----------------------------
-# 🔄 Initialize Gemini
-# -----------------------------
-
-import vertexai
+# ✅ Import and initialize VertexAI
 from vertexai.generative_models import GenerativeModel
+import vertexai
 
 vertexai.init(project="gen-lang-client-0636505424", location="us-central1")
 gemini_model = GenerativeModel(model_name="gemini-2.5-pro")
+
 
 
 # Load theory chunks from tc_chunks.json
