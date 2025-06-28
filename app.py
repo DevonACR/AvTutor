@@ -10,11 +10,16 @@ import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-# ✅ Gemini 2.5 (Pro) via Vertex AI
-from vertexai.generative_models import GenerativeModel
-import vertexai
+# 🔐 Load Google Cloud service account credentials from secrets
+with open("/tmp/gemini-key.json", "w") as f:
+    f.write(st.secrets["GOOGLE_APPLICATION_CREDENTIALS_JSON"])
 
-# Init Vertex AI with your project
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/gemini-key.json"
+
+# 🔄 Gemini setup
+import vertexai
+from vertexai.generative_models import GenerativeModel
+
 vertexai.init(project="gen-lang-client-0636505424", location="us-central1")
 gemini_model = GenerativeModel(model_name="gemini-2.5-pro")
 
