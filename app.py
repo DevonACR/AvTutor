@@ -50,14 +50,12 @@ def load_sample_exam_questions():
 # 🔁 Load Flashcard Prompts from GitHub
 @st.cache_data
 def load_flashcards():
-    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/flashcards.json"
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_flashcards.json"
     res = requests.get(url)
-    
-    # Debug print
-    st.write("🪵 Flashcard response preview:")
+    st.write("🪵 Flashcard preview:")
     st.code(res.text[:500], language="json")
-    
     return res.json()
+
 
 
 flashcard_data = load_flashcards()
@@ -328,17 +326,18 @@ elif mode == "🧩 Flashcards":
 
     if idx < len(cards):
         card = cards[idx]
-        st.markdown(f"**Card {idx + 1} of {len(cards)}**")
-        st.info(f"❓ {card['question']}")
+st.markdown(f"**Card {idx + 1} of {len(cards)}**")
+st.subheader(f"❓ {card['question']}")
+st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
 
-        if not st.session_state.show_answer:
-            if st.button("🔄 Show Answer"):
-                st.session_state.show_answer = True
-        else:
-            st.success(f"✅ {card['answer']}")
-            st.caption(f"📘 Reference: {card.get('reference', 'Unknown')}")
-            if st.button("🔁 Hide Answer"):
-                st.session_state.show_answer = False
+if not st.session_state.show_answer:
+    if st.button("🔄 Show Answer"):
+        st.session_state.show_answer = True
+else:
+    st.success(f"✅ {card['answer']}")
+    st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
+    if st.button("🔁 Hide Answer"):
+        st.session_state.show_answer = False
 
         col1, col2 = st.columns(2)
         with col1:
