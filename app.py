@@ -64,38 +64,6 @@ flashcard_data = load_flashcards()
 # TF-IDF for search
 vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
 
-@st.cache_data
-def generate_flashcards_from_chunks(chunks, model, num=50):
-    flashcards = []
-
-    for chunk in random.sample(chunks, min(len(chunks), num)):
-        content = chunk['content']
-        source = chunk.get('source', 'Unknown')
-
-        prompt = f"""
-You are an aviation ground school instructor. Read this aviation regulation or training excerpt:
-
-\"\"\"{content}\"\"\"
-
-Now generate a flashcard about this content.
-- The **question** should ask something meaningful that a student would need to know for a Canadian Private Pilot Licence (PPL).
-- The **answer** should be short and correct.
-- End with the **study reference**: {source}
-- Reply only in JSON format like this:
-{{"question": "...", "answer": "...", "reference": "..."}}
-"""
-
-        try:
-            response = model.generate_content(prompt)
-            flashcard = json.loads(response.text.strip())
-            flashcards.append(flashcard)
-        except Exception as e:
-            st.warning(f"⚠️ Skipped a chunk due to error: {e}")
-            continue
-
-    return flashcards
-
-
 def search_chunks(query: str, k: int = 5) -> List[Dict]:
     query_vec = TfidfVectorizer().fit(chunk_texts).transform([query])
     sims = cosine_similarity(query_vec, vectorizer).flatten()
@@ -315,11 +283,10 @@ elif mode == "🧪 PPL Sample Exams":
 elif mode == "🧩 Flashcards":
      st.subheader("🧩 Flashcard Study Mode")
 
-    if "flashcards" not in st.session_state:
-        with st.spinner("Generating flashcards..."):
-            st.session_state.flashcards = generate_flashcards_from_chunks(chunks, gemini_model, num=30)
-            st.session_state.flash_index = 0
-            st.session_state.show_answer = False
+ if "flashcards" not in st.session_state:
+    st.session_state.flashcards = flashcard_data
+    st.session_state.flash_index = 0
+    st.session_state.show_answer = False
 
     cards = st.session_state.flashcards
     idx = st.session_state.flash_index
