@@ -1,0 +1,56 @@
+{
+  "Air Law and Procedures": {
+    "references": [
+      "CARS",
+      "AIM",
+      "Designated Airspace Handbook (DAH)"
+    ]
+  },
+  "Navigation and Radio Aids": {
+    "references": [
+      "AIM",
+      "Canada Flight Supplement (CFS)",
+      "ICAO Flight Planning Form"
+    ]
+  },
+  "Meteorology": {
+    "references": [
+      "RCAF Weather Manual",
+      "Aviation Weather Services Guide",
+      "AIM"
+    ]
+  },
+  "Airframes, Engines, and Systems": {
+    "references": [
+      "Flight Training Manual",
+      "POH (Cessna 172)",
+      "Human Factors for Aviation"
+    ]
+  },
+  "Theory of Flight": {
+    "references": [
+      "Flight Training Manual",
+      "Aerodynamics for Naval Aviators",
+      "AIM"
+    ]
+  },
+  "Flight Instruments": {
+    "references": [
+      "AIM",
+      "Instrument Procedures Manual"
+    ]
+  },
+  "Flight Operations": {
+    "references": [
+      "Flight Training Manual",
+      "AIM",
+      "CARS"
+    ]
+  },
+  "Human Factors": {
+    "references": [
+      "Human Factors for Aviation - Basic Handbook",
+      "AIM"
+    ]
+  }
+}
