@@ -273,7 +273,41 @@ elif mode == "🧪 PPL Sample Exams":
 
         # Show references
         if "references" in current_question:
-            for ref in current_q_
+            for ref in current_question["references"]:
+                st.caption(f"📘 Reference: {ref}")
+        elif "reference" in current_question and current_question["reference"]:
+            st.caption(f"📘 Reference: {current_question['reference']}")
+
+        st.rerun()
+
+    # Navigation
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("⬅️ Previous", disabled=(q_index == 0)):
+            st.session_state.sample_exam_index = max(0, q_index - 1)
+            st.rerun()
+    with col2:
+        if st.button("Next ➡️", disabled=(q_index == num_questions - 1)):
+            st.session_state.sample_exam_index = min(num_questions - 1, q_index + 1)
+            st.rerun()
+
+    # Final score display
+    if len(st.session_state.sample_exam_answers) == num_questions:
+        correct_total = 0
+        for i, q in enumerate(st.session_state.sample_exam_set):
+            ans = st.session_state.sample_exam_answers.get(i, "")
+            correct = [opt for opt in q["options"] if opt.startswith(q["answer"])]
+            if correct and ans == correct[0]:
+                correct_total += 1
+        score = correct_total / num_questions * 100
+        passed = score >= 70
+        st.markdown("---")
+        st.success(f"🎯 Your Score: {correct_total} / {num_questions} ({score:.1f}%)")
+        if passed:
+            st.success("✅ You passed the sample exam! (70%+)")
+        else:
+            st.error("❌ You did not pass. Review the references and try again.")
+
 
 elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
