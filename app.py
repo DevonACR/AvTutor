@@ -50,9 +50,19 @@ def load_sample_exam_questions():
 # 🔁 Load Flashcard Prompts from GitHub
 @st.cache_data
 def load_flashcards():
-    url = "generated_flashcards.json"
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_flashcards.json"
     res = requests.get(url)
-    return res.json()
+
+    if res.status_code != 200:
+        st.error(f"❌ Failed to fetch flashcards - HTTP {res.status_code}")
+        return []
+
+    try:
+        return res.json()
+    except Exception as e:
+        st.error(f"❌ Failed to parse flashcards: {e}")
+        st.code(res.text[:500], language="json")
+        return []
 
 
 # TF-IDF for search
