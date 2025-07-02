@@ -1,6 +1,11 @@
 import streamlit as st
 st.set_page_config(page_title="PPL Aviation Tutor 🇨🇦", layout="centered")
 
+if "force_cache_clear" not in st.session_state:
+    st.cache_data.clear()
+    st.session_state.force_cache_clear = True
+
+
 import json
 import random
 import requests
