@@ -232,6 +232,8 @@ elif mode == "🧪 PPL Sample Exams":
         st.session_state.sample_exam_answers = {}
         st.session_state.sample_exam_submitted = set()
         st.session_state.sample_exam_len = num_questions
+        st.session_state.sample_exam_submitted = set()  # ✅ Initialize this missing variable
+
 
     q_index = st.session_state.sample_exam_index
     current_question = st.session_state.sample_exam_set[q_index]
