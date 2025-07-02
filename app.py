@@ -297,11 +297,44 @@ elif mode == "🧪 PPL Sample Exams":
             st.session_state.sample_exam_index += 1
             st.rerun()
 
-    # Final result if all answered
-    if len(st.session_state.sample_exam_answers) == num_questions:
-        correct_total = 0
-        for i, q in enumerate(st.session_state.sample_exam_set):
-            ans = st.session_state.sample_exam_answers.get(i, "")
+    # ✅ Final result if all answered
+if len(st.session_state.sample_exam_answers) == num_questions:
+    correct_total = 0
+    for i, q in enumerate(st.session_state.sample_exam_set):
+        ans = st.session_state.sample_exam_answers.get(i, "")
+        correct = [opt for opt in q["options"] if opt.startswith(q["answer"])]
+        if correct and ans == correct[0]:
+            correct_total += 1
+
+    score = correct_total / num_questions * 100
+    passed = score >= 70
+
+    st.markdown("## 📝 Exam Results")
+    st.success(f"🎯 Your Score: {correct_total} / {num_questions} ({score:.1f}%)")
+    if passed:
+        st.balloons()
+        st.success("✅ You passed the sample exam! (70%+)")
+    else:
+        st.error("❌ You did not pass. Review the references and try again.")
+
+    # 🔍 Review Incorrect Answers
+    st.markdown("### 🔍 Review Incorrect Answers")
+    for i, q in enumerate(st.session_state.sample_exam_set):
+        user_ans = st.session_state.sample_exam_answers.get(i, "")
+        correct_opt = [opt for opt in q["options"] if opt.startswith(q["answer"])]
+        correct_opt = correct_opt[0] if correct_opt else "Unknown"
+
+        if user_ans != correct_opt:
+            st.markdown(f"**Question {i+1}:** {q['question']}")
+            st.error(f"❌ Your Answer: {user_ans}")
+            st.success(f"✅ Correct Answer: {correct_opt}")
+            if "references" in q:
+                for ref in q["references"]:
+                    st.caption(f"📘 Reference: {ref}")
+            elif "reference" in q and q["reference"]:
+                st.caption(f"📘 Reference: {q['reference']}")
+            st.markdown("---")
+
 
 
 
