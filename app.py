@@ -225,6 +225,11 @@ elif mode == "🧪 PPL Sample Exams":
     total_available = len(questions)
     num_questions = st.slider("How many questions would you like to attempt?", 1, min(100, total_available), 10)
 
+    # ✅ Always initialize submitted answers tracking
+    if "sample_exam_submitted" not in st.session_state:
+        st.session_state.sample_exam_submitted = set()
+
+
     # Initialize or reset state
     if "sample_exam_set" not in st.session_state or st.session_state.get("sample_exam_len") != num_questions:
         st.session_state.sample_exam_set = random.sample(questions, num_questions)
