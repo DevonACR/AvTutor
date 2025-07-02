@@ -1,10 +1,5 @@
 import streamlit as st
-st.set_page_config(page_title="PPL Aviation Tutor 🇨🇦", layout="centered")
-
-if "force_cache_clear" not in st.session_state:
-    st.cache_data.clear()
-    st.session_state.force_cache_clear = True
-
+st.set_page_config(page_title="Aviation Tutor 🇨🇦", layout="centered")
 
 import json
 import random
