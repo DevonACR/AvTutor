@@ -297,14 +297,18 @@ elif mode == "🧪 PPL Sample Exams":
             st.session_state.sample_exam_index += 1
             st.rerun()
 
-    # ✅ Final result if all answered
-if len(st.session_state.sample_exam_answers) == num_questions:
+    # ✅ Final result if all answers have been submitted
+if len(st.session_state.sample_exam_submitted) == num_questions:
     correct_total = 0
+    incorrect = []
+
     for i, q in enumerate(st.session_state.sample_exam_set):
-        ans = st.session_state.sample_exam_answers.get(i, "")
-        correct = [opt for opt in q["options"] if opt.startswith(q["answer"])]
-        if correct and ans == correct[0]:
+        user_ans = st.session_state.sample_exam_answers.get(i, "")
+        correct_opt = [opt for opt in q["options"] if opt.startswith(q["answer"])]
+        if correct_opt and user_ans == correct_opt[0]:
             correct_total += 1
+        else:
+            incorrect.append((i, q, user_ans, correct_opt[0] if correct_opt else "Unknown"))
 
     score = correct_total / num_questions * 100
     passed = score >= 70
@@ -317,23 +321,20 @@ if len(st.session_state.sample_exam_answers) == num_questions:
     else:
         st.error("❌ You did not pass. Review the references and try again.")
 
-    # 🔍 Review Incorrect Answers
-    st.markdown("### 🔍 Review Incorrect Answers")
-    for i, q in enumerate(st.session_state.sample_exam_set):
-        user_ans = st.session_state.sample_exam_answers.get(i, "")
-        correct_opt = [opt for opt in q["options"] if opt.startswith(q["answer"])]
-        correct_opt = correct_opt[0] if correct_opt else "Unknown"
-
-        if user_ans != correct_opt:
+    # 🔍 Show incorrect answers with references
+    if incorrect:
+        st.markdown("### 🔍 Review Incorrect Answers")
+        for i, q, user_ans, correct_ans in incorrect:
             st.markdown(f"**Question {i+1}:** {q['question']}")
             st.error(f"❌ Your Answer: {user_ans}")
-            st.success(f"✅ Correct Answer: {correct_opt}")
+            st.success(f"✅ Correct Answer: {correct_ans}")
             if "references" in q:
                 for ref in q["references"]:
                     st.caption(f"📘 Reference: {ref}")
             elif "reference" in q and q["reference"]:
                 st.caption(f"📘 Reference: {q['reference']}")
             st.markdown("---")
+
 
 
 
