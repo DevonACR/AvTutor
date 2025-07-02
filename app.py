@@ -50,9 +50,15 @@ def load_sample_exam_questions():
 # 🔁 Load Flashcard Prompts from GitHub
 @st.cache_data
 def load_flashcards():
-    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/flashcard_prompts.json"
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/flashcards.json"
     res = requests.get(url)
+    
+    # Debug print
+    st.write("🪵 Flashcard response preview:")
+    st.code(res.text[:500], language="json")
+    
     return res.json()
+
 
 flashcard_data = load_flashcards()
 
