@@ -187,7 +187,7 @@ elif mode == "🧠 Quiz Me":
     answer = st.radio("Select your answer:", q['options'], key=f"quiz_{current_q}")
     st.session_state.answers[current_q] = answer
 
-        col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3 = st.columns([1, 2, 1])
     with col1:
         if st.button("⬅️ Previous") and current_q > 0:
             st.session_state.current_q -= 1
