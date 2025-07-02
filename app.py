@@ -280,8 +280,8 @@ elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
     # Shuffle flashcards only once
-   if "flashcards" not in st.session_state:
-    flashcards = flashcard_data.copy()
+    if "flashcards" not in st.session_state:
+        flashcards = chunks.copy()
         random.shuffle(flashcards)
         st.session_state.flashcards = flashcards
         st.session_state.flash_index = 0
@@ -320,3 +320,4 @@ elif mode == "🧩 Flashcards":
                 st.session_state.show_answer = False
     else:
         st.warning("No more flashcards found.")
+
