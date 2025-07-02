@@ -297,29 +297,33 @@ elif mode == "🧩 Flashcards":
 
     if idx < len(cards):
         card = cards[idx]
+
         st.markdown(f"**Card {idx + 1} of {len(cards)}**")
         st.subheader(f"❓ {card['question']}")
         st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
 
-        if not st.session_state.show_answer:
-            if st.button("🔄 Show Answer"):
-                st.session_state.show_answer = True
-        else:
-            st.success(f"✅ {card['answer']}")
-            st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
-            if st.button("🔁 Hide Answer"):
-                st.session_state.show_answer = False
+        # ✅ Wrap all flashcard controls in a single form
+        with st.form("flashcard_controls", clear_on_submit=True):
+            if st.session_state.show_answer:
+                st.success(f"✅ {card['answer']}")
+                st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
 
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("⬅️ Previous") and idx > 0:
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                prev_clicked = st.form_submit_button("⬅️ Previous")
+            with col2:
+                toggle_clicked = st.form_submit_button("🔄 Show Answer" if not st.session_state.show_answer else "🔁 Hide Answer")
+            with col3:
+                next_clicked = st.form_submit_button("Next ➡️")
+
+            if toggle_clicked:
+                st.session_state.show_answer = not st.session_state.show_answer
+            elif prev_clicked and idx > 0:
                 st.session_state.flash_index -= 1
                 st.session_state.show_answer = False
-        with col2:
-            if st.button("Next ➡️") and idx < len(cards) - 1:
+            elif next_clicked and idx < len(cards) - 1:
                 st.session_state.flash_index += 1
                 st.session_state.show_answer = False
     else:
         st.warning("No more flashcards found.")
-
 
