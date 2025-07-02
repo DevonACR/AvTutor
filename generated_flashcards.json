@@ -1,0 +1,434 @@
+[
+  {
+    "question": "What is the minimum altitude an aircraft may be flown over a built-up area, such as a city or town?",
+    "answer": "An aircraft must be flown at least 1,000 feet above the highest obstacle within a horizontal radius of 2,000 feet from the aircraft. This rule ensures safe clearance over populated areas in case of an emergency.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "What action is required by the pilots when two aircraft are approaching each other head-on?",
+    "answer": "When approaching head-on or approximately so, each pilot-in-command must alter the aircraft's heading to the right to ensure they pass well clear of each other.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "What documents must be carried on board a private, Canadian-registered aircraft for a flight within Canada?",
+    "answer": "The aircraft must carry its Certificate of Airworthiness, Certificate of Registration, proof of liability insurance, journey log, and weight and balance report. The Pilot Operating Handbook (POH) must be on board. The flight crew must also carry their pilot licence and medical certificate.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What documents must be carried on board a Canadian-registered aircraft for a flight within Canada?",
+    "answer": "The aircraft must carry its Certificate of Registration, Certificate of Airworthiness, and proof of liability insurance. Additionally, the Journey Log, Aircraft Flight Manual, and the required crew licences and medical certificates must be on board.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What are the minimum fuel requirements for a VFR flight in an aeroplane by day and by night?",
+    "answer": "For a VFR flight by day, an aeroplane must carry enough fuel to fly to the destination and then for an additional 30 minutes at normal cruising speed. For a VFR flight by night, this reserve requirement increases to 45 minutes.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is the minimum fuel required for a day VFR flight in a power-driven aircraft?",
+    "answer": "The pilot-in-command must ensure there is enough fuel to fly to the destination aerodrome and then for a period of 30 minutes at normal cruising speed.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is the pass mark and time limit for the Transport Canada Air Law, Air Traffic Rules and Procedures (ARPCO) examination?",
+    "answer": "The pass mark for the ARPCO examination is 60%. Candidates are allotted a time limit of 1 hour to complete the 30-question exam.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "According to Canadian Aviation Regulations (CARs), what is the definition of 'night'?",
+    "answer": "Night is the period of time when the centre of the sun is more than 6 degrees below the horizon. This period begins at the end of evening civil twilight and ends at the beginning of morning civil twilight.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "According to Canadian Aviation Regulations, what is the minimum altitude for VFR flight over a built-up area or an open-air assembly of persons?",
+    "answer": "An aircraft must be operated at least 1,000 feet above the highest obstacle within a horizontal radius of 2,000 feet from the aircraft.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "According to the Canadian Aviation Regulations (CARs), what is the definition of \"flight time\"?",
+    "answer": "Flight time is the total time from the moment an aircraft first moves under its own power for the purpose of taking off until the moment it comes to rest at the end of the flight.",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "What are the three primary methods of navigation?",
+    "answer": "The three primary methods are pilotage (flying by reference to landmarks), dead reckoning (calculating position based on heading, speed, and time), and radio navigation (using signals from ground-based stations or satellites).",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is magnetic variation?",
+    "answer": "Magnetic variation is the angle between true north and magnetic north at any given location. It is depicted on aeronautical charts as an isogonic line and must be applied to a true heading to determine the magnetic heading to fly. To correct, remember the phrase: \"Variation east, magnetic least; variation west, magnetic best.\"",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What are the daytime VFR fuel requirements for an aeroplane in Canada?",
+    "answer": "An aeroplane must carry enough fuel to fly to the destination aerodrome and then continue to fly for an additional 30 minutes at normal cruising speed.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is the primary difference between the distance measured by Distance Measuring Equipment (DME) and the actual horizontal distance over the ground?",
+    "answer": "DME measures slant range, which is the direct line-of-sight distance from the aircraft to the ground station, not the horizontal distance over the ground. This difference is most significant when the aircraft is close to the station at a high altitude.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is magnetic variation?",
+    "answer": "Magnetic variation is the angle between True North and Magnetic North at a specific location. It is expressed in degrees East or West and is depicted on aeronautical charts by isogonic lines.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is the standard transponder code for a VFR flight in Canada when operating at or below 12,500 feet ASL?",
+    "answer": "The standard transponder code for a Visual Flight Rules (VFR) flight at or below 12,500 feet ASL is 1200. This code is used when no other specific code has been assigned by Air Traffic Control. For VFR flight above 12,500 feet ASL, the code is 1400.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "What is the effect on the airspeed indicator if the pitot tube and its drain hole become completely blocked?",
+    "answer": "The airspeed indicator will act like an altimeter as the trapped ram air pressure now varies with altitude. It will indicate a higher airspeed in a climb and a lower airspeed in a descent.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "What is the primary information provided by a VOR, and how is it oriented?",
+    "answer": "A VOR (VHF Omnidirectional Range) provides magnetic bearing information from the station, not to the station. This information is presented to the pilot as one of 360 radials, which are oriented outbound from the VOR station.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "What specific type of distance does Distance Measuring Equipment (DME) provide to an aircraft?",
+    "answer": "DME provides slant range distance, which is the direct line-of-sight distance from the aircraft to the ground station, not the horizontal distance over the ground.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "What is the Prime Meridian?",
+    "answer": "The Prime Meridian is the meridian of longitude designated as 0°, serving as the reference line from which all other longitudes are measured east and west. It is the line of longitude that passes through Greenwich, England.",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "What are the standard sea-level temperature and pressure values for the ICAO Standard Atmosphere (ISA)?",
+    "answer": "The standard sea-level values for the ICAO Standard Atmosphere are +15°C and a pressure of 29.92 inches of mercury (inHg) or 1013.2 hectopascals (hPa).",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is an AIRMET?",
+    "answer": "An AIRMET is an information message for pilots describing potentially hazardous weather that was not included in the current Graphic Area Forecast (GFA). It advises of conditions like moderate turbulence, widespread low visibility, or sustained surface winds of 20 knots or more, which are of particular concern to light aircraft.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is the standard time reference used in Canadian aviation meteorology and flight planning?",
+    "answer": "Coordinated Universal Time (UTC), referred to as Zulu (Z) time, is the standard time reference. It is used for all weather reports, forecasts, and flight plans to eliminate confusion between different local time zones.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What are the two types of charts that make up a Canadian Graphical Area Forecast (GFA)?",
+    "answer": "A GFA consists of two main charts: a \"Clouds and Weather\" chart and an \"Icing, Turbulence, and Freezing Level\" chart. These charts provide a forecast of the most probable meteorological conditions expected to occur below 24,000 feet over a given geographical area.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Who is responsible for ensuring that aviation weather services are available to meet the needs of aviation in Canada?",
+    "answer": "The Minister of Transport is responsible for ensuring that aviation weather services are available. These services are provided by Environment and Climate Change Canada (ECCC) and NAV CANADA under agreement with the Minister.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Who is responsible for the provision of aviation weather services in Canadian airspace?",
+    "answer": "NAV CANADA is responsible for providing aviation weather services, a responsibility designated to it by the Minister of Transport.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Which two international organizations set the standards and code formats for aviation meteorology, and what are their specific roles?",
+    "answer": "The International Civil Aviation Organization (ICAO) sets the standards and recommended practices for meteorological services. The World Meteorological Organization (WMO) determines the internationally agreed-upon code formats for weather reports and forecasts.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Are flight crews required to provide voice reports of wind and air temperature observations?",
+    "answer": "In accordance with ICAO Annex 3, flight crews are no longer required to provide voice reports of meteorological observations for wind speed and direction or air temperature.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "When flying in the North Atlantic (NAT) region, how might a pilot be requested to provide meteorological reports if not by routine voice report?",
+    "answer": "When an aircraft establishes an automatic dependent surveillance — contract (ADS-C), air traffic services may request automated MET reports for wind and temperature. These reports are provided via a controller-pilot data link communications (CPDLC) downlink.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is the difference between a Graphical Area Forecast (GFA) and a Terminal Aerodrome Forecast (TAF)?",
+    "answer": "A GFA provides a weather forecast for a large geographical region, while a TAF is a site-specific forecast for the 5-nautical-mile vicinity of an aerodrome. GFAs depict broad conditions like cloud systems and icing, whereas TAFs detail specific elements like wind, visibility, and weather for a particular airport.",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is the function of the magnetos in a piston engine aircraft?",
+    "answer": "Magnetos are engine-driven, self-contained units that generate high-voltage electricity to fire the spark plugs. They operate independently of the aircraft's main electrical system, providing redundancy and ensuring the engine can continue to run even if the battery or alternator fails.",
+    "topic": "Airframes, Engines, and Systems",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is the purpose of having two independent magnetos on most piston aircraft engines?",
+    "answer": "The dual magneto system provides redundancy, ensuring the engine can continue to run if one magneto fails. It also improves combustion efficiency by firing two spark plugs per cylinder, leading to a slight increase in engine power.",
+    "topic": "Airframes, Engines, and Systems",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "What are the four forces acting on an aircraft in flight?",
+    "answer": "The four forces are lift, weight, thrust, and drag. Lift acts opposite to weight, and thrust acts opposite to drag. For an aircraft to maintain straight-and-level, unaccelerated flight, these opposing forces must be in equilibrium.",
+    "topic": "Theory of Flight",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "What is the purpose of Preparatory Ground Instruction (PGI)?",
+    "answer": "Preparatory Ground Instruction covers the practical steps on how to perform a specific air exercise. While the underlying theory of flight is taught in ground school, PGI focuses on the \"how-to,\" though some theory may be reviewed to explain a point.",
+    "topic": "Theory of Flight",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "What are the four forces acting on an aircraft in flight?",
+    "answer": "The four forces are Lift, Weight, Thrust, and Drag. Lift opposes weight, and thrust opposes drag.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "What causes an aircraft to stall?",
+    "answer": "An aircraft stalls when the wing exceeds its critical angle of attack, causing the airflow to separate from the upper surface and resulting in a dramatic loss of lift. A stall is an aerodynamic effect and can occur at any airspeed or attitude.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "What is the relationship between the four forces acting on an aeroplane during straight and level, unaccelerated flight?",
+    "answer": "In straight and level, unaccelerated flight, the aeroplane is in a state of equilibrium. Lift is equal to and opposes Weight, and Thrust is equal to and opposes Drag.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "What are the four forces acting on an aeroplane in straight-and-level, unaccelerated flight?",
+    "answer": "The four forces are lift, weight, thrust, and drag. In this state of flight, lift is equal to and opposes weight, while thrust is equal to and opposes drag.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What are the four forces acting on an aircraft in flight?",
+    "answer": "The four forces are Lift, Weight, Thrust, and Drag. In straight and level, unaccelerated flight, the upward force of Lift is equal to the downward force of Weight, and the forward force of Thrust is equal to the rearward force of Drag.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is the direct cause of an aeroplane wing stall?",
+    "answer": "A wing stalls when the critical angle of attack is exceeded, causing the smooth airflow over the upper surface to separate from the wing. This results in a sudden loss of lift and an increase in drag.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is the relationship between the four forces acting on an aeroplane in straight-and-level, unaccelerated flight?",
+    "answer": "In straight-and-level, unaccelerated flight, the four forces are in a state of equilibrium. Lift is equal to weight, and thrust is equal to drag.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "According to Bernoulli's Principle, how is lift generated by an aerofoil?",
+    "answer": "Air flowing over the curved upper surface of an aerofoil must travel a greater distance, causing it to accelerate and creating an area of lower static pressure. The pressure differential between the lower pressure on top and the higher pressure on the bottom of the wing produces an upward force called lift.",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "What is instrument ground time?",
+    "answer": "Instrument ground time is time spent in a Transport Canada-approved Flight Simulation Training Device (FSTD) while controlling the simulator by sole reference to the flight instruments.",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Why must a pilot rely on flight instruments, rather than their own senses, when the horizon is not visible?",
+    "answer": "In the absence of visual references, the organs of balance in the inner ear can provide false sensations of orientation, leading to a dangerous condition called spatial disorientation. Flight instruments provide accurate, reliable information that must be trusted over these misleading physical feelings.",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is the primary rule a pilot must follow if they become spatially disoriented?",
+    "answer": "A pilot must disregard conflicting physical sensations and rely completely on the flight instruments. Trusting the instruments is the only reliable way to determine the aircraft's attitude and maintain control.",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "When establishing the correct seat position, what is the visibility requirement for flight instruments?",
+    "answer": "Flight instruments and warning lights must be fully visible to the pilot and not be obscured by items such as the top of the glare shield.",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Which three flight instruments are operated by the pitot-static system?",
+    "answer": "The airspeed indicator, altimeter, and vertical speed indicator (VSI) are operated by the pitot-static system. The airspeed indicator requires both pitot and static pressure, while the altimeter and VSI operate using only the static source.",
+    "topic": "Flight Instruments",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "For a multi-engine aircraft to be operated in IMC, what is required for its electrical power generating system?",
+    "answer": "The aircraft must have two generators or two alternators, with each one being driven by a separate engine. This provides two independent sources of energy, at least one of which is not a battery, capable of powering all required flight instruments.",
+    "topic": "Flight Instruments",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "How are the heading indicator and turn coordinator checked during the taxi?",
+    "answer": "During a turn, the heading indicator should show a turn in the correct direction (e.g., numbers increasing in a right turn), while the turn coordinator's miniature aircraft banks in the direction of the turn and the ball deflects to the outside of the turn.",
+    "topic": "Flight Instruments",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "How can you check the turn coordinator, heading indicator, and magnetic compass while taxiing?",
+    "answer": "During a turn, verify the turn coordinator indicates a turn in the correct direction and the heading indicator rotates smoothly. The magnetic compass should swing freely and be compared against the heading indicator to check for precession. The ball in the turn coordinator will skid to the outside of the turn.",
+    "topic": "Flight Instruments",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "Why must the heading indicator be periodically realigned with the magnetic compass?",
+    "answer": "The heading indicator is a gyroscopic instrument that suffers from precession, causing it to drift and become inaccurate over time. It must be realigned with the magnetic compass approximately every 15 minutes to ensure it provides a correct heading indication.",
+    "topic": "Flight Instruments",
+    "source": "Flight training manual.pdf"
+  },
+  {
+    "question": "What does the Vertical Speed Indicator (VSI) show?",
+    "answer": "The VSI indicates the aeroplane's rate of climb or descent in feet per minute. It operates on a pressure differential and shows a trend of vertical speed immediately, but has a lag before it displays an accurate, stable reading.",
+    "topic": "Flight Instruments",
+    "source": "Flight training manual.pdf"
+  },
+  {
+    "question": "What are the standard dimensions of a flight restriction area established by NOTAM for a forest fire?",
+    "answer": "Unless otherwise specified in a NOTAM, flight is restricted within a radius of 5 nautical miles of a forest fire, from the surface up to 3,000 feet AGL, to ensure the safety of aerial fire-fighting operations.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is the Altimeter Setting Region in Canada?",
+    "answer": "The Altimeter Setting Region is all airspace within the Southern Domestic Airspace at altitudes below 18,000 feet ASL. In this region, pilots must set their altimeter to the current setting of a station along their route of flight.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Who has the final authority and responsibility for the operation and safety of an aircraft during flight time?",
+    "answer": "The pilot-in-command (PIC) has the final authority and is directly responsible for the safe operation of the aircraft. This authority cannot be delegated and applies even when receiving instructions from Air Traffic Control.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Is the demonstrated crosswind component listed in the Pilot Operating Handbook (POH) a mandatory legal limitation?",
+    "answer": "No, the demonstrated crosswind component is not a legal operating limitation in Canada; it is the maximum crosswind velocity in which adequate control of the aircraft was demonstrated during certification. The pilot-in-command is ultimately responsible for determining if a landing can be made safely. Exceeding this value is not recommended and significantly increases risk.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "How can rain on the windscreen create a visual illusion during a landing approach?",
+    "answer": "Rain on the windscreen refracts light, creating the illusion of being at a greater height and farther from the runway than you actually are. This may cause a pilot to fly a dangerously low approach.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is the recommended minimum distance a pilot should maintain from a thunderstorm?",
+    "answer": "As a general rule, pilots should avoid thunderstorms by at least 20 nautical miles. This significant buffer accounts for hazards like severe turbulence and hail which can be encountered far from the visible storm cell.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "When operating an aircraft on the surface of the water, what regulations must a pilot follow concerning right-of-way with vessels?",
+    "answer": "A pilot must, as far as possible, keep the aircraft clear of all vessels and avoid impeding their navigation. The aircraft must manoeuvre in accordance with the *Collision Regulations* of the *Canada Shipping Act, 2001*.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What is the \"clean aircraft concept\" in the context of Canadian winter flight operations?",
+    "answer": "The \"clean aircraft concept\" is the regulatory requirement that an aircraft's critical surfaces must be completely free of any frost, ice, or snow contamination prior to takeoff. This ensures that the aircraft's aerodynamic properties are not degraded, which is critical for a safe flight.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What are flat-light conditions?",
+    "answer": "Flat-light is a diffuse light condition, often caused by an overcast sky over a snow-covered surface, where shadows are weak or non-existent. This condition severely degrades depth perception, making it difficult to discern terrain features or judge height above the ground.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What are the currency requirements for a pilot to carry passengers at night?",
+    "answer": "To act as pilot-in-command carrying passengers at night, the pilot must have completed at least five take-offs and five landings by night within the preceding six months. This experience must be in the same category and class of aircraft to be flown.",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What does the \"I'm Safe\" checklist stand for?",
+    "answer": "The \"I'm Safe\" checklist is a mnemonic used by pilots to self-assess their fitness to fly, standing for: Illness, Medication, Stress, Alcohol, Fatigue, and Emotion/Eating.",
+    "topic": "Human Factors",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What does the \"I'M SAFE\" acronym stand for in the context of a pilot's pre-flight self-assessment?",
+    "answer": "The I'M SAFE checklist is a mnemonic used to assess personal fitness to fly. The letters stand for Illness, Medication, Stress, Alcohol, Fatigue, and Emotion/Eating.",
+    "topic": "Human Factors",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What does the \"IMSAFE\" checklist stand for, and what is its purpose?",
+    "answer": "The \"IMSAFE\" checklist is a personal pre-flight assessment pilots use to determine their fitness to fly. It stands for Illness, Medication, Stress, Alcohol, Fatigue, and Emotion/Eating. This mnemonic helps pilots evaluate physiological and psychological factors that could compromise safety.",
+    "topic": "Human Factors",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "What does the \"I'M SAFE\" checklist, used for pilot self-assessment, stand for?",
+    "answer": "The \"I'M SAFE\" checklist stands for Illness, Medication, Stress, Alcohol, Fatigue, and Emotion/Eating. It is a personal health checklist used by pilots before a flight to determine their fitness to fly.",
+    "topic": "Human Factors",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "What knowledge must a hang glider pilot demonstrate on a written exam to operate in Class E airspace?",
+    "answer": "The pilot must obtain a grade of at least 60 per cent on a Transport Canada written examination covering Canadian Aviation Regulations, air traffic procedures, flight instruments, navigation, flight operations, and human factors.",
+    "topic": "Human Factors",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "What specific pilot competency requirement must be met for a hang glider to be operated in Class E airspace?",
+    "answer": "The pilot must satisfy the operations and human factors requirements respecting hang glider operations in Class E airspace.",
+    "topic": "Human Factors",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "What are the three primary senses that can create conflict and lead to spatial disorientation in flight?",
+    "answer": "The three senses are the visual (sight), vestibular (balance from the inner ear), and kinaesthetic (sensations from muscles and joints). In the absence of reliable visual references, the vestibular and kinaesthetic senses can provide misleading information about the aircraft's attitude.",
+    "topic": "Human Factors",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "What is autokinesis?",
+    "answer": "Autokinesis is a visual illusion experienced at night where a stationary point of light, viewed against a dark and featureless background, appears to move. This can cause a pilot to mistake a star for another aircraft or lose spatial orientation. To prevent this, pilots should use a systematic visual scan and not fixate on a single light.",
+    "topic": "Human Factors",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "What is the \"black hole\" illusion that can occur during a night approach?",
+    "answer": "The black hole illusion occurs during a night approach over dark, featureless terrain, causing a pilot to perceive they are higher than they actually are. This dangerous illusion can lead to flying a lower-than-normal approach path. Pilots must therefore rely on their instruments and visual aids like a VASI or PAPI to maintain a safe glide path.",
+    "topic": "Human Factors",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "What is spatial disorientation?",
+    "answer": "Spatial disorientation is a pilot's incorrect perception of the aircraft's position, attitude, or motion relative to the Earth. This dangerous condition typically occurs when outside visual references are lost, causing a conflict between the flight instruments and the body's vestibular system. The correct response is to ignore physical sensations and trust the flight instruments.",
+    "topic": "Human Factors",
+    "source": "Instrument Procedures Manual.pdf"
+  }
+]
