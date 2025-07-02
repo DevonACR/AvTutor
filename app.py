@@ -218,7 +218,6 @@ elif mode == "🧠 Quiz Me":
             st.success("🎉 You passed!")
         else:
             st.error("❌ You did not pass. Try again!")
-
 elif mode == "🧪 PPL Sample Exams":
     st.subheader("🧪 Official Sample Exam Practice")
 
@@ -226,7 +225,7 @@ elif mode == "🧪 PPL Sample Exams":
     total_available = len(questions)
     num_questions = st.slider("How many questions would you like to attempt?", 1, min(100, total_available), 10)
 
-    # Initialize session state
+    # Initialize or reset state
     if "sample_exam_set" not in st.session_state or st.session_state.get("sample_exam_len") != num_questions:
         st.session_state.sample_exam_set = random.sample(questions, num_questions)
         st.session_state.sample_exam_index = 0
@@ -250,21 +249,23 @@ elif mode == "🧪 PPL Sample Exams":
         url = f"https://raw.githubusercontent.com/DevonACR/AvTutor/main/exam_visuals/{current_question['image']}"
         st.image(url, use_container_width=True)
 
-    # Answer selection (restore if previously answered)
+    # Radio with persistence
+    previous_answer = st.session_state.sample_exam_answers.get(q_index, None)
     user_selection = st.radio(
         "Select your answer:",
         current_question["options"],
-        index=current_question["options"].index(st.session_state.sample_exam_answers.get(q_index, current_question["options"][0]))
-        if q_index in st.session_state.sample_exam_answers else 0,
+        index=current_question["options"].index(previous_answer)
+        if previous_answer in current_question["options"] else 0,
         key=question_key
     )
 
-    # Submit button
+    # Submit logic with rerun
     if st.button("✅ Submit Answer"):
         st.session_state.sample_exam_answers[q_index] = user_selection
         st.session_state.sample_exam_submitted.add(q_index)
+        st.rerun()
 
-    # Show feedback if submitted
+    # Feedback
     if q_index in st.session_state.sample_exam_submitted:
         correct_letter = current_question["answer"]
         correct_option = [opt for opt in current_question["options"] if opt.startswith(correct_letter)][0]
@@ -280,7 +281,7 @@ elif mode == "🧪 PPL Sample Exams":
         elif "reference" in current_question:
             st.caption(f"📘 Reference: {current_question['reference']}")
 
-    # Navigation buttons
+    # Navigation buttons (with rerun)
     col1, col2 = st.columns(2)
     with col1:
         if st.button("⬅️ Previous", disabled=(q_index == 0)):
@@ -291,22 +292,12 @@ elif mode == "🧪 PPL Sample Exams":
             st.session_state.sample_exam_index += 1
             st.rerun()
 
-    # Final results
+    # Final result if all answered
     if len(st.session_state.sample_exam_answers) == num_questions:
         correct_total = 0
         for i, q in enumerate(st.session_state.sample_exam_set):
             ans = st.session_state.sample_exam_answers.get(i, "")
-            correct = [opt for opt in q["options"] if opt.startswith(q["answer"])]
-            if correct and ans == correct[0]:
-                correct_total += 1
-        score = correct_total / num_questions * 100
-        passed = score >= 70
-        st.markdown("---")
-        st.success(f"🎯 Your Score: {correct_total} / {num_questions} ({score:.1f}%)")
-        if passed:
-            st.success("✅ You passed the sample exam!")
-        else:
-            st.error("❌ You did not pass. Review the references and try again.")
+
 
 
 elif mode == "🧩 Flashcards":
