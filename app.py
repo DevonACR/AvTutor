@@ -281,30 +281,30 @@ elif mode == "🧪 PPL Sample Exams":
             st.error("❌ You did not pass. Review the references and try again.")
 
 elif mode == "🧩 Flashcards":
-     st.subheader("🧩 Flashcard Study Mode")
+    st.subheader("🧩 Flashcard Study Mode")
 
- if "flashcards" not in st.session_state:
-    st.session_state.flashcards = flashcard_data
-    st.session_state.flash_index = 0
-    st.session_state.show_answer = False
+    if "flashcards" not in st.session_state:
+        st.session_state.flashcards = flashcard_data
+        st.session_state.flash_index = 0
+        st.session_state.show_answer = False
 
     cards = st.session_state.flashcards
     idx = st.session_state.flash_index
 
     if idx < len(cards):
         card = cards[idx]
-st.markdown(f"**Card {idx + 1} of {len(cards)}**")
-st.subheader(f"❓ {card['question']}")
-st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
+        st.markdown(f"**Card {idx + 1} of {len(cards)}**")
+        st.subheader(f"❓ {card['question']}")
+        st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
 
-if not st.session_state.show_answer:
-    if st.button("🔄 Show Answer"):
-        st.session_state.show_answer = True
-else:
-    st.success(f"✅ {card['answer']}")
-    st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
-    if st.button("🔁 Hide Answer"):
-        st.session_state.show_answer = False
+        if not st.session_state.show_answer:
+            if st.button("🔄 Show Answer"):
+                st.session_state.show_answer = True
+        else:
+            st.success(f"✅ {card['answer']}")
+            st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
+            if st.button("🔁 Hide Answer"):
+                st.session_state.show_answer = False
 
         col1, col2 = st.columns(2)
         with col1:
@@ -317,4 +317,5 @@ else:
                 st.session_state.show_answer = False
     else:
         st.warning("No more flashcards found.")
+
 
