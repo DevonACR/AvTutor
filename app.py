@@ -47,6 +47,16 @@ def load_sample_exam_questions():
     res = requests.get(url)
     return res.json()
 
+# 🔁 Load Flashcard Prompts from GitHub
+@st.cache_data
+def load_flashcards():
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/flashcard_prompts.json"
+    res = requests.get(url)
+    return res.json()
+
+flashcard_data = load_flashcards()
+
+
 # TF-IDF for search
 vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
 
@@ -270,8 +280,8 @@ elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
     # Shuffle flashcards only once
-    if "flashcards" not in st.session_state:
-        flashcards = chunks.copy()
+   if "flashcards" not in st.session_state:
+    flashcards = flashcard_data.copy()
         random.shuffle(flashcards)
         st.session_state.flashcards = flashcards
         st.session_state.flash_index = 0
