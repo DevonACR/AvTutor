@@ -187,13 +187,17 @@ elif mode == "🧠 Quiz Me":
     answer = st.radio("Select your answer:", q['options'], key=f"quiz_{current_q}")
     st.session_state.answers[current_q] = answer
 
-    col1, col2, col3 = st.columns([1, 2, 1])
+        col1, col2, col3 = st.columns([1, 2, 1])
     with col1:
         if st.button("⬅️ Previous") and current_q > 0:
             st.session_state.current_q -= 1
+            st.rerun()
+
     with col3:
         if st.button("Next ➡️") and current_q < len(quiz) - 1:
             st.session_state.current_q += 1
+            st.rerun()
+
     with col2:
         if not st.session_state.submitted[current_q] and st.button("Submit Answer"):
             correct = [opt for opt in q['options'] if opt.startswith(q['answer'])][0]
@@ -204,6 +208,7 @@ elif mode == "🧠 Quiz Me":
                 st.error(f"❌ Incorrect. Correct answer: {correct}")
             st.session_state.submitted[current_q] = True
             st.caption(f"📘 Reference: {q.get('source', 'Unknown')}")
+            st.rerun()
 
     st.markdown(f"**Progress:** {sum(st.session_state.submitted)} / {len(quiz)} answered")
     if all(st.session_state.submitted):
@@ -260,13 +265,17 @@ elif mode == "🧪 PPL Sample Exams":
         elif "reference" in current_question and current_question["reference"]:
             st.caption(f"📘 Reference: {current_question['reference']}")
 
+        st.rerun()  # ✅ Force refresh after submitting answer
+
     col1, col2 = st.columns(2)
     with col1:
         if st.button("⬅️ Previous", disabled=(q_index == 0)):
             st.session_state.sample_exam_index = max(0, q_index - 1)
+            st.rerun()
     with col2:
         if st.button("Next ➡️", disabled=(q_index == num_questions - 1)):
             st.session_state.sample_exam_index = min(num_questions - 1, q_index + 1)
+            st.rerun()
 
     if len(st.session_state.sample_exam_answers) == num_questions:
         correct_total = 0
@@ -283,6 +292,7 @@ elif mode == "🧪 PPL Sample Exams":
             st.success("✅ You passed the sample exam! (70%+)")
         else:
             st.error("❌ You did not pass. Review the references and try again.")
+
 
 elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
