@@ -169,8 +169,13 @@ elif mode == "🧠 Quiz Me":
                     "source": chunk.get("source", "Unknown")
                 })
 
+        if not questions:
+            st.warning("⚠️ No quiz questions found for this category.")
+            st.stop()
+
         random.shuffle(questions)
         st.session_state.quiz = questions
+
 
     quiz = st.session_state.quiz
     current_q = st.session_state.quiz_index
