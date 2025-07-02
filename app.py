@@ -145,19 +145,24 @@ elif mode == "🧾 Explain a Topic":
 
 elif mode == "🧠 Quiz Me":
     st.subheader("🧠 Quiz Me")
-    categories = list(set(chunk['category'] for chunk in chunks))
+    categories = list(set(chunk.get("category", "General") for chunk in chunks))
     categories.sort()
     selected_category = st.selectbox("📚 Choose a category", ["All"] + categories)
     num_questions = st.slider("How many questions would you like?", 1, 25, 5)
 
-    if "quiz" not in st.session_state or st.session_state.get("quiz_category") != selected_category or st.session_state.get("quiz_len") != num_questions:
+    # Reset quiz if new category or length selected
+    if (
+        "quiz" not in st.session_state or
+        st.session_state.get("quiz_category") != selected_category or
+        st.session_state.get("quiz_len") != num_questions
+    ):
         st.session_state.quiz_category = selected_category
         st.session_state.quiz_len = num_questions
 
         if selected_category == "All":
             filtered_chunks = chunks
         else:
-            filtered_chunks = [c for c in chunks if c['category'] == selected_category]
+            filtered_chunks = [c for c in chunks if c.get("category") == selected_category]
 
         questions = []
         for chunk in filtered_chunks:
@@ -184,7 +189,7 @@ elif mode == "🧠 Quiz Me":
     q = quiz[current_q]
 
     st.write(f"**Q{current_q + 1}:** {q['question']}")
-    answer = st.radio("Select your answer:", q['options'], key=f"quiz_{current_q}")
+    answer = st.radio("Select your answer:", q['options'], key=f"quiz_q_{current_q}")
     st.session_state.answers[current_q] = answer
 
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -192,25 +197,29 @@ elif mode == "🧠 Quiz Me":
         if st.button("⬅️ Previous") and current_q > 0:
             st.session_state.current_q -= 1
             st.rerun()
-
     with col3:
         if st.button("Next ➡️") and current_q < len(quiz) - 1:
             st.session_state.current_q += 1
             st.rerun()
 
     with col2:
-        if not st.session_state.submitted[current_q] and st.button("Submit Answer"):
-            correct = [opt for opt in q['options'] if opt.startswith(q['answer'])][0]
+        if not st.session_state.submitted[current_q] and st.button("✅ Submit Answer"):
+            correct = [opt for opt in q["options"] if opt.startswith(q["answer"])][0]
             if answer == correct:
                 st.session_state.score += 1
-                st.success("✅ Correct!")
-            else:
-                st.error(f"❌ Incorrect. Correct answer: {correct}")
             st.session_state.submitted[current_q] = True
-            st.caption(f"📘 Reference: {q.get('source', 'Unknown')}")
             st.rerun()
 
+    if st.session_state.submitted[current_q]:
+        correct = [opt for opt in q["options"] if opt.startswith(q["answer"])][0]
+        if answer == correct:
+            st.success("✅ Correct!")
+        else:
+            st.error(f"❌ Incorrect. Correct answer: {correct}")
+        st.caption(f"📘 Reference: {q.get('source', 'Unknown')}")
+
     st.markdown(f"**Progress:** {sum(st.session_state.submitted)} / {len(quiz)} answered")
+
     if all(st.session_state.submitted):
         percent = st.session_state.score / len(quiz) * 100
         st.success(f"✅ Final Score: {st.session_state.score}/{len(quiz)} ({percent:.1f}%)")
@@ -218,6 +227,7 @@ elif mode == "🧠 Quiz Me":
             st.success("🎉 You passed!")
         else:
             st.error("❌ You did not pass. Try again!")
+
 elif mode == "🧪 PPL Sample Exams":
     st.subheader("🧪 Official Sample Exam Practice")
 
