@@ -294,36 +294,36 @@ elif mode == "🧩 Flashcards":
 
     cards = st.session_state.flashcards
     idx = st.session_state.flash_index
+    card = cards[idx]
 
-    if idx < len(cards):
-        card = cards[idx]
+    st.markdown(f"**Card {idx + 1} of {len(cards)}**")
+    st.subheader(f"❓ {card['question']}")
+    st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
 
-        st.markdown(f"**Card {idx + 1} of {len(cards)}**")
-        st.subheader(f"❓ {card['question']}")
-        st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
+    # Show or hide answer based on state
+    if st.session_state.show_answer:
+        st.success(f"✅ {card['answer']}")
+        st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
 
-        # ✅ Wrap all flashcard controls in a single form
-        with st.form("flashcard_controls", clear_on_submit=True):
-            if st.session_state.show_answer:
-                st.success(f"✅ {card['answer']}")
-                st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
+    # Handle clicks with dedicated buttons outside of form
+    col1, col2, col3 = st.columns(3)
 
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                prev_clicked = st.form_submit_button("⬅️ Previous")
-            with col2:
-                toggle_clicked = st.form_submit_button("🔄 Show Answer" if not st.session_state.show_answer else "🔁 Hide Answer")
-            with col3:
-                next_clicked = st.form_submit_button("Next ➡️")
-
-            if toggle_clicked:
-                st.session_state.show_answer = not st.session_state.show_answer
-            elif prev_clicked and idx > 0:
+    with col1:
+        if st.button("⬅️ Previous"):
+            if idx > 0:
                 st.session_state.flash_index -= 1
                 st.session_state.show_answer = False
-            elif next_clicked and idx < len(cards) - 1:
+            st.experimental_rerun()
+
+    with col2:
+        if st.button("🔄 Show Answer" if not st.session_state.show_answer else "🔁 Hide Answer"):
+            st.session_state.show_answer = not st.session_state.show_answer
+            st.experimental_rerun()
+
+    with col3:
+        if st.button("Next ➡️"):
+            if idx < len(cards) - 1:
                 st.session_state.flash_index += 1
                 st.session_state.show_answer = False
-    else:
-        st.warning("No more flashcards found.")
+            st.experimental_rerun()
 
