@@ -150,13 +150,14 @@ elif mode == "🧠 Quiz Me":
     categories = sorted(set(chunk.get("category", "General") for chunk in chunks))
     selected_category = st.selectbox("📚 Choose a category", ["All"] + categories)
 
-    if "quiz" not in st.session_state or st.session_state.get("quiz_category") != selected_category:
-        st.session_state.quiz_category = selected_category
-        st.session_state.quiz_index = 0
-        st.session_state.quiz_answers = {}
-        st.session_state.quiz_submitted = set()
-
-        filtered_chunks = chunks if selected_category == "All" else [c for c in chunks if c.get("category") == selected_category]
+    # (Re)initialize quiz
+    if (
+        "quiz" not in st.session_state
+        or st.session_state.get("quiz_category") != selected_category
+    ):
+        filtered_chunks = chunks if selected_category == "All" else [
+            c for c in chunks if c.get("category") == selected_category
+        ]
 
         questions = []
         for chunk in filtered_chunks:
@@ -171,24 +172,32 @@ elif mode == "🧠 Quiz Me":
 
         if not questions:
             st.warning("⚠️ No quiz questions found for this category.")
+            if st.button("🔁 Start Over"):
+                for key in ["quiz", "quiz_index", "quiz_category"]:
+                    if key in st.session_state:
+                        del st.session_state[key]
+                st.rerun()
             st.stop()
 
         random.shuffle(questions)
         st.session_state.quiz = questions
-
+        st.session_state.quiz_index = 0
+        st.session_state.quiz_category = selected_category
+        st.session_state.quiz_answers = {}
+        st.session_state.quiz_submitted = set()
 
     quiz = st.session_state.quiz
+    current_q = st.session_state.quiz_index
 
-if not quiz:
-    st.warning("⚠️ No quiz questions available for this category.")
-    st.stop()
-
-current_q = st.session_state.quiz_index
-
-if current_q >= len(quiz):
-    st.success("🎉 You've completed all questions in this category!")
-    st.stop()
-
+    # If user has reached the end
+    if current_q >= len(quiz):
+        st.success("🎉 You've completed all questions in this category!")
+        if st.button("🔁 Start Again"):
+            for key in ["quiz", "quiz_index", "quiz_category"]:
+                if key in st.session_state:
+                    del st.session_state[key]
+            st.rerun()
+        st.stop()
 
     q_data = quiz[current_q]
     q_key = f"quiz_q_{current_q}"
@@ -196,6 +205,7 @@ if current_q >= len(quiz):
     st.markdown(f"**Question {current_q + 1}**")
     st.write(q_data["question"])
 
+    # Pre-fill selection if previously answered
     prev_ans = st.session_state.quiz_answers.get(current_q)
     options = q_data["options"]
     default_index = options.index(prev_ans) if prev_ans in options else 0
@@ -223,6 +233,7 @@ if current_q >= len(quiz):
 
         st.caption(f"📘 Source: {q_data.get('source', 'Unknown')}")
 
+    # Navigation buttons
     col1, col2 = st.columns(2)
     with col1:
         if st.button("⬅️ Previous", disabled=(current_q == 0)):
@@ -232,6 +243,7 @@ if current_q >= len(quiz):
         if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1)):
             st.session_state.quiz_index += 1
             st.rerun()
+
 
 
 
