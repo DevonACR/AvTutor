@@ -300,30 +300,26 @@ elif mode == "🧩 Flashcards":
     st.subheader(f"❓ {card['question']}")
     st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
 
-    # Show or hide answer based on state
+    # Show or hide answer
     if st.session_state.show_answer:
         st.success(f"✅ {card['answer']}")
         st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
 
-    # Handle clicks with dedicated buttons outside of form
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        if st.button("⬅️ Previous"):
-            if idx > 0:
-                st.session_state.flash_index -= 1
-                st.session_state.show_answer = False
-            st.experimental_rerun()
+        if st.button("⬅️ Previous") and idx > 0:
+            st.session_state.flash_index -= 1
+            st.session_state.show_answer = False
+            st.rerun()
 
     with col2:
         if st.button("🔄 Show Answer" if not st.session_state.show_answer else "🔁 Hide Answer"):
             st.session_state.show_answer = not st.session_state.show_answer
-            st.experimental_rerun()
+            st.rerun()
 
     with col3:
-        if st.button("Next ➡️"):
-            if idx < len(cards) - 1:
-                st.session_state.flash_index += 1
-                st.session_state.show_answer = False
-            st.experimental_rerun()
-
+        if st.button("Next ➡️") and idx < len(cards) - 1:
+            st.session_state.flash_index += 1
+            st.session_state.show_answer = False
+            st.rerun()
