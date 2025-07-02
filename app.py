@@ -178,10 +178,17 @@ elif mode == "🧠 Quiz Me":
 
 
     quiz = st.session_state.quiz
-    current_q = st.session_state.quiz_index
-    if current_q >= len(quiz):
-        st.success("🎉 You've completed all questions in this category!")
-        st.stop()
+
+if not quiz:
+    st.warning("⚠️ No quiz questions available for this category.")
+    st.stop()
+
+current_q = st.session_state.quiz_index
+
+if current_q >= len(quiz):
+    st.success("🎉 You've completed all questions in this category!")
+    st.stop()
+
 
     q_data = quiz[current_q]
     q_key = f"quiz_q_{current_q}"
