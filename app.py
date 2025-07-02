@@ -55,10 +55,6 @@ def load_flashcards():
     return res.json()
 
 
-
-flashcard_data = load_flashcards()
-
-
 # TF-IDF for search
 vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
 
@@ -282,7 +278,7 @@ elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
     if "flashcards" not in st.session_state:
-        st.session_state.flashcards = flashcard_data
+        st.session_state.flashcards = load_flashcards()
         st.session_state.flash_index = 0
         st.session_state.show_answer = False
 
