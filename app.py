@@ -188,7 +188,6 @@ elif mode == "🧠 Quiz Me":
     quiz = st.session_state.quiz
     current_q = st.session_state.quiz_index
 
-    # End of quiz reached
     if current_q >= len(quiz):
         st.success("🎉 You've completed all questions in this category!")
         if st.button("🔁 Start Again"):
@@ -199,24 +198,22 @@ elif mode == "🧠 Quiz Me":
 
     q_data = quiz[current_q]
 
-    # ✅ Simple safety check for malformed question
-    if not all(k in q_data for k in ["question", "options", "answer"]):
-        st.error(f"⚠️ Malformed question at index {current_q}. Skipping...")
+    # ✅ Safely extract options from either 'choices' (dict) or 'options' (list)
+    raw_choices = q_data.get("choices") or q_data.get("options")
+    if isinstance(raw_choices, dict):
+        options = [f"{k}: {v}" for k, v in raw_choices.items()]
+    elif isinstance(raw_choices, list):
+        options = raw_choices
+    else:
+        st.error(f"⚠️ Malformed question format at index {current_q}. Skipping...")
         st.session_state.quiz_index += 1
         st.rerun()
 
     q_key = f"quiz_q_{current_q}"
-
     st.markdown(f"**Question {current_q + 1} of {len(quiz)}**")
     st.write(q_data["question"])
 
     prev_answer = st.session_state.quiz_answers.get(current_q)
-    options = q_data.get("options", [])
-    if not options:
-        st.error(f"⚠️ No options provided for this question. Skipping...")
-        st.session_state.quiz_index += 1
-        st.rerun()
-
     default_index = options.index(prev_answer) if prev_answer in options else 0
 
     user_selection = st.radio(
@@ -251,8 +248,6 @@ elif mode == "🧠 Quiz Me":
         if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1)):
             st.session_state.quiz_index = min(len(quiz) - 1, current_q + 1)
             st.rerun()
-
-
 
 elif mode == "🧪 PPL Sample Exams":
     st.subheader("🧪 Official Sample Exam Practice")
