@@ -123,17 +123,55 @@ def get_questions_by_category(category: str, limit: int = 25) -> List[Dict]:
 # Streamlit UI
 mode = st.sidebar.radio(
     "Choose Study Mode",
-    ["🔎 Ask a Question", "🧠 Quiz Me", "🧾 Explain a Topic", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
+    ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
 )
 
-if mode == "🔎 Ask a Question":
-    st.write("Ask questions about aviation theory and get clear, simple explanations based on Canadian documents.")
-    question = st.text_input("✈️ Ask a question about aviation...")
-    if question:
-        with st.spinner("Thinking like a flight instructor..."):
-            answer = ask_tutor(question)
-        st.markdown("### 🧠 Answer")
-        st.write(answer)
+elif mode == "💬 AI Tutor":
+    st.subheader("💬 Ask or Learn Any Topic")
+
+    # Session state to persist across mode changes
+    st.session_state.setdefault("tutor_input", "")
+    st.session_state.setdefault("tutor_answer", "")
+    st.session_state.setdefault("simplified_answer", "")
+
+    user_input = st.text_input("✈️ Ask a question or enter a topic to learn:", value=st.session_state["tutor_input"])
+
+    if st.button("🧠 Submit"):
+        if user_input:
+            with st.spinner("Explaining like a ground school instructor..."):
+                response = ask_tutor(user_input)
+            st.session_state["tutor_input"] = user_input
+            st.session_state["tutor_answer"] = response
+            st.session_state["simplified_answer"] = ""
+
+    if st.session_state["tutor_answer"]:
+        st.markdown("### 🧠 Instructor Explanation")
+        st.write(st.session_state["tutor_answer"])
+
+        if st.button("🍼 Simplify this explanation"):
+            with st.spinner("Making it super beginner-friendly..."):
+                try:
+                    simplified_prompt = f"""
+You are an aviation tutor. Simplify the following explanation for a new Private Pilot student with no prior knowledge:
+
+{st.session_state['tutor_answer']}
+"""
+                    simplified = gemini_model.generate_content(simplified_prompt).text.strip()
+                    st.session_state["simplified_answer"] = simplified
+                except Exception as e:
+                    st.session_state["simplified_answer"] = f"⚠️ Error simplifying: {e}"
+
+        if st.session_state["simplified_answer"]:
+            st.markdown("### 🍼 Simplified Explanation")
+            st.write(st.session_state["simplified_answer"])
+
+        if st.button("🗑 Clear"):
+            for k in ["tutor_input", "tutor_answer", "simplified_answer"]:
+                st.session_state.pop(k, None)
+            st.rerun()
+    else:
+        st.info("Ask a question above to get an explanation. Use 'Simplify' for beginner-friendly wording.")
+
 
 elif mode == "📚 Study by Category":
     st.subheader("📚 Study Notes by Category")
@@ -144,15 +182,6 @@ elif mode == "📚 Study by Category":
         with st.expander(f"📘 Note {i+1}"):
             st.write(chunk['content'])
             st.caption(f"📚 Source: {chunk.get('source', 'Unknown')}")
-
-elif mode == "🧾 Explain a Topic":
-    st.subheader("🧾 Explain a Topic")
-    topic = st.text_input("What topic do you want explained?")
-    if topic:
-        with st.spinner("Explaining like a ground school instructor..."):
-            answer = ask_tutor(f"Explain {topic} in simple terms.")
-        st.markdown("### 🧠 Explanation")
-        st.write(answer)
 
 elif mode == "🧠 Quiz Me":
     st.subheader("🧠 Quiz Me")
