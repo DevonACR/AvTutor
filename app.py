@@ -315,16 +315,6 @@ elif mode == "🧪 PPL Sample Exams":
         elif "reference" in current_question:
             st.caption(f"📘 Reference: {current_question['reference']}")
 
-    # Navigation buttons (with rerun)
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("⬅️ Previous", disabled=(q_index == 0)):
-            st.session_state.sample_exam_index -= 1
-            st.rerun()
-    with col2:
-        if st.button("Next ➡️", disabled=(q_index == num_questions - 1)):
-            st.session_state.sample_exam_index += 1
-            st.rerun()
 
 # ✅ Final result if all answers have been submitted
 if len(st.session_state.sample_exam_submitted) == num_questions:
@@ -363,6 +353,17 @@ if len(st.session_state.sample_exam_submitted) == num_questions:
             elif "reference" in q and q["reference"]:
                 st.caption(f"📘 Reference: {q['reference']}")
             st.markdown("---")
+    
+    # Navigation buttons (with rerun)
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("⬅️ Previous", disabled=(q_index == 0)):
+            st.session_state.sample_exam_index -= 1
+            st.rerun()
+    with col2:
+        if st.button("Next ➡️", disabled=(q_index == num_questions - 1)):
+            st.session_state.sample_exam_index += 1
+            st.rerun()
 
 
 elif mode == "🧩 Flashcards":
