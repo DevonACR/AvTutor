@@ -249,10 +249,9 @@ elif mode == "🧪 PPL Sample Exams":
     total_available = len(questions)
     num_questions = st.slider("How many questions would you like to attempt?", 1, min(100, total_available), 10)
 
-    # ✅ Always initialize submitted answers tracking
+    # Always initialize submitted answers tracking
     if "sample_exam_submitted" not in st.session_state:
         st.session_state.sample_exam_submitted = set()
-
 
     # Initialize or reset state
     if "sample_exam_set" not in st.session_state or st.session_state.get("sample_exam_len") != num_questions:
@@ -260,12 +259,7 @@ elif mode == "🧪 PPL Sample Exams":
         st.session_state.sample_exam_index = 0
         st.session_state.sample_exam_answers = {}
         st.session_state.sample_exam_len = num_questions
-
-    # ✅ Ensure this always exists, even if state isn’t reset
-    if "sample_exam_submitted" not in st.session_state:
         st.session_state.sample_exam_submitted = set()
-
-
 
     q_index = st.session_state.sample_exam_index
     current_question = st.session_state.sample_exam_set[q_index]
@@ -274,7 +268,6 @@ elif mode == "🧪 PPL Sample Exams":
     st.markdown(f"**Question {q_index + 1} of {num_questions}**")
     st.markdown(current_question["question"])
 
-    # Image display
     if "images" in current_question:
         for img in current_question["images"]:
             url = f"https://raw.githubusercontent.com/DevonACR/AvTutor/main/exam_visuals/{img}"
@@ -283,7 +276,6 @@ elif mode == "🧪 PPL Sample Exams":
         url = f"https://raw.githubusercontent.com/DevonACR/AvTutor/main/exam_visuals/{current_question['image']}"
         st.image(url, use_container_width=True)
 
-    # Radio with persistence
     previous_answer = st.session_state.sample_exam_answers.get(q_index, None)
     user_selection = st.radio(
         "Select your answer:",
@@ -293,13 +285,11 @@ elif mode == "🧪 PPL Sample Exams":
         key=question_key
     )
 
-    # Submit logic with rerun
     if st.button("✅ Submit Answer"):
         st.session_state.sample_exam_answers[q_index] = user_selection
         st.session_state.sample_exam_submitted.add(q_index)
         st.rerun()
 
-    # Feedback
     if q_index in st.session_state.sample_exam_submitted:
         correct_letter = current_question["answer"]
         correct_option = [opt for opt in current_question["options"] if opt.startswith(correct_letter)][0]
@@ -315,46 +305,43 @@ elif mode == "🧪 PPL Sample Exams":
         elif "reference" in current_question:
             st.caption(f"📘 Reference: {current_question['reference']}")
 
+    # ✅ Final result if all answers have been submitted
+    if len(st.session_state.sample_exam_submitted) == num_questions:
+        correct_total = 0
+        incorrect = []
 
-# ✅ Final result if all answers have been submitted
-if len(st.session_state.sample_exam_submitted) == num_questions:
-    correct_total = 0
-    incorrect = []
+        for i, q in enumerate(st.session_state.sample_exam_set):
+            user_ans = st.session_state.sample_exam_answers.get(i, "")
+            correct_opt = [opt for opt in q["options"] if opt.startswith(q["answer"])]
+            if correct_opt and user_ans == correct_opt[0]:
+                correct_total += 1
+            else:
+                incorrect.append((i, q, user_ans, correct_opt[0] if correct_opt else "Unknown"))
 
-    for i, q in enumerate(st.session_state.sample_exam_set):
-        user_ans = st.session_state.sample_exam_answers.get(i, "")
-        correct_opt = [opt for opt in q["options"] if opt.startswith(q["answer"])]
-        if correct_opt and user_ans == correct_opt[0]:
-            correct_total += 1
+        score = correct_total / num_questions * 100
+        passed = score >= 70
+
+        st.markdown("## 📝 Exam Results")
+        st.success(f"🎯 Your Score: {correct_total} / {num_questions} ({score:.1f}%)")
+        if passed:
+            st.balloons()
+            st.success("✅ You passed the sample exam! (70%+)")
         else:
-            incorrect.append((i, q, user_ans, correct_opt[0] if correct_opt else "Unknown"))
+            st.error("❌ You did not pass. Review the references and try again.")
 
-    score = correct_total / num_questions * 100
-    passed = score >= 70
+        if incorrect:
+            st.markdown("### 🔍 Review Incorrect Answers")
+            for i, q, user_ans, correct_ans in incorrect:
+                st.markdown(f"**Question {i+1}:** {q['question']}")
+                st.error(f"❌ Your Answer: {user_ans}")
+                st.success(f"✅ Correct Answer: {correct_ans}")
+                if "references" in q:
+                    for ref in q["references"]:
+                        st.caption(f"📘 Reference: {ref}")
+                elif "reference" in q and q["reference"]:
+                    st.caption(f"📘 Reference: {q['reference']}")
+                st.markdown("---")
 
-    st.markdown("## 📝 Exam Results")
-    st.success(f"🎯 Your Score: {correct_total} / {num_questions} ({score:.1f}%)")
-    if passed:
-        st.balloons()
-        st.success("✅ You passed the sample exam! (70%+)")
-    else:
-        st.error("❌ You did not pass. Review the references and try again.")
-
-    # 🔍 Show incorrect answers with references
-    if incorrect:
-        st.markdown("### 🔍 Review Incorrect Answers")
-        for i, q, user_ans, correct_ans in incorrect:
-            st.markdown(f"**Question {i+1}:** {q['question']}")
-            st.error(f"❌ Your Answer: {user_ans}")
-            st.success(f"✅ Correct Answer: {correct_ans}")
-            if "references" in q:
-                for ref in q["references"]:
-                    st.caption(f"📘 Reference: {ref}")
-            elif "reference" in q and q["reference"]:
-                st.caption(f"📘 Reference: {q['reference']}")
-            st.markdown("---")
-    
-    # Navigation buttons (with rerun)
     col1, col2 = st.columns(2)
     with col1:
         if st.button("⬅️ Previous", disabled=(q_index == 0)):
@@ -364,6 +351,7 @@ if len(st.session_state.sample_exam_submitted) == num_questions:
         if st.button("Next ➡️", disabled=(q_index == num_questions - 1)):
             st.session_state.sample_exam_index += 1
             st.rerun()
+
 
 
 elif mode == "🧩 Flashcards":
