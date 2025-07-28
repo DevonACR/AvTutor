@@ -200,11 +200,11 @@ elif mode == "🧠 Quiz Me":
 
     q_data = quiz[current_q]
 
-# Safety check
-if "question" not in q_data or "options" not in q_data or "answer" not in q_data:
-    st.error("⚠️ Malformed question detected. Skipping to next.")
-    st.session_state.quiz_index += 1
-    st.rerun()
+    # Validate current question structure
+    if not isinstance(q_data.get("options"), list) or not q_data.get("options"):
+        st.warning("⚠️ Malformed question detected. Skipping to next.")
+        st.session_state.quiz_index += 1
+        st.rerun()
 
     q_key = f"quiz_q_{current_q}"
 
@@ -247,7 +247,6 @@ if "question" not in q_data or "options" not in q_data or "answer" not in q_data
         if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1)):
             st.session_state.quiz_index += 1
             st.rerun()
-
 
 
 elif mode == "🧪 PPL Sample Exams":
