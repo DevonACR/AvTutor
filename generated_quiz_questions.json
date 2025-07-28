@@ -1,841 +1,865 @@
 [
   {
-    "question": "According to Canadian Aviation Regulations, when two aircraft are converging at approximately the same altitude, but not head-on, which aircraft has the right-of-way?",
+    "question": "According to Canadian Aviation Regulations, a pilot intending to operate an aircraft within a Mandatory Frequency (MF) area must make an initial radio call on the specified frequency:",
     "choices": {
-      "A": "The aircraft that has the other on its right shall give way.",
-      "B": "The aircraft that has the other on its left shall give way.",
-      "C": "The lower aircraft has the right-of-way.",
-      "D": "The faster aircraft has the right-of-way."
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide ATPL exams.pdf"
-  },
-  {
-    "question": "According to the provided Study and Reference Guide excerpt, questions from the Canadian Aviation Regulations (CARs) may also test a candidate's knowledge of:",
-    "choices": {
-      "A": "their associated standards.",
-      "B": "the SARON sections 8 and 9.",
-      "C": "the pilot's flight history.",
-      "D": "recommendations from foreign aviation authorities."
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide ATPL exams.pdf"
-  },
-  {
-    "question": "Based on Canadian Air Law and Procedures, what is a primary requirement for a pilot converting their United States of America Pilot Certificate to a Canadian Commercial Pilot Licence?",
-    "choices": {
-      "A": "Successfully complete a written examination on Canadian Air Law and Procedures.",
-      "B": "Obtain a Category 4 Medical Certificate from a Canadian Civil Aviation Medical Examiner.",
-      "C": "Complete a minimum of 100 additional flight hours in Canadian airspace.",
-      "D": "Surrender their United States Pilot Certificate to Transport Canada permanently."
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to the Study and Reference Guide, which section covers the mandatory subject of Air Law?",
-    "choices": {
-      "A": "Air Law and Procedures  Section 1",
-      "B": "Navigation and Radio Aids  Section 2",
-      "C": "Meteorology  Section 3",
-      "D": "Theory of Flight  Section 5"
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to the PPL examination guide, a question in the Navigation and Radio Aids section concerning fuel calculations might also require knowledge from which other subject area?",
-    "choices": {
-      "A": "Air Law and Procedures",
-      "B": "Meteorology",
-      "C": "Aeronautics – General Knowledge",
-      "D": "Theory of Flight"
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "What is the minimum passing score required for the Aeroplane Rating - Alternate Category (CARAC) examination?",
-    "choices": {
-      "A": "60%",
-      "B": "70%",
-      "C": "1.5 hours",
-      "D": "50%"
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to the Wings Standards, what is the minimum passing mark for the Air Law, Air Traffic Rules and Procedures (ARPCO) examination?",
-    "choices": {
-      "A": "60%",
-      "B": "70%",
-      "C": "50%",
-      "D": "80%"
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "The Canadian Aviation Regulations (CARs) are often structured with a regulation and an associated standard. What is the significance of this structure for a pilot?",
-    "choices": {
-      "A": "Knowledge of both the regulation and its associated standard may be required for compliance and can be tested on examinations.",
-      "B": "The regulation is legally binding, whereas the associated standard is merely a recommended best practice.",
-      "C": "The regulation applies to aeroplanes, while the associated standard applies to other aircraft categories like helicopters and gliders.",
-      "D": "Pilots must only be familiar with the regulations, as the standards are intended for aircraft maintenance engineers."
-    },
-    "answer": "A",
-    "topic": "Air Law and Procedures",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "Based on the provided list of examinations, what is the purpose of the FAAIA examination?",
-    "choices": {
-      "A": "To obtain an initial Instrument Type Rating.",
-      "B": "To test knowledge on general Air Law and Procedures.",
-      "C": "To convert a United States (FAA) Instrument Rating to a Canadian one.",
-      "D": "To complete the requirements for a Private Pilot Licence."
+      "A": "immediately upon crossing the MF area boundary.",
+      "B": "only when within 5 nautical miles of the aerodrome.",
+      "C": "at least five minutes before entering the MF area.",
+      "D": "after receiving a clearance from the Flight Service Station (FSS)."
     },
     "answer": "C",
     "topic": "Air Law and Procedures",
-    "source": "Study & reference guide INSTRUMENT exams.pdf"
+    "source": "Study & reference guide ATPL exams.pdf"
   },
   {
-    "question": "When studying for an examination, it is important to understand the structure of the Canadian Aviation Regulations (CARs). Questions may be based on knowledge from:",
+    "question": "According to the Canadian Aviation Regulations (CARs), no person shall act as a crew member of an aircraft within what minimum time period after consuming an alcoholic beverage?",
     "choices": {
-      "A": "the regulation or its associated standard.",
-      "B": "only the main body of the regulation, as standards are recommendations.",
-      "C": "only the associated standard, as the regulation is just a summary.",
-      "D": "a comparison between the CARs and American air law."
+      "A": "12 hours.",
+      "B": "As long as their blood alcohol concentration is zero.",
+      "C": "24 hours.",
+      "D": "8 hours."
     },
     "answer": "A",
     "topic": "Air Law and Procedures",
-    "source": "Study & reference guide INSTRUMENT exams.pdf"
-  },
-  {
-    "question": "According to the provided table of contents, the topic of Navigation and Radio Aids is found in which section?",
-    "choices": {
-      "A": "Section 2",
-      "B": "Section 3",
-      "C": "Section 5",
-      "D": "Meteorology"
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to the provided Study and Reference Guide, the mandatory subject of 'NAVIGATION' is covered in which section?",
-    "choices": {
-      "A": "Section 2",
-      "B": "Section 1",
-      "C": "Section 5",
-      "D": "Section 6"
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to the provided exam information, a practical question on fuel calculations, found under the 'Navigation and Radio Aids' section, may also require knowledge from which other subject area?",
-    "choices": {
-      "A": "Air Law and Procedures",
-      "B": "Meteorology",
-      "C": "Theory of Flight",
-      "D": "Airframes, Engines and Systems"
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to the provided text, which examination includes subjects from 'Navigation and Radio Aids'?",
-    "choices": {
-      "A": "The Air Law, Air Traffic Rules and Procedures (ARPCO) examination",
-      "B": "The Pre-Flight Preparation examination",
-      "C": "The Wings Standards examination",
-      "D": "The Other Radio and Radar Aids examination"
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "What is the term for the angular difference between a true meridian and a magnetic meridian at any given place?",
-    "choices": {
-      "A": "Variation",
-      "B": "Deviation",
-      "C": "Drift",
-      "D": "Bearing"
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to the provided table of contents, in which section would a pilot find information regarding the use of a VOR (VHF Omnidirectional Range)?",
-    "choices": {
-      "A": "Instrumentation, Navigation and Radio Aids",
-      "B": "D Procedures",
-      "C": "Meteorology",
-      "D": "Human Factors and Airmanship"
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide INSTRUMENT exams.pdf"
-  },
-  {
-    "question": "If the pitot tube becomes blocked by ice but the static port remains clear, which instrument will be affected and how will it behave as the aircraft climbs?",
-    "choices": {
-      "A": "The airspeed indicator will act like an altimeter, showing an increase in speed.",
-      "B": "The altimeter will freeze at the altitude where the blockage occurred.",
-      "C": "The vertical speed indicator will show a constant descent.",
-      "D": "The airspeed indicator will drop to zero."
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide INSTRUMENT exams.pdf"
-  },
-  {
-    "question": "An aircraft is tracking inbound to a VOR station. If the aircraft has drifted to the left of the selected radial, which of the following indications would the pilot see on the VOR receiver?",
-    "choices": {
-      "A": "A \"TO\" indication and the CDI needle deflected to the right.",
-      "B": "A \"TO\" indication and the CDI needle deflected to the left.",
-      "C": "A \"FROM\" indication and the CDI needle deflected to the right.",
-      "D": "A \"FROM\" indication and the CDI needle deflected to the left."
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide PPL exams.pdf"
-  },
-  {
-    "question": "According to the PPL written examination standards, which of the following is one of the four mandatory subject areas a candidate must achieve a 60% pass mark in?",
-    "choices": {
-      "A": "Navigation and Radio Aids",
-      "B": "Aircraft Marshalling Signals",
-      "C": "Emergency Response Procedures",
-      "D": "Advanced Aerodynamics"
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide PPL exams.pdf"
-  },
-  {
-    "question": "According to Canadian aviation regulations, when operating at an aerodrome served by a Mandatory Frequency (MF), what is a VFR pilot required to do?",
-    "choices": {
-      "A": "Report their position and intentions on the specified frequency.",
-      "B": "Obtain an explicit clearance from an Air Traffic Controller before taxiing or taking off.",
-      "C": "Continuously monitor the frequency but only transmit if requested by the ground station.",
-      "D": "Communicate only when operating within the circuit, as en route procedures do not apply."
-    },
-    "answer": "A",
-    "topic": "Navigation and Radio Aids",
-    "source": "Study & reference guide PPL exams.pdf"
-  },
-  {
-    "question": "An AIRMET is an information message issued to advise pilots of:",
-    "choices": {
-      "A": "Weather phenomena potentially hazardous to aircraft, which were not previously forecast in the Graphic Area Forecast (GFA).",
-      "B": "Severe weather phenomena, such as severe turbulence or volcanic ash, that are hazardous to all aircraft.",
-      "C": "A detailed forecast of weather conditions for a specific aerodrome and its vicinity.",
-      "D": "Actual weather conditions reported by another pilot while in flight."
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "In the context of aviation documentation, what does the abbreviation WMO stand for?",
-    "choices": {
-      "A": "World Meteorological Organization",
-      "B": "Wind Measurement Office",
-      "C": "World Area Forecast Centre",
-      "D": "Wide Area Augmentation System"
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to the provided TC AIM Legislation Index excerpt, where is information on meteorology located?",
-    "choices": {
-      "A": "MET 14.0",
-      "B": "GEN 5.3",
-      "C": "CARs Section 14",
-      "D": "AIM GEN 14.0"
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "In Canada, who holds the ultimate responsibility for the provision of meteorological services related to aviation?",
-    "choices": {
-      "A": "The Minister of Transport",
-      "B": "NAV CANADA",
-      "C": "Environment and Climate Change Canada",
-      "D": "The Transportation Safety Board (TSB)"
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "Which organization has been designated the responsibility for providing aviation weather services in Canadian airspace?",
-    "choices": {
-      "A": "The Minister of Transport",
-      "B": "Environment and Climate Change Canada",
-      "C": "NAV CANADA",
-      "D": "The Canadian Air Transport Security Authority (CATSA)"
-    },
-    "answer": "C",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "Which organization is responsible for determining the standards and recommended practices for meteorological services in international air navigation?",
-    "choices": {
-      "A": "ICAO (International Civil Aviation Organization)",
-      "B": "WMO (World Meteorological Organization)",
-      "C": "Transport Canada",
-      "D": "NAV CANADA"
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to ICAO Annex 3, what is the current requirement for flight crews regarding routine voice reports of meteorological (MET) observations?",
-    "choices": {
-      "A": "They are no longer required to provide voice reports for wind speed, direction, or air temperature.",
-      "B": "They must be provided every 10 minutes after entering North Atlantic (NAT) airspace.",
-      "C": "They are only required when using the special purpose transponder code 7700.",
-      "D": "They must be provided for wind speed and direction, but not for air temperature."
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "When flying in North Atlantic (NAT) airspace, under what condition may an air traffic services (ATS) unit request an aircraft to provide automated MET reports for wind and temperature?",
-    "choices": {
-      "A": "When the aircraft establishes an automatic dependent surveillance — contract (ADS-C).",
-      "B": "When making a mandatory voice position report.",
-      "C": "Automatically upon entering the North Atlantic Domestic Control Area.",
-      "D": "Only when the aircraft is not equipped with CPDLC."
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "Which written examination for the Airline Transport Pilot Licence (Aeroplane) covers the subjects of Meteorology, Radio Aids to Navigation, and Flight Planning?",
-    "choices": {
-      "A": "SAMRA",
-      "B": "SARON",
-      "C": "INRAT",
-      "D": "HAMRA"
-    },
-    "answer": "A",
-    "topic": "Meteorology",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to the Study and Reference Guide, the topic of 'Airframes, Engines, and Systems' is located in which section under Aeronautics - General Knowledge?",
-    "choices": {
-      "A": "Section 4",
-      "B": "Section 5",
-      "C": "Section 6",
-      "D": "Section 1"
-    },
-    "answer": "A",
-    "topic": "Airframes, Engines, and Systems",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "In a typical light aircraft piston engine, what is the primary function of the magnetos?",
-    "choices": {
-      "A": "To generate high-voltage electricity to fire the spark plugs.",
-      "B": "To recharge the aircraft's main battery during flight.",
-      "C": "To drive the vacuum pump for the gyroscopic instruments.",
-      "D": "To regulate the fuel-to-air mixture entering the cylinders."
-    },
-    "answer": "A",
-    "topic": "Airframes, Engines, and Systems",
-    "source": "Study & reference guide PPL exams.pdf"
-  },
-  {
-    "question": "According to the provided text, which of the following personnel must have knowledge of the theory of flight as part of their required training?",
-    "choices": {
-      "A": "Flight attendants",
-      "B": "Private operators",
-      "C": "All PPL students",
-      "D": "Air Traffic Controllers"
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
-    "source": "CARS.pdf"
-  },
-  {
-    "question": "According to the provided definition, the essential purpose of Preparatory Ground Instruction (PGI) is to cover:",
-    "choices": {
-      "A": "the 'how to do' for a specific air exercise.",
-      "B": "the complete and basic theory of flight.",
-      "C": "a review of all previous air exercises.",
-      "D": "preparation for the final flight test."
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
-    "source": "flight instructor guide.pdf"
-  },
-  {
-    "question": "In straight and level, unaccelerated flight, which of the following statements is correct regarding the four forces?",
-    "choices": {
-      "A": "Lift is equal to Weight, and Thrust is equal to Drag.",
-      "B": "Lift is greater than Weight, and Thrust is equal to Drag.",
-      "C": "Lift is equal to Weight, and Thrust is greater than Drag.",
-      "D": "Lift is equal to Thrust, and Weight is equal to Drag."
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
     "source": "Study & reference guide ATPL exams.pdf"
   },
   {
-    "question": "The principles governing lift, drag, thrust, and weight are fundamental concepts covered in which of the following subject areas?",
+    "question": "While operating an aeroplane in VFR flight, you observe another aeroplane on a converging flight path to your right at approximately the same altitude. According to the Canadian Aviation Regulations, what is the correct action to take?",
     "choices": {
-      "A": "Theory of Flight",
-      "B": "Human Factors",
-      "C": "Meteorology",
-      "D": "Flight Planning"
+      "A": "The other aircraft has the right-of-way; you must give way by altering your heading to the right to pass behind it.",
+      "B": "The aircraft that is less maneuverable has the right-of-way; you should wait for the other pilot to take action.",
+      "C": "Both aircraft must alter their heading to the right to ensure separation.",
+      "D": "You have the right-of-way; maintain course and speed."
     },
     "answer": "A",
-    "topic": "Theory of Flight",
-    "source": "Study & reference guide ATPL exams.pdf"
-  },
-  {
-    "question": "In straight-and-level, unaccelerated flight, what is the relationship between the four fundamental forces acting on an aeroplane?",
-    "choices": {
-      "A": "Lift is equal to weight, and thrust is equal to drag.",
-      "B": "Lift is greater than weight, and thrust is greater than drag.",
-      "C": "Lift is equal to drag, and thrust is equal to weight.",
-      "D": "Lift is less than weight, and thrust is less than drag."
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
-    "source": "Study & reference guide ATPL exams.pdf"
-  },
-  {
-    "question": "The principles that explain how an aircraft generates lift and experiences drag are primarily covered in which subject area of study?",
-    "choices": {
-      "A": "Theory of Flight",
-      "B": "Airframes, Engines and Systems",
-      "C": "Meteorology",
-      "D": "Aeronautics - General Knowledge"
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
+    "topic": "Air Law and Procedures",
     "source": "Study & reference guide CPL exams.pdf"
   },
   {
-    "question": "According to the provided study guide reference, under which main subject is 'Theory of Flight' located?",
+    "question": "You are conducting a VFR flight in a privately registered aeroplane during the daytime. You are in Class G airspace at an altitude of 900 feet AGL. According to the Canadian Aviation Regulations (CARs), what are the minimum VFR weather requirements for flight visibility and distance from cloud?",
     "choices": {
-      "A": "AERONAUTICS - GENERAL KNOWLEDGE",
-      "B": "NAVIGATION",
-      "C": "METEOROLOGY",
-      "D": "AIR LAW"
+      "A": "1 statute mile flight visibility, clear of cloud.",
+      "B": "3 statute miles flight visibility, at least 1,000 feet vertically and 1 statute mile horizontally from cloud.",
+      "C": "3 statute miles flight visibility, at least 500 feet vertically and 1 statute mile horizontally from cloud.",
+      "D": "2 statute miles flight visibility, at least 500 feet vertically and 2,000 feet horizontally from cloud."
     },
-    "answer": "A",
-    "topic": "Theory of Flight",
+    "answer": "D",
+    "topic": "Air Law and Procedures",
     "source": "Study & reference guide CPL exams.pdf"
   },
   {
-    "question": "According to the provided exam information, which section number corresponds to the topic of Theory of Flight?",
+    "question": "According to Canadian Aviation Regulations, what is the minimum fuel required to be on board an aeroplane for a planned day VFR flight that is estimated to take 1 hour and 40 minutes?",
     "choices": {
-      "A": "Section 5",
-      "B": "Section 6",
-      "C": "Section 7",
-      "D": "Section 8"
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "In straight-and-level, unaccelerated flight, which force directly opposes the force of drag?",
-    "choices": {
-      "A": "Thrust",
-      "B": "Lift",
-      "C": "Weight",
-      "D": "Gravity"
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "Bernoulli's Principle states that as the velocity of a fluid (like air) increases, its static pressure decreases. How does this apply to an airfoil generating lift?",
-    "choices": {
-      "A": "Air travelling over the curved top surface of the wing moves faster, creating a lower pressure zone that 'lifts' the wing.",
-      "B": "Air travelling under the flat bottom surface of the wing moves faster, creating a higher pressure zone that pushes the wing up.",
-      "C": "Newton's laws of motion are solely responsible for lift, and Bernoulli's Principle only applies to fuel flow.",
-      "D": "The equal pressure on both the top and bottom surfaces cancels out, and lift is generated by the engine's thrust."
-    },
-    "answer": "A",
-    "topic": "Theory of Flight",
-    "source": "Study & reference guide CPL exams.pdf"
-  },
-  {
-    "question": "According to Transport Canada, instrument ground time is defined as time spent controlling a flight simulation training device (FSTD) by sole reference to instruments, provided the FSTD is:",
-    "choices": {
-      "A": "approved by Transport Canada Civil Aviation (TCCA) for flight training purposes.",
-      "B": "operated under the supervision of a Class 1 flight instructor.",
-      "C": "equipped with limited vision goggles for the pilot.",
-      "D": "located at a registered aerodrome."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "When visual reference to the horizon is lost, on what should a pilot completely depend for control of the aircraft?",
-    "choices": {
-      "A": "Flight instruments and learned flying skills.",
-      "B": "The organs of balance in the inner ear.",
-      "C": "The pilot's senses alone.",
-      "D": "The last known position of the sun."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "When a pilot experiences spatial disorientation, what is the primary rule for survival?",
-    "choices": {
-      "A": "Rely on the flight instruments.",
-      "B": "Align the aircraft with a sloping cloudbank.",
-      "C": "Trust your body's physical sensations of position.",
-      "D": "Focus on finding the natural horizon, even if it is distorted."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "When determining the correct seat placement, what is a key guideline regarding the flight instruments and warning lights?",
-    "choices": {
-      "A": "They must be visible to the pilot without being obscured by items such as the glare shield.",
-      "B": "All flight controls must be adjusted so they do not interfere with the view of the instruments.",
-      "C": "They must be positioned to maximize the pilot's forward out-of-the-cockpit visibility.",
-      "D": "Their brightness must be adjusted before confirming the seat's fore and aft placement."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to the provided text, which of the following is a required subject on the written examination for a hang glider pilot to operate in Class E airspace?",
-    "choices": {
-      "A": "Flight instruments",
-      "B": "Aircraft maintenance procedures",
-      "C": "Advanced aerodynamics",
-      "D": "Meteorological theory"
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "CARS.pdf"
-  },
-  {
-    "question": "For a multi-engine aircraft to be operated in IMC, what is the requirement regarding its generators or alternators?",
-    "choices": {
-      "A": "Two generators or two alternators, each driven by a separate engine.",
-      "B": "One generator and one alternator, sharing a single drive system.",
-      "C": "At least one generator or alternator, supplemented by a high-capacity battery.",
-      "D": "Two independent sources of energy, one of which must be a battery."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "CARS.pdf"
-  },
-  {
-    "question": "According to standard procedures, which check of a flight instrument is correctly performed while taxiing?",
-    "choices": {
-      "A": "During a turn, the turn coordinator's miniature aircraft should show a turn in the correct direction and the ball should move to the outside of the turn.",
-      "B": "The airspeed indicator should show a reading corresponding to the groundspeed.",
-      "C": "The attitude indicator should show a bank in the direction of the turn.",
-      "D": "The altimeter should be cross-checked against the vertical speed indicator to ensure both read zero."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "flight instructor guide.pdf"
-  },
-  {
-    "question": "While taxiing an aircraft, in addition to maintaining directional control, a pilot is expected to perform which of the following checks?",
-    "choices": {
-      "A": "Check flight instruments.",
-      "B": "Perform a full engine run-up.",
-      "C": "Test the stall warning system.",
-      "D": "Verify the transponder is in ALT mode."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "flight instructor guide.pdf"
-  },
-  {
-    "question": "During an introductory flight, how will the student learn about the function of the flight instruments?",
-    "choices": {
-      "A": "The flight instructor will explain them.",
-      "B": "The student is expected to learn them by observing their operation.",
-      "C": "By reading the Pilot Operating Handbook during the flight.",
-      "D": "The student must ask specific questions about them to get information."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "Flight training manual.pdf"
-  },
-  {
-    "question": "According to the provided text, in addition to understanding the function of flight instruments, what specific information may a student pilot be asked to state?",
-    "choices": {
-      "A": "The altitude and the speed of the aeroplane.",
-      "B": "The position of other aircraft and the necessary avoiding action.",
-      "C": "The current heading and the time to the next waypoint.",
-      "D": "The decision on whether avoiding action is necessary."
-    },
-    "answer": "A",
-    "topic": "Flight Instruments",
-    "source": "Flight training manual.pdf"
-  },
-  {
-    "question": "What is the primary purpose of a Temporary Flight Restriction (TFR) established over a forest fire?",
-    "choices": {
-      "A": "To prevent interference with aerial firefighting operations.",
-      "B": "To protect pilots from the hazards of low visibility caused by smoke.",
-      "C": "To prevent aircraft damage from the intense heat and updrafts.",
-      "D": "To provide a sterile environment for atmospheric data collection."
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "In Canadian domestic airspace, what is the upper limit of the Altimeter Setting Region?",
-    "choices": {
-      "A": "18,000 feet ASL",
-      "B": "12,500 feet ASL",
-      "C": "10,000 feet ASL",
-      "D": "It varies based on the local atmospheric pressure."
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "When taxiing, you see a marshaller repeatedly cross their arms above their head. What is the required action from the pilot?",
-    "choices": {
-      "A": "Stop the aircraft immediately.",
-      "B": "Slow down and await further instruction.",
-      "C": "Shut down the engines.",
-      "D": "Acknowledge the signal and continue taxiing."
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "In a typical Pilot Operating Handbook (POH) or Aircraft Flight Manual (AFM), under which major section would you most likely find information regarding 'Crosswind Landing Limitations'?",
-    "choices": {
-      "A": "Flight Operations",
-      "B": "Emergency Procedures",
-      "C": "Weight and Balance",
-      "D": "Aircraft Systems"
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to the provided document index, which of the following specific operational hazards are discussed under the 'Flight Operations' section?",
-    "choices": {
-      "A": "Flight in volcanic ash and near thunderstorms.",
-      "B": "Winter operations and mountain flying.",
-      "C": "Wake turbulence avoidance and bird strike mitigation.",
-      "D": "Operations in controlled airspace and flight over water."
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to Canadian Aviation Regulations, when an aircraft is operating on the surface of the water, what is its responsibility concerning other vessels?",
-    "choices": {
-      "A": "It must, as far as possible, keep clear of all vessels and avoid impeding their navigation.",
-      "B": "It has the right-of-way over all power-driven vessels.",
-      "C": "It must give way only to non-powered vessels like sailboats.",
-      "D": "It is only required to follow the standard right-of-way rules for aircraft in the air."
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "Based on the provided reference material structure, information on the 'Fan Blade Ice Shedding Procedure' is a sub-topic of which larger section?",
-    "choices": {
-      "A": "Flight Operations in Winter",
-      "B": "Landing Seaplanes on Glassy Water",
-      "C": "General Aircraft Icing Procedures",
-      "D": "Engine and Propeller Systems"
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "Which of the following topics specifically addresses the operational challenges associated with flying over large, remote regions of Canada with limited infrastructure?",
-    "choices": {
-      "A": "Flight Operations in Sparsely Settled Areas of Canada",
-      "B": "Flat-Light Conditions",
-      "C": "Flight Operations in Mountainous Areas",
-      "D": "Standard VFR Flight Planning Procedures"
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to Canadian Aviation Regulations regarding flight operations in sparsely settled areas, what is a primary requirement for a single-engine aircraft?",
-    "choices": {
-      "A": "The aircraft must be equipped with survival equipment appropriate for the climate and season.",
-      "B": "A flight plan must be filed with an ATS unit for all flights, with no option for a flight itinerary.",
-      "C": "The pilot-in-command must hold a specific 'Northern Operations' endorsement.",
-      "D": "All flights must be conducted under IFR or Controlled VFR."
-    },
-    "answer": "A",
-    "topic": "Flight Operations",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to the source material, which of the following is classified as a human factor that can affect aircraft operation?",
-    "choices": {
-      "A": "Piloting skills and behaviour.",
-      "B": "Engine malfunction and motor friction.",
-      "C": "Wind and outside temperature.",
-      "D": "The quality of the fuel or battery."
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to the provided text regarding recurrent training programs for certain pilot certificates, which of the following is a mandatory topic?",
-    "choices": {
-      "A": "Human factors",
-      "B": "Advanced aerodynamics",
-      "C": "Aircraft maintenance procedures",
-      "D": "International aviation law"
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to the provided text regarding recurrent training activities, which of the following is a mandatory component of an advanced RPAS recurrent training program?",
-    "choices": {
-      "A": "Human factors",
-      "B": "Advanced aircraft maintenance",
-      "C": "International flight regulations",
-      "D": "Air traffic control communication protocols"
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "AIM.pdf"
-  },
-  {
-    "question": "According to regulations, flight training must be conducted in accordance with the applicable flight instructor guide, flight training manual or equivalent document, and...",
-    "choices": {
-      "A": "the applicable training manual on human factors.",
-      "B": "the Aircraft Flight Manual (AFM).",
-      "C": "the Transport Canada Aeronautical Information Manual (AIM).",
-      "D": "the approved maintenance schedule for the aircraft."
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "CARS.pdf"
-  },
-  {
-    "question": "To operate a hang glider in Class E airspace, a pilot must pass a written examination covering several subjects. In addition to regulations, procedures, and flight operations, which of the following is explicitly listed as a required subject?",
-    "choices": {
-      "A": "human factors",
-      "B": "meteorology",
-      "C": "theory of flight",
-      "D": "aerodynamics and airframes"
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "CARS.pdf"
-  },
-  {
-    "question": "For a hang glider to be operated on a cross-country flight in Class E airspace, it must be equipped with a magnetic compass and an altimeter. What other procedural requirement must the pilot meet?",
-    "choices": {
-      "A": "The pilot must inform the nearest air traffic services unit of the departure time and estimated flight duration.",
-      "B": "A VFR flight plan must be filed with the local Flight Information Centre (FIC).",
-      "C": "The hang glider must be equipped with a serviceable transponder with Mode C capability.",
-      "D": "The pilot must receive a specific clearance to enter the Class E airspace from ATC."
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "CARS.pdf"
-  },
-  {
-    "question": "In the context of Human Factors for instrument flying, what essential background knowledge regarding the senses must be reviewed before commencing training?",
-    "choices": {
-      "A": "The limitations of the visual, vestibular, and kinaesthetic senses.",
-      "B": "The enhancement of the auditory, visual, and tactile senses.",
-      "C": "The relationship between the olfactory, gustatory, and visual senses.",
-      "D": "The coordination of the vestibular, auditory, and chronological senses."
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "flight instructor guide.pdf"
-  },
-  {
-    "question": "According to the provided text, which of the following is a human factors subject specifically mentioned in relation to night flying?",
-    "choices": {
-      "A": "Autokinesis",
-      "B": "The Coriolis Illusion",
-      "C": "Hypoxia",
-      "D": "P-factor"
-    },
-    "answer": "A",
-    "topic": "Human Factors",
-    "source": "flight instructor guide.pdf"
-  },
-  {
-    "question": "The source material identifies several human factors relevant to night and winter training. Which of the following is explicitly mentioned as a topic for consideration?",
-    "choices": {
-      "A": "The Coriolis illusion",
-      "B": "Pitch-up and pitch-down illusions",
-      "C": "The somatogravic illusion",
-      "D": "Decision-making models"
+      "A": "Enough fuel to fly for 1 hour and 40 minutes at normal cruising speed.",
+      "B": "Enough fuel to fly for 2 hours and 10 minutes at normal cruising speed.",
+      "C": "Enough fuel to fly for 2 hours and 25 minutes at normal cruising speed.",
+      "D": "Enough fuel to fly to the destination and then to a suitable alternate airport."
     },
     "answer": "B",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "According to Canadian Aviation Regulations (CARs), when flying VFR in level cruising flight above 3,000 feet AGL in the Southern Domestic Airspace on a magnetic track of 275°, which of the following altitudes is appropriate?",
+    "choices": {
+      "A": "7,000 feet ASL",
+      "B": "5,500 feet ASL",
+      "C": "8,000 feet ASL",
+      "D": "6,500 feet ASL"
+    },
+    "answer": "D",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "A pilot is conducting a VFR cross-country flight on a magnetic track of 095° at an altitude above 3,000 feet AGL. In accordance with Canadian Aviation Regulations for uncontrolled airspace, which of the following is an appropriate cruising altitude?",
+    "choices": {
+      "A": "5,500 feet ASL",
+      "B": "5,000 feet ASL",
+      "C": "4,500 feet ASL",
+      "D": "4,000 feet ASL"
+    },
+    "answer": "A",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "A Canadian pilot is flying VFR in uncontrolled, Class G airspace at 800 feet AGL in the United States during the day. Under FAA regulations, what are the minimum flight visibility and distance from cloud requirements, and how do they differ from the standard Canadian (CARs) requirements for the same situation?",
+    "choices": {
+      "A": "3 statute miles visibility and 500 feet vertically from cloud; Canadian rules would require 1 statute mile.",
+      "B": "3 statute miles visibility and clear of cloud; this is less restrictive than the Canadian requirement of 5 miles.",
+      "C": "1 statute mile visibility and clear of cloud; this is identical to the Canadian requirement.",
+      "D": "1 statute mile visibility and clear of cloud; Canadian rules would require 2 statute miles visibility."
+    },
+    "answer": "D",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "A pilot is conducting a VFR cross-country flight in the Southern Domestic Airspace. Their magnetic track is 210 degrees and they plan to cruise above 3,000 feet AGL. According to the Canadian Aviation Regulations (CARs), which of the following altitudes would be appropriate?",
+    "choices": {
+      "A": "7,500 feet ASL",
+      "B": "5,500 feet ASL",
+      "C": "6,000 feet ASL",
+      "D": "6,500 feet ASL"
+    },
+    "answer": "D",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "According to Canadian Aviation Regulations (CARs), when is an IFR alternate airport required for a flight to a destination airport that has a published instrument approach procedure?",
+    "choices": {
+      "A": "When the destination forecast for +/- 1 hour indicates a ceiling less than 2,000 feet AGL and visibility less than 3 statute miles.",
+      "B": "Only when the flight is conducted at night or in designated mountainous regions.",
+      "C": "When the weather forecast for the destination, for the period from one hour before to one hour after the estimated time of arrival, indicates conditions will be below the specified weather minima.",
+      "D": "Any time the destination airport does not have at least two separate and suitable runways."
+    },
+    "answer": "C",
+    "topic": "Air Law and Procedures",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "A pilot measures a True Track of 285° on a VFR Navigation Chart (VNC). The isogonic line for the area indicates a magnetic variation of 18° West. To fly this route, what is the corresponding Magnetic Track?",
+    "choices": {
+      "A": "285°",
+      "B": "249°",
+      "C": "267°",
+      "D": "303°"
+    },
+    "answer": "D",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "A pilot has tuned and identified a VOR station, selected the 090° radial on their Omni-Bearing Selector (OBS), and observes a centered needle with a \"TO\" flag. To fly directly to the station, the aircraft's magnetic heading should be approximately:",
+    "choices": {
+      "A": "180°",
+      "B": "090°",
+      "C": "The aircraft's heading is irrelevant as long as the needle is centered.",
+      "D": "270°"
+    },
+    "answer": "B",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "You are planning a VFR flight at night. The flight time to your destination is estimated to be 1 hour and 40 minutes. Your required alternate is an additional 20 minutes of flight time from your destination. Assuming a 15-minute allowance for taxi and run-up, what is the minimum total fuel duration you must have on board prior to engine start, according to Canadian Aviation Regulations?",
+    "choices": {
+      "A": "2 hours 45 minutes",
+      "B": "2 hours 15 minutes",
+      "C": "2 hours 30 minutes",
+      "D": "3 hours 00 minutes"
+    },
+    "answer": "D",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "While flying on a magnetic heading of 090°, you tune a VOR and set the OBS to 360°. The instrument indicates 'TO' with the CDI fully deflected to the left. To intercept this course to the station using a 30° intercept angle, you should turn to a magnetic heading of:",
+    "choices": {
+      "A": "030°",
+      "B": "210°",
+      "C": "330°",
+      "D": "150°"
+    },
+    "answer": "C",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "A pilot is planning a flight along a course with a True Track of 350°. The VNC chart indicates a magnetic variation of 15° West in the area. The aircraft's compass deviation card shows a deviation of +2° for a northerly heading. To maintain this track in no-wind conditions, what compass heading should the pilot fly?",
+    "choices": {
+      "A": "007°",
+      "B": "333°",
+      "C": "003°",
+      "D": "337°"
+    },
+    "answer": "C",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "A pilot intends to track outbound from a VOR on the 240° radial. The Omni Bearing Selector (OBS) is set to 240°, the TO/FROM flag indicates 'FROM', and the Course Deviation Indicator (CDI) shows a full-scale deflection to the left. Which statement correctly describes the aircraft's position and the required action?",
+    "choices": {
+      "A": "The aircraft is north of the 240° radial and must turn left to intercept the course.",
+      "B": "The instrument is experiencing reverse sensing; the pilot must turn away from the needle to correct.",
+      "C": "The aircraft is west of the 240° radial and must turn right to intercept the course.",
+      "D": "The aircraft is on the 060° radial and must fly over the station before tracking outbound."
+    },
+    "answer": "A",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "During a climb in icing conditions, your aircraft's pitot tube and its associated drain hole become completely blocked. The static system remains clear. If you maintain a constant true airspeed, what will the airspeed indicator (ASI) show as the aircraft continues to climb?",
+    "choices": {
+      "A": "The indicated airspeed will progressively decrease.",
+      "B": "The indicated airspeed will drop to zero.",
+      "C": "The indicated airspeed will progressively increase.",
+      "D": "The indicated airspeed will remain frozen at the value it had when the blockage occurred."
+    },
+    "answer": "C",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide INSTRUMENT exams.pdf"
+  },
+  {
+    "question": "While navigating using a VOR, your Omni Bearing Selector (OBS) is set to 360°. The Course Deviation Indicator (CDI) shows a full-scale deflection to the left, and the TO/FROM indicator displays 'TO'. What is your general position relative to the VOR station?",
+    "choices": {
+      "A": "Southeast of the station.",
+      "B": "Northeast of the station.",
+      "C": "Southwest of the station.",
+      "D": "Northwest of the station."
+    },
+    "answer": "A",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "You are tracking inbound to a VOR station, intending to fly along the 360° radial. You have correctly set your OBS to 180° for a \"TO\" indication. If a crosswind causes your aircraft to drift west of your intended track, what will the VOR indicator display?",
+    "choices": {
+      "A": "CDI needle deflected to the right, with a \"FROM\" indication.",
+      "B": "The CDI will show reverse sensing and the needle will deflect to the left.",
+      "C": "CDI needle deflected to the right, with a \"TO\" indication.",
+      "D": "CDI needle deflected to the left, with a \"TO\" indication."
+    },
+    "answer": "C",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "You are flying on a magnetic heading of 030°. The needle on your Automatic Direction Finder (ADF) indicates a relative bearing of 315° to the non-directional beacon (NDB). What is the magnetic bearing TO the NDB?",
+    "choices": {
+      "A": "165°",
+      "B": "345°",
+      "C": "285°",
+      "D": "075°"
+    },
+    "answer": "B",
+    "topic": "Navigation and Radio Aids",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "Which combination of atmospheric conditions will result in the highest density altitude, leading to reduced aircraft performance?",
+    "choices": {
+      "A": "Low temperature, high relative humidity, and low barometric pressure.",
+      "B": "High temperature, low relative humidity, and high barometric pressure.",
+      "C": "High temperature, high relative humidity, and low barometric pressure.",
+      "D": "Low temperature, low relative humidity, and high barometric pressure."
+    },
+    "answer": "C",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "An AIRMET will be issued to advise pilots of which of the following weather phenomena?",
+    "choices": {
+      "A": "Severe turbulence or severe icing not associated with thunderstorms.",
+      "B": "A 35-knot sustained surface wind forecast over a large geographical area.",
+      "C": "Widespread sand or dust storms reducing visibility to less than 3/4 of a statute mile.",
+      "D": "A line of thunderstorms (squall line) or thunderstorms obscured by haze or smoke."
+    },
+    "answer": "B",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "When flying from an area of high pressure to an area of low pressure, if the altimeter setting is not corrected, the aircraft's indicated altitude will be:",
+    "choices": {
+      "A": "Lower than its true altitude.",
+      "B": "Higher than its true altitude.",
+      "C": "The same as its pressure altitude.",
+      "D": "The same as its true altitude."
+    },
+    "answer": "B",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot is flying towards an active cold front. What type of weather phenomena should they typically expect to encounter?",
+    "choices": {
+      "A": "Widespread areas of stratiform cloud with light, continuous precipitation and poor visibility.",
+      "B": "Calm winds with clear skies and excellent visibility for several hundred miles.",
+      "C": "A narrow, fast-moving band of cumuliform clouds, turbulence, and the possibility of showers or thunderstorms.",
+      "D": "Stable air with extensive fog or low stratus cloud that persists for several days."
+    },
+    "answer": "C",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "Which set of atmospheric conditions is most favourable for the formation of radiation fog?",
+    "choices": {
+      "A": "A clear night with light surface winds and high relative humidity.",
+      "B": "A cloudy night with light surface winds and high relative humidity.",
+      "C": "A clear night with strong surface winds and high relative humidity.",
+      "D": "A cloudy night with strong surface winds and low relative humidity."
+    },
+    "answer": "A",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot planning a cross-country flight within Canada needs to obtain official aviation weather forecasts and reports. Which organization is designated by the Minister of Transport to provide these services?",
+    "choices": {
+      "A": "The Royal Canadian Air Force (RCAF)",
+      "B": "NAV CANADA",
+      "C": "Environment and Climate Change Canada",
+      "D": "Transport Canada"
+    },
+    "answer": "B",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "The specific alphanumeric codes and abbreviations used in a Terminal Aerodrome Forecast (TAF), such as \"BECMG\" or \"P6SM\", are standardized for international use by which organization?",
+    "choices": {
+      "A": "International Civil Aviation Organization (ICAO)",
+      "B": "Transport Canada",
+      "C": "NAV CANADA",
+      "D": "World Meteorological Organization (WMO)"
+    },
+    "answer": "D",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "According to ICAO standards for international air navigation, what is the procedure regarding routine voice reports of wind and temperature when operating in North Atlantic (NAT) airspace?",
+    "choices": {
+      "A": "Pilots are required to provide these reports at each mandatory reporting point.",
+      "B": "These reports are no longer required unless otherwise directed by ATC.",
+      "C": "Pilots must provide these reports every 30 minutes after entering oceanic airspace.",
+      "D": "These reports are only required if the aircraft is not equipped with CPDLC (Controller-Pilot Data Link Communications)."
+    },
+    "answer": "B",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "While operating in the North Atlantic (NAT) region, under which condition can a flight crew expect a request from an Air Traffic Services (ATS) unit to provide automated meteorological reports via data link?",
+    "choices": {
+      "A": "When the aircraft's High Frequency (HF) voice communication system is reported as unserviceable.",
+      "B": "After an Automatic Dependent Surveillance — Contract (ADS-C) is established with the ATS unit.",
+      "C": "Immediately after receiving an oceanic clearance, as part of the readback.",
+      "D": "Only when the aircraft is unable to maintain its cleared flight level due to turbulence."
+    },
+    "answer": "B",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "An airport in the Prairies is forecast to be affected by a mature cold front occlusion. Which of the following weather sequences is most characteristic of the passage of this system?",
+    "choices": {
+      "A": "A gradual lowering of the cloud ceiling from cirrus to nimbostratus, with several hours of light, steady precipitation, followed by slow clearing and a wind shift to the southwest.",
+      "B": "Several days of low stratus clouds and drizzle with little to no wind, associated with a stagnant, high-pressure air mass.",
+      "C": "A combination of warm and cold front weather, typically beginning with widespread stratiform clouds and precipitation, followed by a narrower band of cumuliform clouds, heavy showers, and a distinct wind shift.",
+      "D": "A rapid onset of a narrow band of thunderstorms and squalls, a sharp drop in temperature, and a wind shift from southwest to northwest, with rapid clearing behind the front."
+    },
+    "answer": "C",
+    "topic": "Meteorology",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "During a pre-takeoff engine run-up, a slight decrease in RPM is observed when switching from 'BOTH' magnetos to a single magneto. What is the primary reason for this RPM drop?",
+    "choices": {
+      "A": "The inactive magneto creates an electrical ground, which slightly restricts engine performance.",
+      "B": "A less efficient combustion process occurs with only one spark plug firing per cylinder.",
+      "C": "The engine's timing is slightly retarded automatically to prevent stress on one magneto.",
+      "D": "The increased load from the operating alternator is transferred to the single magneto."
+    },
+    "answer": "B",
+    "topic": "Airframes, Engines, and Systems",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "While in cruise flight in an aircraft equipped with a carbureted engine and a fixed-pitch propeller, what is typically the first indication of carburetor ice formation?",
+    "choices": {
+      "A": "A significant drop in oil pressure.",
+      "B": "A gradual decrease in manifold pressure.",
+      "C": "A noticeable increase in cylinder head temperature.",
+      "D": "A gradual decrease in engine RPM."
+    },
+    "answer": "D",
+    "topic": "Airframes, Engines, and Systems",
+    "source": "Study & reference guide PPL exams.pdf"
+  },
+  {
+    "question": "During a level, coordinated 60-degree banked turn, how is an aircraft's stalling speed (Vs) affected?",
+    "choices": {
+      "A": "It increases by approximately 41% because the load factor increases to 2 G.",
+      "B": "It decreases because the increased airspeed of the outer wing generates more efficient lift.",
+      "C": "It remains unchanged, as the critical angle of attack is constant regardless of bank angle.",
+      "D": "It doubles (increases by 100%) because the lift required has doubled."
+    },
+    "answer": "A",
+    "topic": "Theory of Flight",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "In a level, coordinated turn with a bank angle of 60 degrees, the load factor is 2 G. How does this affect the aircraft's stalling speed (Vs)?",
+    "choices": {
+      "A": "Vs is decreased.",
+      "B": "Vs is unaffected by the turn.",
+      "C": "Vs increases by approximately 41%.",
+      "D": "Vs is doubled."
+    },
+    "answer": "C",
+    "topic": "Theory of Flight",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "An aircraft is in a steady, coordinated, level turn. If the pilot increases the angle of bank, what must be done to maintain a constant altitude?",
+    "choices": {
+      "A": "Reduce power to prevent an increase in airspeed.",
+      "B": "Decrease airspeed to reduce the turn radius.",
+      "C": "Apply opposite aileron to prevent overbanking.",
+      "D": "Increase the angle of attack by applying back pressure on the control column."
+    },
+    "answer": "D",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "An aircraft will stall at a specific angle of attack, regardless of airspeed. Which of the following flight conditions would result in the highest stalling speed?",
+    "choices": {
+      "A": "A wings-level climb at maximum power.",
+      "B": "A straight-ahead power-off glide.",
+      "C": "A level, unaccelerated flight at maximum gross weight.",
+      "D": "A steep, coordinated turn with a 60-degree bank."
+    },
+    "answer": "D",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "While maintaining a constant altitude in a level, 60-degree banked turn, the load factor an aircraft experiences is 2 G. How does this affect the aircraft's stalling speed?",
+    "choices": {
+      "A": "The stalling speed is doubled.",
+      "B": "The stalling speed decreases by approximately 29%.",
+      "C": "The stalling speed increases by approximately 41%.",
+      "D": "The stalling speed is unaffected by the change in load factor."
+    },
+    "answer": "C",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide ATPL exams.pdf"
+  },
+  {
+    "question": "During straight and level flight, as an aircraft's airspeed increases from its minimum controllable airspeed towards its normal cruise speed, what is the effect on parasite drag and induced drag?",
+    "choices": {
+      "A": "Parasite drag increases and induced drag decreases.",
+      "B": "Both parasite and induced drag increase.",
+      "C": "Parasite drag decreases and induced drag increases.",
+      "D": "Both parasite and induced drag decrease."
+    },
+    "answer": "A",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "During a power-off glide in a typical light aircraft, what is the direct consequence of pitching up to fly at an airspeed below the best glide speed (L/D max)?",
+    "choices": {
+      "A": "Induced drag will increase more than parasite drag decreases, resulting in a higher rate of descent.",
+      "B": "The aircraft will maintain altitude longer due to the higher angle of attack.",
+      "C": "The rate of descent will decrease, extending the glide distance.",
+      "D": "Both parasite drag and induced drag will decrease, increasing glide efficiency."
+    },
+    "answer": "A",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "While maintaining a constant altitude in a coordinated, 60-degree bank level turn, how does the aircraft's indicated stalling speed (IAS) change compared to its wings-level stalling speed?",
+    "choices": {
+      "A": "It remains the same because the critical angle of attack is constant regardless of bank angle.",
+      "B": "It decreases because the vertical component of lift is reduced.",
+      "C": "It increases because adverse yaw creates additional drag on the outside wing.",
+      "D": "It increases because the load factor has increased."
+    },
+    "answer": "D",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "An aircraft maintains a constant altitude in a coordinated 60-degree banked turn. Compared to straight and level flight, the stalling speed increases primarily because:",
+    "choices": {
+      "A": "the outside wing is travelling faster than the inside wing, creating asymmetrical lift.",
+      "B": "the rudder deflection required to counteract adverse yaw significantly increases parasite drag.",
+      "C": "the higher engine power required to maintain airspeed increases the slipstream effect over the tail.",
+      "D": "the load factor on the wings is increased, requiring more total lift to be generated."
+    },
+    "answer": "D",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "According to Bernoulli's principle as it applies to an airfoil, what is the primary relationship between airflow velocity and static pressure that generates lift?",
+    "choices": {
+      "A": "Air flowing over the curved upper surface has a higher velocity, resulting in a region of lower static pressure relative to the lower surface.",
+      "B": "The static pressure is equal on both surfaces, but the dynamic pressure is greater on the upper surface, creating a net upward force.",
+      "C": "The wing deflects air downwards, and the reaction force as described by Newton's Third Law creates lift, independent of pressure.",
+      "D": "Air flowing over the curved upper surface has a lower velocity, resulting in a region of higher static pressure that pushes the wing up."
+    },
+    "answer": "A",
+    "topic": "Theory of Flight",
+    "source": "Study & reference guide CPL exams.pdf"
+  },
+  {
+    "question": "During a climb, a pilot notices the airspeed indicator is increasing, even though the aircraft's pitch attitude and power setting should result in a constant or decreasing airspeed. This malfunction is characteristic of:",
+    "choices": {
+      "A": "A failure of the attitude indicator's gyroscope.",
+      "B": "A blockage of both the pitot tube's ram air opening and its drain hole.",
+      "C": "A blocked static port.",
+      "D": "A blockage of only the pitot tube's ram air opening while the drain hole remains clear."
+    },
+    "answer": "B",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot, flying without visual reference to the ground, has been in a slow, imperceptible left bank for several minutes. Upon observing the attitude indicator and rolling the aircraft back to straight-and-level flight, the pilot feels a strong sensation of banking to the right. This dangerous physiological illusion is known as:",
+    "choices": {
+      "A": "Autokinesis",
+      "B": "Coriolis Illusion",
+      "C": "The Leans",
+      "D": "Somatogravic Illusion"
+    },
+    "answer": "C",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "During a night flight over a sparsely populated area, you perceive that the aircraft is in a bank, but the attitude indicator shows the wings are level. This sensation is known as spatial disorientation. What is the correct action to take?",
+    "choices": {
+      "A": "Trust your physical sensations ('seat-of-the-pants' flying) as they are the most reliable indicator of aircraft attitude.",
+      "B": "Focus your attention outside the cockpit to find a reliable visual cue, such as ground lights or stars, to reorient yourself.",
+      "C": "Rely on the flight instruments, primarily the attitude indicator, and cross-check with the turn coordinator and heading indicator.",
+      "D": "Initiate a shallow climb to increase separation from the ground while you try to re-establish a visual horizon."
+    },
+    "answer": "C",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "After adjusting your seat for a flight, you find that the top of the glare shield partially obscures your view of the annunciator panel and the upper portion of the attitude indicator. What is the most appropriate action?",
+    "choices": {
+      "A": "Note the obstruction in the aircraft journey log and advise maintenance after the flight.",
+      "B": "Move the seat as far aft as possible to improve the viewing angle of the instruments.",
+      "C": "Re-adjust the seat height and fore-and-aft position until all flight instruments and warning lights are fully visible.",
+      "D": "Proceed with the flight, as you can lean forward to see the instruments when necessary."
+    },
+    "answer": "C",
+    "topic": "Flight Instruments",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "If the pitot tube becomes completely blocked by ice while its associated drain hole also freezes over, but the static port remains clear, how will the airspeed indicator behave as the aircraft climbs?",
+    "choices": {
+      "A": "It will behave like an altimeter, indicating an increasing airspeed.",
+      "B": "It will drop to zero as no ram air pressure is being sensed.",
+      "C": "It will freeze at the airspeed indicated at the moment of blockage.",
+      "D": "It will behave like an altimeter in reverse, indicating a decreasing airspeed."
+    },
+    "answer": "A",
+    "topic": "Flight Instruments",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "While preparing a multi-engine aircraft for a flight into Instrument Meteorological Conditions (IMC), you discover that one of the two engine-driven alternators has failed. According to Canadian Aviation Regulations, which of the following is true?",
+    "choices": {
+      "A": "The aircraft is not equipped to be operated in IMC until the alternator is repaired.",
+      "B": "The flight can proceed into IMC as long as the operative alternator can power all essential flight instruments.",
+      "C": "The flight can proceed into IMC if the battery is fully charged and can act as the secondary power source.",
+      "D": "The flight is permitted, but the pilot must plan to remain within gliding distance of a suitable aerodrome."
+    },
+    "answer": "A",
+    "topic": "Flight Instruments",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "While taxiing for departure, you make a standard-rate turn to the left. How should your turn coordinator and magnetic compass react?",
+    "choices": {
+      "A": "The turn coordinator's miniature aircraft remains level, and the magnetic compass shows a momentary turn towards the south.",
+      "B": "The turn coordinator's miniature aircraft banks to the right, and the magnetic compass correctly indicates a turn towards the north.",
+      "C": "The turn coordinator's miniature aircraft banks to the left, and the magnetic compass shows a momentary turn towards the south before stabilizing.",
+      "D": "The turn coordinator's miniature aircraft banks to the left, and the magnetic compass correctly indicates a turn towards the north."
+    },
+    "answer": "C",
+    "topic": "Flight Instruments",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "While taxiing for takeoff, you make a turn to the right on the ground. To confirm the correct functioning of the turn coordinator or turn-and-slip indicator, what should you observe?",
+    "choices": {
+      "A": "The miniature aircraft or needle indicates a right turn, and the ball moves to the left.",
+      "B": "The instrument will not show a reliable indication until the aircraft is airborne.",
+      "C": "The miniature aircraft or needle indicates a right turn, and the ball moves to the right.",
+      "D": "The miniature aircraft or needle indicates a right turn, and the ball remains centered."
+    },
+    "answer": "A",
+    "topic": "Flight Instruments",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "While in level flight, you fly from an area of high atmospheric pressure into an area of lower atmospheric pressure without resetting your altimeter. How will this affect the altimeter's reading relative to your actual height above sea level?",
+    "choices": {
+      "A": "The altimeter reading will remain accurate as it automatically compensates for pressure changes.",
+      "B": "The indicated altitude will be lower than the true altitude.",
+      "C": "The indicated altitude will be higher than the true altitude.",
+      "D": "The vertical speed indicator will show a constant descent."
+    },
+    "answer": "C",
+    "topic": "Flight Instruments",
+    "source": "Flight training manual.pdf"
+  },
+  {
+    "question": "A standard pressure altimeter in a light aircraft provides an indication of the aircraft's vertical distance above a selected pressure datum by measuring changes in:",
+    "choices": {
+      "A": "Static air pressure via the static port.",
+      "B": "The difference between ram air pressure and static pressure.",
+      "C": "The time delay of a transmitted radio signal.",
+      "D": "The density of the air entering the pitot tube."
+    },
+    "answer": "A",
+    "topic": "Flight Instruments",
+    "source": "Flight training manual.pdf"
+  },
+  {
+    "question": "You are on a VFR cross-country flight and observe a large column of smoke. A recently issued NOTAM confirms an active forest fire in the area. According to Canadian Aviation Regulations, what is the minimum distance and altitude you must maintain from the fire zone unless otherwise authorized?",
+    "choices": {
+      "A": "You must not operate within 5 nautical miles of the site at an altitude below 3,000 feet AGL.",
+      "B": "You must remain clear of the area by at least 3 nautical miles and fly no lower than 2,000 feet AGL.",
+      "C": "You must divert around the area by 10 nautical miles and remain above all visible smoke.",
+      "D": "You are only required to avoid the area if Air Traffic Control issues a specific instruction to do so."
+    },
+    "answer": "A",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "While on a VFR flight departing from an airport in the Altimeter Setting Region, a pilot is climbing to a cruising altitude of FL190. At what point must the altimeter be set to standard pressure (29.92\" Hg)?",
+    "choices": {
+      "A": "When crossing the horizontal boundary into the Northern Domestic Airspace.",
+      "B": "Prior to takeoff, since the flight will enter the Standard Pressure Region.",
+      "C": "Immediately upon passing through 18,000 feet ASL.",
+      "D": "After levelling off at the cruising altitude of FL190."
+    },
+    "answer": "C",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "According to Canadian Aviation Regulations (CARs), who holds the final responsibility for determining that an aircraft is in a condition for safe flight before takeoff?",
+    "choices": {
+      "A": "The aircraft maintenance engineer who last certified the aircraft.",
+      "B": "The air traffic controller who issues the takeoff clearance.",
+      "C": "The owner or registered operator of the aircraft.",
+      "D": "The Pilot-in-Command."
+    },
+    "answer": "D",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot is on final approach to land on Runway 27. The tower reports the wind as 320 at 25 knots. The Pilot Operating Handbook (POH) for their aircraft states a maximum demonstrated crosswind component of 15 knots. What is the most appropriate course of action for the pilot?",
+    "choices": {
+      "A": "Continue the approach, as the maximum demonstrated crosswind is only a guideline and can be exceeded by an experienced pilot.",
+      "B": "Proceed with the landing, as the headwind component will ensure a slower groundspeed.",
+      "C": "Request to land on a more into-wind runway, as the current crosswind component exceeds the aircraft's demonstrated limit.",
+      "D": "Increase approach speed by 10 knots to improve control authority and proceed with the landing."
+    },
+    "answer": "C",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot is conducting a final approach in heavy rain. Besides reduced visibility, what is a primary aerodynamic consideration?",
+    "choices": {
+      "A": "Airflow over the airfoil is disrupted, which can decrease maximum lift and increase the stall speed.",
+      "B": "The rain 'washes' the boundary layer, making the wing more efficient and prone to overshooting the runway.",
+      "C": "Air density increases, causing a lower true airspeed and requiring a higher approach power setting.",
+      "D": "The weight of the water on the airframe significantly increases the landing distance."
+    },
+    "answer": "A",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "While in cruise flight, you unexpectedly encounter a layer of haze with a distinct acrid smell, and you notice St. Elmo's fire on the windscreen. Suspecting an encounter with volcanic ash, what is the most critical initial action?",
+    "choices": {
+      "A": "Activate continuous ignition and all anti-ice systems to protect the engines and airframe.",
+      "B": "Reduce thrust to flight idle to minimize ash ingestion while you assess the situation.",
+      "C": "Immediately execute a 180-degree level turn to exit the area along your entry path.",
+      "D": "Initiate a rapid climb to get above the ash cloud as quickly as possible."
+    },
+    "answer": "C",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "While taxiing a seaplane on the water, you observe a power-driven boat on a converging course approaching from your starboard (right) side. According to the Collision Regulations, which action is required?",
+    "choices": {
+      "A": "Maintain your course and speed, as aircraft always have priority over boats.",
+      "B": "Signal your intentions with your landing lights and expect the boat to give way.",
+      "C": "Give way to the other vessel by altering your course to starboard to pass astern of it.",
+      "D": "Alter course to port to cross ahead of the boat as quickly as possible."
+    },
+    "answer": "C",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "When performing a landing on glassy water in a seaplane, what is the recommended technique to mitigate the risk of misjudging altitude?",
+    "choices": {
+      "A": "Establish a stable approach with a low, constant rate of descent and power, using a shoreline or object for height reference, and fly the aircraft onto the surface.",
+      "B": "Reduce power to idle well before the intended landing area and execute a power-off glide, touching down at the lowest possible airspeed.",
+      "C": "Maintain a steep approach angle and high airspeed to quickly penetrate the visually deceptive layer just above the water.",
+      "D": "Perform a series of S-turns on short final to create surface ripples, which provide the necessary visual cues for a normal flare."
+    },
+    "answer": "A",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "When planning to cross a mountain ridge, what is the safest and most recommended technique to use on approach?",
+    "choices": {
+      "A": "Fly directly at the ridge at Va (maneuvering speed) to ensure the aircraft can withstand any potential turbulence.",
+      "B": "Cross the ridge on the downwind (leeward) side, as the air is typically smoother after passing over the peak.",
+      "C": "Aim for the lowest point or 'saddle' in the ridge, as this requires the least amount of aircraft climb performance.",
+      "D": "Approach the ridge at a 45-degree angle to provide an escape route by turning away toward lower terrain if severe downdrafts are encountered."
+    },
+    "answer": "D",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "According to Canadian Aviation Regulations, which of the following items is mandatory survival equipment for an aircraft being operated over land in a designated sparsely settled area?",
+    "choices": {
+      "A": "A satellite phone for two-way communication.",
+      "B": "A sleeping bag for each person on board.",
+      "C": "A means for starting a fire.",
+      "D": "A seven-day supply of non-perishable food for each person on board."
+    },
+    "answer": "C",
+    "topic": "Flight Operations",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot is conducting a cross-country flight and is feeling fatigued and slightly behind schedule. The weather at the destination begins to deteriorate below the VFR minimums forecast. Despite having sufficient fuel and a nearby suitable alternate airport, the pilot decides to continue towards the destination, hoping for a break in the weather. This scenario is a classic example of a breakdown in:",
+    "choices": {
+      "A": "Aeronautical Decision Making (ADM)",
+      "B": "Pre-flight weather briefing",
+      "C": "Basic stick and rudder skills",
+      "D": "Aircraft fuel system management"
+    },
+    "answer": "A",
+    "topic": "Human Factors",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot is feeling pressure to complete a flight on schedule. Despite feeling unusually tired after a long work week and noticing signs of fatigue like slowed reaction time, they decide to proceed with the flight, thinking they can 'push through it' for just a few more hours. This decision is an example of a breakdown in which human factors concept?",
+    "choices": {
+      "A": "Personal Minimums and Fitness for Flight",
+      "B": "Situational Awareness",
+      "C": "Cockpit Resource Management",
+      "D": "Spatial Disorientation"
+    },
+    "answer": "A",
+    "topic": "Human Factors",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "A pilot, anxious to get to a family event, reviews a weather forecast indicating marginal VFR conditions that are expected to worsen along their route. The pilot decides to proceed with the flight, thinking, \"The forecast is often overly cautious, and I have the skills to handle whatever comes up. It won't be a problem for me.\" Which hazardous attitude is primarily being displayed?",
+    "choices": {
+      "A": "Macho",
+      "B": "Resignation",
+      "C": "Invulnerability",
+      "D": "Anti-authority"
+    },
+    "answer": "C",
+    "topic": "Human Factors",
+    "source": "AIM.pdf"
+  },
+  {
+    "question": "During a cross-country flight in an unpressurized aircraft at 12,500 feet ASL, a pilot begins to feel a sense of euphoria and notices their fingernails have a bluish tint. What is the most likely condition being experienced?",
+    "choices": {
+      "A": "Carbon Monoxide Poisoning",
+      "B": "Hyperventilation",
+      "C": "Hypoxia",
+      "D": "Spatial Disorientation"
+    },
+    "answer": "C",
+    "topic": "Human Factors",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "A pilot flying VFR-over-the-top has been maintaining an altitude of 11,500 feet ASL for 45 minutes. They begin to feel overconfident, a bit drowsy, and find that simple calculations are taking longer than usual. Which human factor is most likely affecting their performance?",
+    "choices": {
+      "A": "Decompression sickness, due to the rapid climb to altitude.",
+      "B": "Spatial disorientation, caused by the lack of a visible horizon.",
+      "C": "Hyperventilation, due to the stress of flying over a solid cloud layer.",
+      "D": "Hypoxia, due to the reduced partial pressure of oxygen."
+    },
+    "answer": "D",
+    "topic": "Human Factors",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "During a solo cross-country flight in Class E airspace, a pilot encounters stronger-than-forecast headwinds. Despite feeling fatigued and falling behind schedule, the pilot feels a strong urge to push on to reach the planned destination. This hazardous mindset is a classic example of:",
+    "choices": {
+      "A": "Get-there-itis",
+      "B": "Confirmation Bias",
+      "C": "The Anti-authority Attitude",
+      "D": "Spatial Disorientation"
+    },
+    "answer": "A",
+    "topic": "Human Factors",
+    "source": "CARS.pdf"
+  },
+  {
+    "question": "During a night takeoff with no visible horizon, a pilot experiences a strong sensation of pitching up due to the aircraft's acceleration. If the pilot reacts to this sensory illusion instead of trusting their instruments, what is the most likely outcome?",
+    "choices": {
+      "A": "The pilot will push the nose down, potentially leading to a collision with terrain.",
+      "B": "The pilot will inadvertently enter a steep climb and risk a stall.",
+      "C": "The pilot will reduce power, believing the aircraft is climbing too fast.",
+      "D": "The pilot will initiate a bank, believing they are in a turn."
+    },
+    "answer": "A",
     "topic": "Human Factors",
     "source": "flight instructor guide.pdf"
   },
   {
-    "question": "According to the provided text, the part of the manual dealing with physiological effects and human factors is applicable to:",
+    "question": "During a night approach to a brightly lit runway over a dark, featureless area such as water, a pilot is susceptible to the \"black hole\" effect. This powerful visual illusion creates the perception that the aircraft is:",
     "choices": {
-      "A": "both pilots in training and seasoned IFR pilots.",
-      "B": "only pilots in training, as they are most susceptible.",
-      "C": "only seasoned IFR pilots, due to the emphasis on approach procedures.",
-      "D": "primarily air traffic controllers who manage critical flight segments."
+      "A": "in a bank when it is actually level, leading to an uncoordinated turn.",
+      "B": "lower than it actually is, leading to a steep approach and potential overshoot.",
+      "C": "higher than it actually is, leading to a dangerously low approach path.",
+      "D": "moving slower than it actually is, leading to an approach speed that is too high."
     },
-    "answer": "A",
+    "answer": "C",
+    "topic": "Human Factors",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "During a night approach to a well-lit runway over dark, featureless terrain, a pilot may experience the 'black hole' effect. This illusion can cause the pilot to perceive that the aircraft is:",
+    "choices": {
+      "A": "flying faster than its actual airspeed, leading to a premature flare.",
+      "B": "lower than its actual altitude, leading to a high approach.",
+      "C": "in a nose-up attitude, leading to an unintentional descent.",
+      "D": "higher than its actual altitude, leading to a dangerously low approach."
+    },
+    "answer": "D",
+    "topic": "Human Factors",
+    "source": "flight instructor guide.pdf"
+  },
+  {
+    "question": "During a go-around from an instrument approach in low visibility, the strong forward acceleration creates a sensation of a steep climb. A pilot reacting to this sensation without cross-referencing the attitude indicator is most likely to:",
+    "choices": {
+      "A": "Raise the nose excessively, leading to an aerodynamic stall.",
+      "B": "Experience autokinesis, causing the runway lights to appear to move.",
+      "C": "Lower the nose, leading to a shallow climb or descent into terrain.",
+      "D": "Enter a graveyard spiral by overbanking to correct the perceived climb."
+    },
+    "answer": "C",
     "topic": "Human Factors",
     "source": "Instrument Procedures Manual.pdf"
   }
