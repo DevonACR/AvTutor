@@ -326,7 +326,7 @@ elif mode == "🧪 PPL Sample Exams":
             st.session_state.sample_exam_index += 1
             st.rerun()
 
-    # ✅ Final result if all answers have been submitted
+# ✅ Final result if all answers have been submitted
 if len(st.session_state.sample_exam_submitted) == num_questions:
     correct_total = 0
     incorrect = []
@@ -363,9 +363,6 @@ if len(st.session_state.sample_exam_submitted) == num_questions:
             elif "reference" in q and q["reference"]:
                 st.caption(f"📘 Reference: {q['reference']}")
             st.markdown("---")
-
-
-
 
 
 elif mode == "🧩 Flashcards":
