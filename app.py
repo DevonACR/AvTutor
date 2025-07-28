@@ -198,13 +198,32 @@ elif mode == "🧠 Quiz Me":
             st.rerun()
         st.stop()
 
-    q_data = quiz[current_q]
+        valid = False
+    max_attempts = len(quiz)
 
-    # Validate current question structure
-    if not isinstance(q_data.get("options"), list) or not q_data.get("options"):
-        st.warning("⚠️ Malformed question detected. Skipping to next.")
-        st.session_state.quiz_index += 1
-        st.rerun()
+    # Try to find a valid question (avoid infinite loop)
+    while not valid and current_q < max_attempts:
+        q_data = quiz[current_q]
+        if (
+            isinstance(q_data, dict)
+            and isinstance(q_data.get("question"), str)
+            and isinstance(q_data.get("options"), list)
+            and q_data.get("answer")
+        ):
+            valid = True
+        else:
+            # Log malformed question for developer review
+            st.warning(f"⚠️ Malformed question at index {current_q}, skipping...")
+            st.session_state.quiz_index += 1
+            current_q = st.session_state.quiz_index
+
+    if not valid:
+        st.error("🚫 No valid quiz questions found. Please check the question data.")
+        if st.button("🔁 Restart"):
+            for k in ["quiz", "quiz_category", "quiz_index", "quiz_answers", "quiz_submitted"]:
+                st.session_state.pop(k, None)
+            st.rerun()
+        st.stop()
 
     q_key = f"quiz_q_{current_q}"
 
@@ -241,12 +260,13 @@ elif mode == "🧠 Quiz Me":
     col1, col2 = st.columns(2)
     with col1:
         if st.button("⬅️ Previous", disabled=(current_q == 0)):
-            st.session_state.quiz_index -= 1
+            st.session_state.quiz_index = max(0, current_q - 1)
             st.rerun()
     with col2:
         if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1)):
-            st.session_state.quiz_index += 1
+            st.session_state.quiz_index = min(len(quiz) - 1, current_q + 1)
             st.rerun()
+
 
 
 elif mode == "🧪 PPL Sample Exams":
