@@ -129,7 +129,7 @@ mode = st.sidebar.radio(
 elif mode == "💬 AI Tutor":
     st.subheader("💬 Ask or Learn Any Topic")
 
-    # Session state to persist across mode changes
+    # Persist user input and response across sessions
     st.session_state.setdefault("tutor_input", "")
     st.session_state.setdefault("tutor_answer", "")
     st.session_state.setdefault("simplified_answer", "")
