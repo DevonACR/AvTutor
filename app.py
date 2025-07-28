@@ -188,17 +188,38 @@ elif mode == "🧠 Quiz Me":
     quiz = st.session_state.quiz
     current_q = st.session_state.quiz_index
 
-    if current_q >= len(quiz):
-        st.success("🎉 You've completed all questions in this category!")
+    # ✅ Show results if user has submitted all questions
+    if len(st.session_state.quiz_submitted) == len(quiz):
+        total = len(quiz)
+        correct = 0
+        for i, q in enumerate(quiz):
+            ans = st.session_state.quiz_answers.get(i, "")
+            answer_letter = q.get("answer")
+            options = q.get("choices") or q.get("options", [])
+            if isinstance(options, dict):
+                options = [f"{k}: {v}" for k, v in options.items()]
+            correct_opt = next((opt for opt in options if opt.startswith(answer_letter)), "")
+            if ans == correct_opt:
+                correct += 1
+
+        score = correct / total * 100
+        st.markdown("## ✅ Quiz Results")
+        st.success(f"🎯 You scored {correct} / {total} ({score:.1f}%)")
+
         if st.button("🔁 Start Again"):
             for k in ["quiz", "quiz_category", "quiz_index", "quiz_answers", "quiz_submitted"]:
                 st.session_state.pop(k, None)
             st.rerun()
         st.stop()
 
+    # ✅ Continue with question display logic
+    if current_q >= len(quiz):
+        current_q = len(quiz) - 1
+        st.session_state.quiz_index = current_q
+
     q_data = quiz[current_q]
 
-    # ✅ Safely extract options from either 'choices' (dict) or 'options' (list)
+    # Safely extract options
     raw_choices = q_data.get("choices") or q_data.get("options")
     if isinstance(raw_choices, dict):
         options = [f"{k}: {v}" for k, v in raw_choices.items()]
@@ -226,6 +247,12 @@ elif mode == "🧠 Quiz Me":
     if st.button("✅ Submit Answer"):
         st.session_state.quiz_answers[current_q] = user_selection
         st.session_state.quiz_submitted.add(current_q)
+
+        if current_q + 1 >= len(quiz):
+            st.session_state.quiz_index = len(quiz)  # trigger results
+        else:
+            st.session_state.quiz_index = current_q + 1
+
         st.rerun()
 
     if current_q in st.session_state.quiz_submitted:
@@ -248,6 +275,7 @@ elif mode == "🧠 Quiz Me":
         if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1)):
             st.session_state.quiz_index = min(len(quiz) - 1, current_q + 1)
             st.rerun()
+
 
 elif mode == "🧪 PPL Sample Exams":
     st.subheader("🧪 Official Sample Exam Practice")
