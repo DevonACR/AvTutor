@@ -199,6 +199,13 @@ elif mode == "🧠 Quiz Me":
         st.stop()
 
     q_data = quiz[current_q]
+
+# Safety check
+if "question" not in q_data or "options" not in q_data or "answer" not in q_data:
+    st.error("⚠️ Malformed question detected. Skipping to next.")
+    st.session_state.quiz_index += 1
+    st.rerun()
+
     q_key = f"quiz_q_{current_q}"
 
     st.markdown(f"**Question {current_q + 1} of {len(quiz)}**")
