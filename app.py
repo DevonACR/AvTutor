@@ -185,7 +185,6 @@ elif mode == "🧠 Quiz Me":
         st.session_state.quiz_answers = {}
         st.session_state.quiz_submitted = set()
 
-
     quiz = st.session_state.quiz
     current_q = st.session_state.quiz_index
 
@@ -198,32 +197,13 @@ elif mode == "🧠 Quiz Me":
             st.rerun()
         st.stop()
 
-        valid = False
-    max_attempts = len(quiz)
+    q_data = quiz[current_q]
 
-    # Try to find a valid question (avoid infinite loop)
-    while not valid and current_q < max_attempts:
-        q_data = quiz[current_q]
-        if (
-            isinstance(q_data, dict)
-            and isinstance(q_data.get("question"), str)
-            and isinstance(q_data.get("options"), list)
-            and q_data.get("answer")
-        ):
-            valid = True
-        else:
-            # Log malformed question for developer review
-            st.warning(f"⚠️ Malformed question at index {current_q}, skipping...")
-            st.session_state.quiz_index += 1
-            current_q = st.session_state.quiz_index
-
-    if not valid:
-        st.error("🚫 No valid quiz questions found. Please check the question data.")
-        if st.button("🔁 Restart"):
-            for k in ["quiz", "quiz_category", "quiz_index", "quiz_answers", "quiz_submitted"]:
-                st.session_state.pop(k, None)
-            st.rerun()
-        st.stop()
+    # ✅ Simple safety check for malformed question
+    if not all(k in q_data for k in ["question", "options", "answer"]):
+        st.error(f"⚠️ Malformed question at index {current_q}. Skipping...")
+        st.session_state.quiz_index += 1
+        st.rerun()
 
     q_key = f"quiz_q_{current_q}"
 
@@ -231,7 +211,12 @@ elif mode == "🧠 Quiz Me":
     st.write(q_data["question"])
 
     prev_answer = st.session_state.quiz_answers.get(current_q)
-    options = q_data["options"]
+    options = q_data.get("options", [])
+    if not options:
+        st.error(f"⚠️ No options provided for this question. Skipping...")
+        st.session_state.quiz_index += 1
+        st.rerun()
+
     default_index = options.index(prev_answer) if prev_answer in options else 0
 
     user_selection = st.radio(
