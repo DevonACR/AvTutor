@@ -64,6 +64,17 @@ def load_flashcards():
         st.code(res.text[:500], language="json")
         return []
 
+# 🔁 Load generated quiz questions
+@st.cache_data
+def load_generated_quiz_questions():
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_quiz_questions.json"
+    res = requests.get(url)
+    if res.status_code == 200:
+        return res.json()
+    else:
+        st.error(f"❌ Could not load generated quiz questions (HTTP {res.status_code})")
+        return []
+
 
 # TF-IDF for search
 vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
@@ -146,29 +157,18 @@ elif mode == "🧾 Explain a Topic":
 elif mode == "🧠 Quiz Me":
     st.subheader("🧠 Quiz Me")
 
-    # Choose a category
-    categories = sorted(set(chunk.get("category", "General") for chunk in chunks))
+    all_questions = load_generated_quiz_questions()
+    categories = sorted(set(q.get("topic", "General") for q in all_questions))
     selected_category = st.selectbox("📚 Choose a category", ["All"] + categories)
 
-    # Initialize quiz logic if not already done or category changed
     if (
         "quiz" not in st.session_state
         or st.session_state.get("quiz_category") != selected_category
     ):
-        filtered_chunks = chunks if selected_category == "All" else [
-            c for c in chunks if c.get("category") == selected_category
+        questions = [
+            q for q in all_questions
+            if selected_category == "All" or q.get("topic", "General") == selected_category
         ]
-
-        questions = []
-        for chunk in filtered_chunks:
-            if "quiz_question" in chunk:
-                q = chunk["quiz_question"]
-                questions.append({
-                    "question": q["question"],
-                    "options": [f"{k}: {v}" for k, v in q["choices"].items()],
-                    "answer": q["answer"],
-                    "source": chunk.get("source", "Unknown")
-                })
 
         if not questions:
             st.warning("⚠️ No quiz questions found for this category.")
@@ -184,6 +184,7 @@ elif mode == "🧠 Quiz Me":
         st.session_state.quiz_index = 0
         st.session_state.quiz_answers = {}
         st.session_state.quiz_submitted = set()
+
 
     quiz = st.session_state.quiz
     current_q = st.session_state.quiz_index
