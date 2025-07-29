@@ -21,62 +21,35 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/gemini-key.json"
 # ✅ Import and initialize VertexAI
 from vertexai.generative_models import GenerativeModel
 import vertexai
-
 vertexai.init(project="gen-lang-client-0636505424", location="us-central1")
 gemini_model = GenerativeModel(model_name="gemini-2.5-pro")
 
-
-
-# Load theory chunks from tc_chunks.json
 @st.cache_data
-
 def load_chunks():
     with open("tc_chunks.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data
+        return json.load(f)
 
 chunks = load_chunks()
 chunk_texts = [chunk['content'] for chunk in chunks]
 chunk_sources = [chunk.get('source', 'Unknown') for chunk in chunks]
 
-# Load sample exam questions from GitHub
 @st.cache_data
-
 def load_sample_exam_questions():
-    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/sample_exam_structured.json"  # Replace with your username/repo
-    res = requests.get(url)
-    return res.json()
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/sample_exam_structured.json"
+    return requests.get(url).json()
 
-# 🔁 Load Flashcard Prompts from GitHub
 @st.cache_data
 def load_flashcards():
     url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_flashcards.json"
     res = requests.get(url)
+    return res.json() if res.status_code == 200 else []
 
-    if res.status_code != 200:
-        st.error(f"❌ Failed to fetch flashcards - HTTP {res.status_code}")
-        return []
-
-    try:
-        return res.json()
-    except Exception as e:
-        st.error(f"❌ Failed to parse flashcards: {e}")
-        st.code(res.text[:500], language="json")
-        return []
-
-# 🔁 Load generated quiz questions
 @st.cache_data
 def load_generated_quiz_questions():
     url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_quiz_questions.json"
     res = requests.get(url)
-    if res.status_code == 200:
-        return res.json()
-    else:
-        st.error(f"❌ Could not load generated quiz questions (HTTP {res.status_code})")
-        return []
+    return res.json() if res.status_code == 200 else []
 
-
-# TF-IDF for search
 vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
 
 def search_chunks(query: str, k: int = 5) -> List[Dict]:
@@ -89,9 +62,7 @@ def ask_tutor(question):
     top_chunks = search_chunks(question)
     context = "\n\n".join([chunk["content"] for chunk in top_chunks])
     sources = [chunk['source'] for chunk in top_chunks]
-
-    prompt = f"""
-You are a Canadian PPL aviation tutor. Explain concepts clearly and simply.
+    prompt = f"""You are a Canadian PPL aviation tutor. Explain concepts clearly and simply.
 
 Context:
 {context}
@@ -100,36 +71,31 @@ Question: {question}
 
 Answer with explanation, then end with:
 
-Study Source(s): {', '.join(sources)}
-"""
+Study Source(s): {', '.join(sources)}"""
     try:
         response = gemini_model.generate_content(prompt)
         return response.text.strip()
     except Exception as e:
         return f"⚠️ Gemini Error: {e}"
 
+
 def get_categories():
-    cats = [chunk.get("category", "General") for chunk in chunks]
-    return sorted(list(set(cats)))
+    return sorted(set(chunk.get("category", "General") for chunk in chunks))
 
 def get_questions_by_category(category: str, limit: int = 25) -> List[Dict]:
-    if category == "All":
-        filtered = chunks
-    else:
-        filtered = [chunk for chunk in chunks if chunk.get("category") == category]
-    sampled = random.sample(filtered, min(len(filtered), limit))
-    return sampled
+    filtered = chunks if category == "All" else [c for c in chunks if c.get("category") == category]
+    return random.sample(filtered, min(len(filtered), limit))
 
-# Streamlit UI
+# UI
 mode = st.sidebar.radio(
     "Choose Study Mode",
     ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
 )
 
-elif mode == "💬 AI Tutor":
+# ---------------- AI Tutor with Persistent Q&A ----------------
+if mode == "💬 AI Tutor":
     st.subheader("💬 Ask or Learn Any Topic")
 
-    # Persist user input and response across sessions
     st.session_state.setdefault("tutor_input", "")
     st.session_state.setdefault("tutor_answer", "")
     st.session_state.setdefault("simplified_answer", "")
@@ -151,11 +117,7 @@ elif mode == "💬 AI Tutor":
         if st.button("🍼 Simplify this explanation"):
             with st.spinner("Making it super beginner-friendly..."):
                 try:
-                    simplified_prompt = f"""
-You are an aviation tutor. Simplify the following explanation for a new Private Pilot student with no prior knowledge:
-
-{st.session_state['tutor_answer']}
-"""
+                    simplified_prompt = f"You are an aviation tutor. Simplify this explanation for a beginner:\n\n{st.session_state['tutor_answer']}"
                     simplified = gemini_model.generate_content(simplified_prompt).text.strip()
                     st.session_state["simplified_answer"] = simplified
                 except Exception as e:
