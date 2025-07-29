@@ -100,7 +100,7 @@ if mode == "💬 AI Tutor":
     st.session_state.setdefault("tutor_answer", "")
     st.session_state.setdefault("simplified_answer", "")
 
-    def submit_tutor_question():
+def submit_tutor_question():
     question = st.session_state["tutor_input"]
     if question:
         with st.spinner("Explaining like a ground school instructor..."):
