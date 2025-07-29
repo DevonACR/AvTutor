@@ -96,27 +96,36 @@ mode = st.sidebar.radio(
 if mode == "💬 AI Tutor":
     st.subheader("💬 Ask or Learn Any Topic")
 
+    # Initialize session state variables
     st.session_state.setdefault("tutor_input", "")
     st.session_state.setdefault("tutor_answer", "")
     st.session_state.setdefault("simplified_answer", "")
 
-def submit_tutor_question():
-    question = st.session_state["tutor_input"]
-    if question:
-        with st.spinner("Explaining like a ground school instructor..."):
-            response = ask_tutor(question)
-        st.session_state["tutor_answer"] = response
-        st.session_state["simplified_answer"] = ""
+    # Temporary input field for syncing (does not auto-trigger a rerun)
+    user_query = st.text_input(
+        "✈️ Ask a question or enter a topic to learn:",
+        value=st.session_state["tutor_input"],
+        key="tutor_temp"
+    )
 
-st.text_input(
-    "✈️ Ask a question or enter a topic to learn:",
-    key="tutor_input",
-    on_change=submit_tutor_question
-)
+    # Submit logic (called on button click or if Enter is pressed)
+    def submit_tutor_question():
+        query = st.session_state.get("tutor_temp", "").strip()
+        if query:
+            st.session_state["tutor_input"] = query
+            with st.spinner("Explaining like a ground school instructor..."):
+                st.session_state["tutor_answer"] = ask_tutor(query)
+            st.session_state["simplified_answer"] = ""
 
-if st.button("🧠 Submit"):
-    submit_tutor_question()
+    # Auto-submit when Enter is pressed (if input changed)
+    if user_query and user_query != st.session_state["tutor_input"]:
+        submit_tutor_question()
 
+    # Submit button (manual trigger)
+    if st.button("🧠 Submit"):
+        submit_tutor_question()
+
+    # Show response
     if st.session_state["tutor_answer"]:
         st.markdown("### 🧠 Instructor Explanation")
         st.write(st.session_state["tutor_answer"])
@@ -124,7 +133,10 @@ if st.button("🧠 Submit"):
         if st.button("🍼 Simplify this explanation"):
             with st.spinner("Making it super beginner-friendly..."):
                 try:
-                    simplified_prompt = f"You are an aviation tutor. Simplify this explanation for a beginner:\n\n{st.session_state['tutor_answer']}"
+                    simplified_prompt = (
+                        "You are an aviation tutor. Simplify this explanation for a beginner:\n\n"
+                        f"{st.session_state['tutor_answer']}"
+                    )
                     simplified = gemini_model.generate_content(simplified_prompt).text.strip()
                     st.session_state["simplified_answer"] = simplified
                 except Exception as e:
@@ -135,11 +147,12 @@ if st.button("🧠 Submit"):
             st.write(st.session_state["simplified_answer"])
 
         if st.button("🗑 Clear"):
-            for k in ["tutor_input", "tutor_answer", "simplified_answer"]:
+            for k in ["tutor_input", "tutor_answer", "simplified_answer", "tutor_temp"]:
                 st.session_state.pop(k, None)
             st.rerun()
     else:
         st.info("Ask a question above to get an explanation. Use 'Simplify' for beginner-friendly wording.")
+
 
 
 elif mode == "📚 Study by Category":
