@@ -100,15 +100,22 @@ if mode == "💬 AI Tutor":
     st.session_state.setdefault("tutor_answer", "")
     st.session_state.setdefault("simplified_answer", "")
 
-    user_input = st.text_input("✈️ Ask a question or enter a topic to learn:", value=st.session_state["tutor_input"])
+    def submit_tutor_question():
+    question = st.session_state["tutor_input"]
+    if question:
+        with st.spinner("Explaining like a ground school instructor..."):
+            response = ask_tutor(question)
+        st.session_state["tutor_answer"] = response
+        st.session_state["simplified_answer"] = ""
 
-    if st.button("🧠 Submit"):
-        if user_input:
-            with st.spinner("Explaining like a ground school instructor..."):
-                response = ask_tutor(user_input)
-            st.session_state["tutor_input"] = user_input
-            st.session_state["tutor_answer"] = response
-            st.session_state["simplified_answer"] = ""
+st.text_input(
+    "✈️ Ask a question or enter a topic to learn:",
+    key="tutor_input",
+    on_change=submit_tutor_question
+)
+
+if st.button("🧠 Submit"):
+    submit_tutor_question()
 
     if st.session_state["tutor_answer"]:
         st.markdown("### 🧠 Instructor Explanation")
