@@ -422,7 +422,6 @@ cards = [
     card for i, card in enumerate(all_flashcards)
     if i not in st.session_state.known_cards
 ]
-
     if not cards:
         st.success("🎉 You've marked all cards as known!")
         if st.button("🔁 Reset All Known Cards"):
