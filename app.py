@@ -92,7 +92,7 @@ mode = st.sidebar.radio(
     ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
 )
 
-    st.markdown(f"""
+st.markdown(f"""
     <div style="border:1px solid #ccc; border-radius:5px; overflow:hidden; height:24px; width:100%;">
       <div style="background-color:#4CAF50; width:{pct}%; height:100%; float:left;"></div>
       <div style="background-color:#f44336; width:{remaining}%; height:100%; float:left;"></div>
