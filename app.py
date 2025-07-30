@@ -415,22 +415,22 @@ elif mode == "🧩 Flashcards":
         st.session_state.known_cards = set()
 
     # ✅ Combine and shuffle flashcards
-all_flashcards = st.session_state.flashcards + st.session_state.user_flashcards
-random.shuffle(all_flashcards)
+    all_flashcards = st.session_state.flashcards + st.session_state.user_flashcards
+    random.shuffle(all_flashcards)
 
-cards = [
-    card for i, card in enumerate(all_flashcards)
-    if i not in st.session_state.known_cards
-]
+    cards = [
+        card for i, card in enumerate(all_flashcards)
+        if i not in st.session_state.known_cards
+    ]
 
-if not cards:
-    st.success("🎉 You've marked all cards as known!")
-    if st.button("🔁 Reset All Known Cards"):
-        st.session_state.known_cards = set()
-        st.session_state.flash_index = 0
-        st.session_state.show_answer = False
-        st.rerun()
-    st.stop()
+    if not cards:
+        st.success("🎉 You've marked all cards as known!")
+        if st.button("🔁 Reset All Known Cards"):
+            st.session_state.known_cards = set()
+            st.session_state.flash_index = 0
+            st.session_state.show_answer = False
+            st.rerun()
+        st.stop()
 
     idx = st.session_state.flash_index
     idx = max(0, min(idx, len(cards) - 1))
@@ -486,5 +486,8 @@ if not cards:
                 "source": "Custom"
             }
             st.session_state.user_flashcards.append(new_card)
+            st.success("✅ Flashcard added!")
+            st.rerun()
+
             st.success("✅ Flashcard added!")
             st.rerun()
