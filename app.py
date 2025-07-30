@@ -414,12 +414,14 @@ elif mode == "🧩 Flashcards":
     if "known_cards" not in st.session_state:
         st.session_state.known_cards = set()
 
-    # ✅ Combine flashcards
-    all_flashcards = st.session_state.flashcards + st.session_state.user_flashcards
-    cards = [
-        card for i, card in enumerate(all_flashcards)
-        if i not in st.session_state.known_cards
-    ]
+    # ✅ Combine and shuffle flashcards
+all_flashcards = st.session_state.flashcards + st.session_state.user_flashcards
+random.shuffle(all_flashcards)
+
+cards = [
+    card for i, card in enumerate(all_flashcards)
+    if i not in st.session_state.known_cards
+]
 
     if not cards:
         st.success("🎉 You've marked all cards as known!")
