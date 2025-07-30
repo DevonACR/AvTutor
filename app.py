@@ -402,67 +402,61 @@ elif mode == "🧪 PPL Sample Exams":
 elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
+    # ✅ Load flashcards and user cards
     if "flashcards" not in st.session_state:
         st.session_state.flashcards = load_flashcards()
+        st.session_state.user_flashcards = []
         st.session_state.flash_index = 0
         st.session_state.show_answer = False
-
-    # ✅ Ensure known_cards exists before using it
-    if "known_cards" not in st.session_state:
         st.session_state.known_cards = set()
 
-    # Get filtered cards
+    # ✅ Combine default + user flashcards, filter known
+    all_flashcards = st.session_state.flashcards + st.session_state.user_flashcards
     cards = [
-        card for i, card in enumerate(st.session_state.flashcards)
+        card for i, card in enumerate(all_flashcards)
         if i not in st.session_state.known_cards
     ]
 
     if not cards:
         st.success("🎉 You've marked all cards as known!")
-        if st.button("🔁 Reset Flashcards"):
+        if st.button("🔁 Reset All Known Cards"):
             st.session_state.known_cards = set()
             st.session_state.flash_index = 0
+            st.session_state.show_answer = False
             st.rerun()
         st.stop()
 
     idx = st.session_state.flash_index
     idx = max(0, min(idx, len(cards) - 1))  # prevent index error
-
     card = cards[idx]
 
     st.markdown(f"**Card {idx + 1} of {len(cards)}**")
     st.subheader(f"❓ {card['question']}")
-    st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
+    st.caption(f"📘 Topic: {card.get('topic', 'User Added' if card in st.session_state.user_flashcards else 'Unknown')}")
 
     if st.session_state.show_answer:
         st.success(f"✅ {card['answer']}")
         st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
 
     col1, col2, col3, col4 = st.columns(4)
-
     with col1:
         if st.button("⬅️ Previous") and idx > 0:
             st.session_state.flash_index -= 1
             st.session_state.show_answer = False
             st.rerun()
-
     with col2:
         if st.button("🔄 Show Answer" if not st.session_state.show_answer else "🔁 Hide Answer"):
             st.session_state.show_answer = not st.session_state.show_answer
             st.rerun()
-
     with col3:
         if st.button("➡️ Next") and idx < len(cards) - 1:
             st.session_state.flash_index += 1
             st.session_state.show_answer = False
             st.rerun()
-
     with col4:
         if st.button("✅ I Know This"):
-            original_index = next(
-                i for i, c in enumerate(st.session_state.flashcards) if c == card
-            )
-            st.session_state.known_cards.add(original_index)
+            global_index = all_flashcards.index(card)
+            st.session_state.known_cards.add(global_index)
             st.session_state.flash_index = min(idx, len(cards) - 2)
             st.session_state.show_answer = False
             st.rerun()
@@ -473,3 +467,18 @@ elif mode == "🧩 Flashcards":
         st.session_state.flash_index = 0
         st.session_state.show_answer = False
         st.rerun()
+
+    # ➕ Flashcard creation form
+    with st.expander("➕ Create Your Own Flashcard"):
+        q = st.text_input("📝 Question")
+        a = st.text_area("💡 Answer")
+        if st.button("➕ Add Flashcard") and q.strip() and a.strip():
+            new_card = {
+                "question": q.strip(),
+                "answer": a.strip(),
+                "topic": "User Generated",
+                "source": "Custom"
+            }
+            st.session_state.user_flashcards.append(new_card)
+            st.success("✅ Flashcard added!")
+            st.rerun()
