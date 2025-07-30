@@ -406,6 +406,9 @@ elif mode == "🧩 Flashcards":
         st.session_state.flashcards = load_flashcards()
         st.session_state.flash_index = 0
         st.session_state.show_answer = False
+
+    # ✅ Ensure known_cards exists before using it
+    if "known_cards" not in st.session_state:
         st.session_state.known_cards = set()
 
     # Get filtered cards
