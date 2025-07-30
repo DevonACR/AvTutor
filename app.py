@@ -413,13 +413,14 @@ elif mode == "🧩 Flashcards":
         st.session_state.show_answer = False
     if "known_cards" not in st.session_state:
         st.session_state.known_cards = set()
+    if "shuffled_cards" not in st.session_state:
+        combined = st.session_state.flashcards + st.session_state.user_flashcards
+        random.shuffle(combined)
+        st.session_state.shuffled_cards = combined
 
-    # ✅ Combine and shuffle flashcards
-    all_flashcards = st.session_state.flashcards + st.session_state.user_flashcards
-    random.shuffle(all_flashcards)
-
+    # ✅ Filter known cards
     cards = [
-        card for i, card in enumerate(all_flashcards)
+        card for i, card in enumerate(st.session_state.shuffled_cards)
         if i not in st.session_state.known_cards
     ]
 
@@ -461,7 +462,7 @@ elif mode == "🧩 Flashcards":
             st.rerun()
     with col4:
         if st.button("✅ I Know This"):
-            global_index = all_flashcards.index(card)
+            global_index = st.session_state.shuffled_cards.index(card)
             st.session_state.known_cards.add(global_index)
             st.session_state.flash_index = min(idx, len(cards) - 2)
             st.session_state.show_answer = False
@@ -486,8 +487,9 @@ elif mode == "🧩 Flashcards":
                 "source": "Custom"
             }
             st.session_state.user_flashcards.append(new_card)
-            st.success("✅ Flashcard added!")
-            st.rerun()
-
+            # Reset the shuffle to include new card
+            combined = st.session_state.flashcards + st.session_state.user_flashcards
+            random.shuffle(combined)
+            st.session_state.shuffled_cards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
