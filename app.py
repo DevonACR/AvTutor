@@ -398,34 +398,44 @@ elif mode == "🧪 PPL Sample Exams":
             st.session_state.sample_exam_index += 1
             st.rerun()
 
-
 elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
-    # ✅ Initialize session state
+    # ✅ Session state initialization
     if "flashcards" not in st.session_state:
         st.session_state.flashcards = load_flashcards()
     if "user_flashcards" not in st.session_state:
         st.session_state.user_flashcards = []
+    if "shuffled_flashcards" not in st.session_state:
+        combined = st.session_state.flashcards + st.session_state.user_flashcards
+        random.shuffle(combined)
+        st.session_state.shuffled_flashcards = combined
     if "flash_index" not in st.session_state:
         st.session_state.flash_index = 0
     if "show_answer" not in st.session_state:
         st.session_state.show_answer = False
     if "known_cards" not in st.session_state:
         st.session_state.known_cards = set()
-    if "shuffled_cards" not in st.session_state:
-        combined = st.session_state.flashcards + st.session_state.user_flashcards
-        random.shuffle(combined)
-        st.session_state.shuffled_cards = combined
 
-    # ✅ Filter known cards
-    cards = [
-        card for i, card in enumerate(st.session_state.shuffled_cards)
-        if i not in st.session_state.known_cards
+    all_flashcards = st.session_state.shuffled_flashcards
+
+    # ✅ Topic filter
+    available_topics = sorted(set(card.get("topic", "Unknown") for card in all_flashcards))
+    selected_topic = st.selectbox("📘 Filter by Topic", ["All"] + available_topics)
+
+    filtered_cards = [
+        card for i, card in enumerate(all_flashcards)
+        if (selected_topic == "All" or card.get("topic") == selected_topic)
+        and i not in st.session_state.known_cards
     ]
 
-    if not cards:
-        st.success("🎉 You've marked all cards as known!")
+    # ✅ Progress bar (based on all_flashcards, not filtered stack)
+    total = len(all_flashcards)
+    known = len(st.session_state.known_cards)
+    st.progress(known / total if total else 0, text=f"{known}/{total} cards marked as known")
+
+    if not filtered_cards:
+        st.success("🎉 You've marked all cards in this topic as known!")
         if st.button("🔁 Reset All Known Cards"):
             st.session_state.known_cards = set()
             st.session_state.flash_index = 0
@@ -434,10 +444,10 @@ elif mode == "🧩 Flashcards":
         st.stop()
 
     idx = st.session_state.flash_index
-    idx = max(0, min(idx, len(cards) - 1))
-    card = cards[idx]
+    idx = max(0, min(idx, len(filtered_cards) - 1))
+    card = filtered_cards[idx]
 
-    st.markdown(f"**Card {idx + 1} of {len(cards)}**")
+    st.markdown(f"**Card {idx + 1} of {len(filtered_cards)}**")
     st.subheader(f"❓ {card['question']}")
     st.caption(f"📘 Topic: {card.get('topic', 'User Added' if card in st.session_state.user_flashcards else 'Unknown')}")
 
@@ -456,15 +466,15 @@ elif mode == "🧩 Flashcards":
             st.session_state.show_answer = not st.session_state.show_answer
             st.rerun()
     with col3:
-        if st.button("➡️ Next") and idx < len(cards) - 1:
+        if st.button("➡️ Next") and idx < len(filtered_cards) - 1:
             st.session_state.flash_index += 1
             st.session_state.show_answer = False
             st.rerun()
     with col4:
         if st.button("✅ I Know This"):
-            global_index = st.session_state.shuffled_cards.index(card)
+            global_index = all_flashcards.index(card)
             st.session_state.known_cards.add(global_index)
-            st.session_state.flash_index = min(idx, len(cards) - 2)
+            st.session_state.flash_index = min(idx, len(filtered_cards) - 2)
             st.session_state.show_answer = False
             st.rerun()
 
@@ -479,17 +489,18 @@ elif mode == "🧩 Flashcards":
     with st.expander("➕ Create Your Own Flashcard"):
         q = st.text_input("📝 Question")
         a = st.text_area("💡 Answer")
+        topic_input = st.text_input("📘 Topic (optional)", value="User Generated")
         if st.button("➕ Add Flashcard") and q.strip() and a.strip():
             new_card = {
                 "question": q.strip(),
                 "answer": a.strip(),
-                "topic": "User Generated",
+                "topic": topic_input.strip() or "User Generated",
                 "source": "Custom"
             }
             st.session_state.user_flashcards.append(new_card)
-            # Reset the shuffle to include new card
+            # Regenerate shuffled list
             combined = st.session_state.flashcards + st.session_state.user_flashcards
             random.shuffle(combined)
-            st.session_state.shuffled_cards = combined
+            st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
