@@ -399,7 +399,6 @@ elif mode == "🧪 PPL Sample Exams":
             st.rerun()
 
 
-
 elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
@@ -407,21 +406,36 @@ elif mode == "🧩 Flashcards":
         st.session_state.flashcards = load_flashcards()
         st.session_state.flash_index = 0
         st.session_state.show_answer = False
+        st.session_state.known_cards = set()
 
-    cards = st.session_state.flashcards
+    # Get filtered cards
+    cards = [
+        card for i, card in enumerate(st.session_state.flashcards)
+        if i not in st.session_state.known_cards
+    ]
+
+    if not cards:
+        st.success("🎉 You've marked all cards as known!")
+        if st.button("🔁 Reset Flashcards"):
+            st.session_state.known_cards = set()
+            st.session_state.flash_index = 0
+            st.rerun()
+        st.stop()
+
     idx = st.session_state.flash_index
+    idx = max(0, min(idx, len(cards) - 1))  # prevent index error
+
     card = cards[idx]
 
     st.markdown(f"**Card {idx + 1} of {len(cards)}**")
     st.subheader(f"❓ {card['question']}")
     st.caption(f"📘 Topic: {card.get('topic', 'Unknown')}")
 
-    # Show or hide answer
     if st.session_state.show_answer:
         st.success(f"✅ {card['answer']}")
         st.caption(f"📚 Source: {card.get('source', 'Unknown')}")
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
 
     with col1:
         if st.button("⬅️ Previous") and idx > 0:
@@ -435,7 +449,24 @@ elif mode == "🧩 Flashcards":
             st.rerun()
 
     with col3:
-        if st.button("Next ➡️") and idx < len(cards) - 1:
+        if st.button("➡️ Next") and idx < len(cards) - 1:
             st.session_state.flash_index += 1
             st.session_state.show_answer = False
             st.rerun()
+
+    with col4:
+        if st.button("✅ I Know This"):
+            original_index = next(
+                i for i, c in enumerate(st.session_state.flashcards) if c == card
+            )
+            st.session_state.known_cards.add(original_index)
+            st.session_state.flash_index = min(idx, len(cards) - 2)
+            st.session_state.show_answer = False
+            st.rerun()
+
+    st.markdown("___")
+    if st.button("🔁 Reset All Known Cards"):
+        st.session_state.known_cards = set()
+        st.session_state.flash_index = 0
+        st.session_state.show_answer = False
+        st.rerun()
