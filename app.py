@@ -422,14 +422,15 @@ cards = [
     card for i, card in enumerate(all_flashcards)
     if i not in st.session_state.known_cards
 ]
-    if not cards:
-        st.success("🎉 You've marked all cards as known!")
-        if st.button("🔁 Reset All Known Cards"):
-            st.session_state.known_cards = set()
-            st.session_state.flash_index = 0
-            st.session_state.show_answer = False
-            st.rerun()
-            st.stop()
+
+if not cards:
+    st.success("🎉 You've marked all cards as known!")
+    if st.button("🔁 Reset All Known Cards"):
+        st.session_state.known_cards = set()
+        st.session_state.flash_index = 0
+        st.session_state.show_answer = False
+        st.rerun()
+    st.stop()
 
     idx = st.session_state.flash_index
     idx = max(0, min(idx, len(cards) - 1))
