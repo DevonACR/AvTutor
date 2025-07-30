@@ -91,10 +91,6 @@ mode = st.sidebar.radio(
     "Choose Study Mode",
     ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
 )
-# ✅ Custom HTML progress bar function
-def custom_progress_bar(known, total):
-    pct = int((known / total) * 100) if total else 0
-    remaining = 100 - pct
 
     st.markdown(f"""
     <div style="border:1px solid #ccc; border-radius:5px; overflow:hidden; height:24px; width:100%;">
@@ -430,9 +426,6 @@ elif mode == "🧩 Flashcards":
         st.session_state.known_cards = set()
 
     all_flashcards = st.session_state.shuffled_flashcards
-
-    # ✅ Show progress bar here
-    custom_progress_bar(len(st.session_state.known_cards), len(all_flashcards))
 
     
     # ✅ Topic filter
