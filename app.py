@@ -402,15 +402,19 @@ elif mode == "🧪 PPL Sample Exams":
 elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
-    # ✅ Load flashcards and user cards
+    # ✅ Initialize session state
     if "flashcards" not in st.session_state:
         st.session_state.flashcards = load_flashcards()
+    if "user_flashcards" not in st.session_state:
         st.session_state.user_flashcards = []
+    if "flash_index" not in st.session_state:
         st.session_state.flash_index = 0
+    if "show_answer" not in st.session_state:
         st.session_state.show_answer = False
+    if "known_cards" not in st.session_state:
         st.session_state.known_cards = set()
 
-    # ✅ Combine default + user flashcards, filter known
+    # ✅ Combine flashcards
     all_flashcards = st.session_state.flashcards + st.session_state.user_flashcards
     cards = [
         card for i, card in enumerate(all_flashcards)
@@ -427,7 +431,7 @@ elif mode == "🧩 Flashcards":
         st.stop()
 
     idx = st.session_state.flash_index
-    idx = max(0, min(idx, len(cards) - 1))  # prevent index error
+    idx = max(0, min(idx, len(cards) - 1))
     card = cards[idx]
 
     st.markdown(f"**Card {idx + 1} of {len(cards)}**")
