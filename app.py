@@ -91,6 +91,18 @@ mode = st.sidebar.radio(
     "Choose Study Mode",
     ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
 )
+# ✅ Custom HTML progress bar function
+def custom_progress_bar(known, total):
+    pct = int((known / total) * 100) if total else 0
+    remaining = 100 - pct
+
+    st.markdown(f"""
+    <div style="border:1px solid #ccc; border-radius:5px; overflow:hidden; height:24px; width:100%;">
+      <div style="background-color:#4CAF50; width:{pct}%; height:100%; float:left;"></div>
+      <div style="background-color:#f44336; width:{remaining}%; height:100%; float:left;"></div>
+    </div>
+    <p style="margin-top:4px;"><b>{known} / {total}</b> cards marked as known</p>
+    """, unsafe_allow_html=True)
 
 # ---------------- AI Tutor with Persistent Q&A ----------------
 if mode == "💬 AI Tutor":
@@ -419,6 +431,10 @@ elif mode == "🧩 Flashcards":
 
     all_flashcards = st.session_state.shuffled_flashcards
 
+    # ✅ Show progress bar here
+    custom_progress_bar(len(st.session_state.known_cards), len(all_flashcards))
+
+    
     # ✅ Topic filter
     available_topics = sorted(set(card.get("topic", "Unknown") for card in all_flashcards))
     selected_topic = st.selectbox("📘 Filter by Topic", ["All"] + available_topics)
