@@ -96,40 +96,45 @@ def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
 
 import time  # Add this at the top with your other imports
 
-def ask_tutor_optimized(question):
+def ask_tutor_expanded(original_question, original_answer):
+    """Generate an expanded, detailed explanation based on the original Q&A."""
     start_time = time.time()
     
-    # Fast search (should be ~0.1s instead of 1.4s!)
+    # Get MORE chunks for detailed context (5 instead of 2)
     search_start = time.time()
-    top_chunks = search_chunks_fast(question, k=2)
+    top_chunks = search_chunks_fast(original_question, k=5)
     search_time = time.time() - search_start
     
-    # Prepare context (with size limits)
+    # Use FULL content for expanded answers (no truncation)
     prep_start = time.time()
-    context_parts = []
-    for chunk in top_chunks:
-        content = chunk["content"]
-        # Limit each chunk to 400 characters for optimal speed/quality balance
-        if len(content) > 400:
-            content = content[:400] + "..."
-        context_parts.append(content)
+    detailed_context = "\n\n".join([chunk["content"] for chunk in top_chunks])
+    sources = list(set([chunk['source'] for chunk in top_chunks]))
     
-    context = "\n\n".join(context_parts)
-    sources = list(set([chunk['source'] for chunk in top_chunks]))  # Remove duplicates
-    
-    prompt = f"""You are a Canadian PPL aviation tutor. Give clear, practical explanations.
+    # Enhanced prompt for detailed explanation
+    prompt = f"""You are a Canadian PPL aviation tutor providing an EXPANDED, detailed explanation.
 
-Context:
-{context}
+Original Question: {original_question}
 
-Question: {question}
+Original Answer: {original_answer}
 
-Provide a concise but complete answer. End with:
+Detailed Context:
+{detailed_context}
+
+Provide a comprehensive, detailed explanation that:
+1. Expands on the original answer with more depth
+2. Includes practical examples and scenarios
+3. Covers related concepts and connections
+4. Explains the "why" behind regulations/procedures  
+5. Adds safety considerations and real-world applications
+6. Uses specific examples from Canadian aviation
+
+Make this a thorough learning resource while keeping it clear and well-organized.
+
 Study Source(s): {', '.join(sources)}"""
     
     prep_time = time.time() - prep_start
     
-    # API call
+    # API call with detailed context
     api_start = time.time()
     try:
         response = gemini_model.generate_content(prompt)
@@ -140,8 +145,8 @@ Study Source(s): {', '.join(sources)}"""
     api_time = time.time() - api_start
     total_time = time.time() - start_time
     
-    # Display performance metrics
-    st.write("## ⏱️ Performance Breakdown")
+    # Show performance for expanded answer
+    st.write("### ⏱️ Expanded Answer Performance")
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
@@ -153,13 +158,10 @@ Study Source(s): {', '.join(sources)}"""
     with col4:
         st.metric("⏰ Total", f"{total_time:.2f}s")
     
-    # Performance feedback
-    if total_time < 2:
-        st.success("⚡ Excellent performance! Under 2 seconds.")
-    elif total_time < 3:
-        st.info("✅ Good performance! Under 3 seconds.")
+    if total_time < 8:
+        st.info("📚 Detailed explanation generated successfully!")
     else:
-        st.warning("🐌 Still room for improvement.")
+        st.warning("🐌 Expanded answers take longer due to more comprehensive context.")
     
     return result
 
@@ -613,6 +615,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
