@@ -179,6 +179,7 @@ if mode == "💬 AI Tutor":
     st.session_state.setdefault("tutor_input", "")
     st.session_state.setdefault("tutor_answer", "")
     st.session_state.setdefault("simplified_answer", "")
+    st.session_state.setdefault("expanded_answer", "")
 
     # Temporary input field for syncing (does not auto-trigger a rerun)
     user_query = st.text_input(
@@ -615,6 +616,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
