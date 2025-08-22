@@ -22,7 +22,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/gemini-key.json"
 from vertexai.generative_models import GenerativeModel
 import vertexai
 vertexai.init(project="gen-lang-client-0636505424", location="us-central1")
-gemini_model = GenerativeModel(model_name="gemini-2.5-pro")
+gemini_model = GenerativeModel(model_name="gemini-1.5-flash")
 
 @st.cache_data
 def load_chunks():
@@ -538,4 +538,5 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
