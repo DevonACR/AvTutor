@@ -82,6 +82,73 @@ def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
     
     # Get top results
     top_indices = similarities.argsort()[-k:][::-1]
+
+    def ask_tutor_optimized(question):
+    start_time = time.time()
+    
+    # Fast search (should be ~0.1s instead of 1.4s!)
+    search_start = time.time()
+    top_chunks = search_chunks_fast(question, k=2)
+    search_time = time.time() - search_start
+    
+    # Prepare context (with size limits)
+    prep_start = time.time()
+    context_parts = []
+    for chunk in top_chunks:
+        content = chunk["content"]
+        # Limit each chunk to 250 characters for maximum speed
+        if len(content) > 250:
+            content = content[:250] + "..."
+        context_parts.append(content)
+    
+    context = "\n\n".join(context_parts)
+    sources = list(set([chunk['source'] for chunk in top_chunks]))
+    
+    prompt = f"""You are a Canadian PPL aviation tutor. Give clear, practical explanations.
+
+Context:
+{context}
+
+Question: {question}
+
+Provide a concise but complete answer. End with:
+Study Source(s): {', '.join(sources)}"""
+    
+    prep_time = time.time() - prep_start
+    
+    # API call
+    api_start = time.time()
+    try:
+        response = gemini_model.generate_content(prompt)
+        result = response.text.strip()
+    except Exception as e:
+        result = f"⚠️ Gemini Error: {e}"
+    
+    api_time = time.time() - api_start
+    total_time = time.time() - start_time
+    
+    # Display performance metrics
+    st.write("## ⏱️ Performance Breakdown")
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric("🔍 Search", f"{search_time:.2f}s")
+    with col2:
+        st.metric("📝 Prep", f"{prep_time:.2f}s")
+    with col3:
+        st.metric("🤖 API", f"{api_time:.2f}s")
+    with col4:
+        st.metric("⏰ Total", f"{total_time:.2f}s")
+    
+    # Performance feedback
+    if total_time < 2:
+        st.success("⚡ Excellent performance! Under 2 seconds.")
+    elif total_time < 3:
+        st.info("✅ Good performance! Under 3 seconds.")
+    else:
+        st.warning("🐌 Still room for improvement.")
+    
+    return result
     
     # Return results with similarity scores
     results = []
@@ -93,6 +160,9 @@ def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
         })
     
     return results
+    
+def get_categories():
+    return sorted(set(chunk.get("category", "General") for chunk in chunks))
 
 import time  # Add this at the top with your other imports
 
@@ -616,6 +686,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
