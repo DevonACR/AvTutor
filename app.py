@@ -6,6 +6,7 @@ import random
 import requests
 import os
 import base64
+import time  
 from typing import List, Dict
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -25,13 +26,33 @@ vertexai.init(project="gen-lang-client-0636505424", location="us-central1")
 gemini_model = GenerativeModel(model_name="gemini-2.5-flash-lite")
 
 @st.cache_data
-def load_chunks():
+def load_and_vectorize_chunks():
+    """Load chunks and pre-compute TF-IDF vectorization (runs once per app restart)."""
+    
+    # Load the chunks
     with open("tc_chunks.json", "r", encoding="utf-8") as f:
-        return json.load(f)
+        chunks = json.load(f)
+    
+    # Extract text and metadata
+    chunk_texts = [chunk['content'] for chunk in chunks]
+    chunk_sources = [chunk.get('source', 'Unknown') for chunk in chunks]
+    
+    # Pre-compute TF-IDF matrix (this is the expensive operation)
+    vectorizer = TfidfVectorizer(
+        max_features=10000,     # Limit vocabulary size for memory efficiency
+        stop_words='english',   # Remove common words
+        ngram_range=(1, 2),     # Include single words and pairs
+        min_df=2,               # Ignore very rare terms
+        max_df=0.95            # Ignore very common terms
+    )
+    
+    # This expensive operation happens ONCE when app starts
+    tfidf_matrix = vectorizer.fit_transform(chunk_texts)
+    
+    return chunks, chunk_texts, chunk_sources, vectorizer, tfidf_matrix
 
-chunks = load_chunks()
-chunk_texts = [chunk['content'] for chunk in chunks]
-chunk_sources = [chunk.get('source', 'Unknown') for chunk in chunks]
+# Load everything once at startup
+chunks, chunk_texts, chunk_sources, vectorizer, tfidf_matrix = load_and_vectorize_chunks()
 
 @st.cache_data
 def load_sample_exam_questions():
@@ -50,72 +71,95 @@ def load_generated_quiz_questions():
     res = requests.get(url)
     return res.json() if res.status_code == 200 else []
 
-vectorizer = TfidfVectorizer().fit_transform(chunk_texts)
-
-def search_chunks(query: str, k: int = 5) -> List[Dict]:
-    query_vec = TfidfVectorizer().fit(chunk_texts).transform([query])
-    sims = cosine_similarity(query_vec, vectorizer).flatten()
-    top_indices = sims.argsort()[-k:][::-1]
-    return [{"content": chunk_texts[i], "source": chunk_sources[i]} for i in top_indices]
+def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
+    """Lightning-fast search using pre-computed vectors."""
+    
+    # Transform query using the EXISTING vectorizer (fast!)
+    query_vec = vectorizer.transform([query])
+    
+    # Compute similarities (fast!)
+    similarities = cosine_similarity(query_vec, tfidf_matrix).flatten()
+    
+    # Get top results
+    top_indices = similarities.argsort()[-k:][::-1]
+    
+    # Return results with similarity scores
+    results = []
+    for i in top_indices:
+        results.append({
+            "content": chunk_texts[i],
+            "source": chunk_sources[i],
+            "similarity_score": float(similarities[i])
+        })
+    
+    return results
 
 import time  # Add this at the top with your other imports
 
-def ask_tutor_with_timing(question):
+def ask_tutor_optimized(question):
     start_time = time.time()
     
-    # Time the search phase
+    # Fast search (should be ~0.1s instead of 1.4s!)
     search_start = time.time()
-    top_chunks = search_chunks(question)
+    top_chunks = search_chunks_fast(question, k=2)
     search_time = time.time() - search_start
     
-    # Time the context preparation
+    # Prepare context (with size limits)
     prep_start = time.time()
-    context = "\n\n".join([chunk["content"] for chunk in top_chunks])
-    sources = [chunk['source'] for chunk in top_chunks]
-    prompt = f"""You are a Canadian PPL aviation tutor. Explain concepts clearly and simply.
+    context_parts = []
+    for chunk in top_chunks:
+        content = chunk["content"]
+        # Limit each chunk to 400 characters for optimal speed/quality balance
+        if len(content) > 400:
+            content = content[:400] + "..."
+        context_parts.append(content)
+    
+    context = "\n\n".join(context_parts)
+    sources = list(set([chunk['source'] for chunk in top_chunks]))  # Remove duplicates
+    
+    prompt = f"""You are a Canadian PPL aviation tutor. Give clear, practical explanations.
 
 Context:
 {context}
 
 Question: {question}
 
-Answer with explanation, then end with:
-
+Provide a concise but complete answer. End with:
 Study Source(s): {', '.join(sources)}"""
+    
     prep_time = time.time() - prep_start
     
-    # Time the API call
+    # API call
     api_start = time.time()
     try:
         response = gemini_model.generate_content(prompt)
-        api_time = time.time() - api_start
         result = response.text.strip()
     except Exception as e:
-        api_time = time.time() - api_start
         result = f"⚠️ Gemini Error: {e}"
     
+    api_time = time.time() - api_start
     total_time = time.time() - start_time
     
-    # Display timing results in Streamlit
+    # Display performance metrics
     st.write("## ⏱️ Performance Breakdown")
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.metric("🔍 Search", f"{search_time:.2f}s")
     with col2:
-        st.metric("📝 Prep", f"{prep_time:.2f}s") 
+        st.metric("📝 Prep", f"{prep_time:.2f}s")
     with col3:
         st.metric("🤖 API", f"{api_time:.2f}s")
     with col4:
         st.metric("⏰ Total", f"{total_time:.2f}s")
     
-    # Color-code the slowest component
-    if search_time > api_time and search_time > 1:
-        st.warning("🐌 Search is the bottleneck - TF-IDF optimization needed!")
-    elif api_time > 2:
-        st.warning("🐌 API is slow - consider switching to Gemini Flash or reducing context size")
-    elif total_time < 2:
-        st.success("⚡ Good performance! Under 2 seconds.")
+    # Performance feedback
+    if total_time < 2:
+        st.success("⚡ Excellent performance! Under 2 seconds.")
+    elif total_time < 3:
+        st.info("✅ Good performance! Under 3 seconds.")
+    else:
+        st.warning("🐌 Still room for improvement.")
     
     return result
 
@@ -147,7 +191,7 @@ if mode == "💬 AI Tutor":
         if query:
             st.session_state["tutor_input"] = query
             with st.spinner("Explaining like a ground school instructor..."):
-                st.session_state["tutor_answer"] = ask_tutor_with_timing(query)
+                st.session_state["tutor_answer"] = ask_tutor_optimized(query)
                 st.session_state["simplified_answer"] = ""
 
     # Auto-submit when Enter is pressed (if input changed)
@@ -538,6 +582,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
