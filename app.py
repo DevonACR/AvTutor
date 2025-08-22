@@ -84,7 +84,7 @@ def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
     top_indices = similarities.argsort()[-k:][::-1]
 
     def ask_tutor_optimized(question):
-    start_time = time.time()
+        start_time = time.time()
     
     # Fast search (should be ~0.1s instead of 1.4s!)
     search_start = time.time()
@@ -686,6 +686,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
