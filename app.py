@@ -204,9 +204,13 @@ if mode == "💬 AI Tutor":
 
     # Show response
     if st.session_state["tutor_answer"]:
-        st.markdown("### 🧠 Instructor Explanation")
-        st.write(st.session_state["tutor_answer"])
+    st.markdown("### 🧠 Instructor Explanation")
+    st.write(st.session_state["tutor_answer"])
 
+    # Three-button layout for different explanation types
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
         if st.button("🍼 Simplify this explanation"):
             with st.spinner("Making it super beginner-friendly..."):
                 try:
@@ -219,12 +223,39 @@ if mode == "💬 AI Tutor":
                 except Exception as e:
                     st.session_state["simplified_answer"] = f"⚠️ Error simplifying: {e}"
 
-        if st.session_state["simplified_answer"]:
-            st.markdown("### 🍼 Simplified Explanation")
-            st.write(st.session_state["simplified_answer"])
+    with col2:
+        if st.button("📖 Expand on this topic"):
+            with st.spinner("Generating detailed explanation..."):
+                try:
+                    expanded = ask_tutor_expanded(
+                        st.session_state["tutor_input"], 
+                        st.session_state["tutor_answer"]
+                    )
+                    st.session_state["expanded_answer"] = expanded
+                except Exception as e:
+                    st.session_state["expanded_answer"] = f"⚠️ Error expanding: {e}"
+    
+    with col3:
+        if st.button("🗑 Clear all answers"):
+            for k in ["tutor_input", "tutor_answer", "simplified_answer", "expanded_answer", "tutor_temp"]:
+                st.session_state.pop(k, None)
+            st.rerun()
 
+    # Show simplified answer if exists
+    if st.session_state.get("simplified_answer"):
+        st.markdown("### 🍼 Simplified Explanation")
+        st.write(st.session_state["simplified_answer"])
+
+    # Show expanded answer if exists  
+    if st.session_state.get("expanded_answer"):
+        st.markdown("### 📖 Detailed Deep-Dive")
+        st.info("This expanded explanation uses more context and may take longer to generate.")
+        st.write(st.session_state["expanded_answer"])
+
+    # Only show individual clear button if no expanded/simplified content
+    if not st.session_state.get("simplified_answer") and not st.session_state.get("expanded_answer"):
         if st.button("🗑 Clear"):
-            for k in ["tutor_input", "tutor_answer", "simplified_answer", "tutor_temp"]:
+            for k in ["tutor_input", "tutor_answer", "simplified_answer", "expanded_answer", "tutor_temp"]:
                 st.session_state.pop(k, None)
             st.rerun()
     else:
@@ -582,6 +613,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
