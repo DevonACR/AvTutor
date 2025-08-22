@@ -58,8 +58,18 @@ def search_chunks(query: str, k: int = 5) -> List[Dict]:
     top_indices = sims.argsort()[-k:][::-1]
     return [{"content": chunk_texts[i], "source": chunk_sources[i]} for i in top_indices]
 
-def ask_tutor(question):
+import time  # Add this at the top with your other imports
+
+def ask_tutor_with_timing(question):
+    start_time = time.time()
+    
+    # Time the search phase
+    search_start = time.time()
     top_chunks = search_chunks(question)
+    search_time = time.time() - search_start
+    
+    # Time the context preparation
+    prep_start = time.time()
     context = "\n\n".join([chunk["content"] for chunk in top_chunks])
     sources = [chunk['source'] for chunk in top_chunks]
     prompt = f"""You are a Canadian PPL aviation tutor. Explain concepts clearly and simply.
@@ -72,19 +82,42 @@ Question: {question}
 Answer with explanation, then end with:
 
 Study Source(s): {', '.join(sources)}"""
+    prep_time = time.time() - prep_start
+    
+    # Time the API call
+    api_start = time.time()
     try:
         response = gemini_model.generate_content(prompt)
-        return response.text.strip()
+        api_time = time.time() - api_start
+        result = response.text.strip()
     except Exception as e:
-        return f"⚠️ Gemini Error: {e}"
-
-
-def get_categories():
-    return sorted(set(chunk.get("category", "General") for chunk in chunks))
-
-def get_questions_by_category(category: str, limit: int = 25) -> List[Dict]:
-    filtered = chunks if category == "All" else [c for c in chunks if c.get("category") == category]
-    return random.sample(filtered, min(len(filtered), limit))
+        api_time = time.time() - api_start
+        result = f"⚠️ Gemini Error: {e}"
+    
+    total_time = time.time() - start_time
+    
+    # Display timing results in Streamlit
+    st.write("## ⏱️ Performance Breakdown")
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric("🔍 Search", f"{search_time:.2f}s")
+    with col2:
+        st.metric("📝 Prep", f"{prep_time:.2f}s") 
+    with col3:
+        st.metric("🤖 API", f"{api_time:.2f}s")
+    with col4:
+        st.metric("⏰ Total", f"{total_time:.2f}s")
+    
+    # Color-code the slowest component
+    if search_time > api_time and search_time > 1:
+        st.warning("🐌 Search is the bottleneck - TF-IDF optimization needed!")
+    elif api_time > 2:
+        st.warning("🐌 API is slow - consider switching to Gemini Flash or reducing context size")
+    elif total_time < 2:
+        st.success("⚡ Good performance! Under 2 seconds.")
+    
+    return result
 
 # UI
 mode = st.sidebar.radio(
@@ -114,8 +147,8 @@ if mode == "💬 AI Tutor":
         if query:
             st.session_state["tutor_input"] = query
             with st.spinner("Explaining like a ground school instructor..."):
-                st.session_state["tutor_answer"] = ask_tutor(query)
-            st.session_state["simplified_answer"] = ""
+                st.session_state["tutor_answer"] = ask_tutor_with_timing(query)
+                st.session_state["simplified_answer"] = ""
 
     # Auto-submit when Enter is pressed (if input changed)
     if user_query and user_query != st.session_state["tutor_input"]:
@@ -505,3 +538,4 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
