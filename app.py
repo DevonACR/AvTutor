@@ -350,8 +350,7 @@ if mode == "💬 AI Tutor":
         st.session_state["tutor_input"] = query
         with st.spinner("Explaining like a ground school instructor..."):
             st.session_state["tutor_answer"] = ask_tutor_optimized(query)
-
-                st.session_state["simplified_answer"] = ""
+            st.session_state["simplified_answer"] = ""
 
     # Auto-submit when input changes
     if user_query and user_query != st.session_state["tutor_input"]:
@@ -771,6 +770,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
