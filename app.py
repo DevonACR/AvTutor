@@ -341,11 +341,16 @@ if mode == "💬 AI Tutor":
 
     # Submit logic
     def submit_tutor_question():
-        query = st.session_state.get("tutor_temp", "").strip()
-        if query:
-            st.session_state["tutor_input"] = query
-            with st.spinner("Explaining like a ground school instructor..."):
-                st.session_state["tutor_answer"] = ask_tutor_optimized(query)
+    query = st.session_state.get("tutor_temp", "").strip()
+    if query:
+        # Clear previous answers to avoid showing old expanded content
+        for k in ["tutor_answer", "simplified_answer", "expanded_answer"]:
+            st.session_state.pop(k, None)
+        
+        st.session_state["tutor_input"] = query
+        with st.spinner("Explaining like a ground school instructor..."):
+            st.session_state["tutor_answer"] = ask_tutor_optimized(query)
+
                 st.session_state["simplified_answer"] = ""
 
     # Auto-submit when input changes
@@ -766,6 +771,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
