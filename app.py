@@ -204,8 +204,8 @@ if mode == "💬 AI Tutor":
 
     # Show response
     if st.session_state["tutor_answer"]:
-    st.markdown("### 🧠 Instructor Explanation")
-    st.write(st.session_state["tutor_answer"])
+        st.markdown("### 🧠 Instructor Explanation")
+        st.write(st.session_state["tutor_answer"])
 
     # Three-button layout for different explanation types
     col1, col2, col3 = st.columns(3)
@@ -613,6 +613,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
