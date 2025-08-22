@@ -240,25 +240,106 @@ mode = st.sidebar.radio(
     "Choose Study Mode",
     ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
 )
-
 # ---------------- AI Tutor with Persistent Q&A ----------------
+import time
+
+# ✅ Top-level function to search chunks
+def search_chunks_fast(query: str, k: int = 4):
+    """Return top-k chunks based on TF-IDF similarity."""
+    query_vec = vectorizer.transform([query])
+    similarities = cosine_similarity(query_vec, tfidf_matrix).flatten()
+    top_indices = similarities.argsort()[-k:][::-1]
+
+    results = []
+    for i in top_indices:
+        results.append({
+            "content": chunk_texts[i],
+            "source": chunk_sources[i],
+            "similarity_score": float(similarities[i])
+        })
+    return results
+
+# ✅ Top-level function to generate tutor response
+def ask_tutor_optimized(question: str, k: int = 2) -> str:
+    start_time = time.time()
+
+    # Fast search for context
+    search_start = time.time()
+    top_chunks = search_chunks_fast(question, k=k)
+    search_time = time.time() - search_start
+
+    # Prepare context (truncate for speed)
+    prep_start = time.time()
+    context_parts = []
+    for chunk in top_chunks:
+        content = chunk["content"]
+        if len(content) > 250:
+            content = content[:250] + "..."
+        context_parts.append(content)
+    context = "\n\n".join(context_parts)
+    sources = list(set([chunk['source'] for chunk in top_chunks]))
+    prep_time = time.time() - prep_start
+
+    # GPT prompt
+    prompt = f"""You are a Canadian PPL aviation tutor. Give clear, practical explanations.
+
+Context:
+{context}
+
+Question: {question}
+
+Provide a concise but complete answer. End with:
+Study Source(s): {', '.join(sources)}"""
+
+    # API call
+    api_start = time.time()
+    try:
+        response = gemini_model.generate_content(prompt)
+        result = response.text.strip()
+    except Exception as e:
+        result = f"⚠️ Gemini Error: {e}"
+    api_time = time.time() - api_start
+    total_time = time.time() - start_time
+
+    # Performance metrics
+    st.write("## ⏱️ Performance Breakdown")
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("🔍 Search", f"{search_time:.2f}s")
+    with col2:
+        st.metric("📝 Prep", f"{prep_time:.2f}s")
+    with col3:
+        st.metric("🤖 API", f"{api_time:.2f}s")
+    with col4:
+        st.metric("⏰ Total", f"{total_time:.2f}s")
+
+    if total_time < 2:
+        st.success("⚡ Excellent performance! Under 2 seconds.")
+    elif total_time < 3:
+        st.info("✅ Good performance! Under 3 seconds.")
+    else:
+        st.warning("🐌 Still room for improvement.")
+
+    return result
+
+# ---------------- AI Tutor UI ----------------
 if mode == "💬 AI Tutor":
     st.subheader("💬 Ask or Learn Any Topic")
 
-    # Initialize session state variables
+    # Initialize session state
     st.session_state.setdefault("tutor_input", "")
     st.session_state.setdefault("tutor_answer", "")
     st.session_state.setdefault("simplified_answer", "")
     st.session_state.setdefault("expanded_answer", "")
 
-    # Temporary input field for syncing (does not auto-trigger a rerun)
+    # Temporary input field
     user_query = st.text_input(
         "✈️ Ask a question or enter a topic to learn:",
         value=st.session_state["tutor_input"],
         key="tutor_temp"
     )
 
-    # Submit logic (called on button click or if Enter is pressed)
+    # Submit logic
     def submit_tutor_question():
         query = st.session_state.get("tutor_temp", "").strip()
         if query:
@@ -267,22 +348,21 @@ if mode == "💬 AI Tutor":
                 st.session_state["tutor_answer"] = ask_tutor_optimized(query)
                 st.session_state["simplified_answer"] = ""
 
-    # Auto-submit when Enter is pressed (if input changed)
+    # Auto-submit when input changes
     if user_query and user_query != st.session_state["tutor_input"]:
         submit_tutor_question()
 
-    # Submit button (manual trigger)
+    # Manual submit button
     if st.button("🧠 Submit"):
         submit_tutor_question()
 
-    # Show response
+    # Show tutor answer
     if st.session_state["tutor_answer"]:
         st.markdown("### 🧠 Instructor Explanation")
         st.write(st.session_state["tutor_answer"])
 
-    # Three-button layout for different explanation types
+    # Three-button layout: simplify, expand, clear
     col1, col2, col3 = st.columns(3)
-    
     with col1:
         if st.button("🍼 Simplify this explanation"):
             with st.spinner("Making it super beginner-friendly..."):
@@ -307,25 +387,24 @@ if mode == "💬 AI Tutor":
                     st.session_state["expanded_answer"] = expanded
                 except Exception as e:
                     st.session_state["expanded_answer"] = f"⚠️ Error expanding: {e}"
-    
+
     with col3:
         if st.button("🗑 Clear all answers"):
             for k in ["tutor_input", "tutor_answer", "simplified_answer", "expanded_answer", "tutor_temp"]:
                 st.session_state.pop(k, None)
             st.rerun()
 
-    # Show simplified answer if exists
+    # Show simplified/expanded if available
     if st.session_state.get("simplified_answer"):
         st.markdown("### 🍼 Simplified Explanation")
         st.write(st.session_state["simplified_answer"])
 
-    # Show expanded answer if exists  
     if st.session_state.get("expanded_answer"):
         st.markdown("### 📖 Detailed Deep-Dive")
         st.info("This expanded explanation uses more context and may take longer to generate.")
         st.write(st.session_state["expanded_answer"])
 
-    # Only show individual clear button if no expanded/simplified content
+    # Single clear button when no extra content
     if not st.session_state.get("simplified_answer") and not st.session_state.get("expanded_answer"):
         if st.button("🗑 Clear"):
             for k in ["tutor_input", "tutor_answer", "simplified_answer", "expanded_answer", "tutor_temp"]:
@@ -333,6 +412,7 @@ if mode == "💬 AI Tutor":
             st.rerun()
     else:
         st.info("Ask a question above to get an explanation. Use 'Simplify' for beginner-friendly wording.")
+
 
 
 
@@ -686,6 +766,7 @@ elif mode == "🧩 Flashcards":
             st.session_state.shuffled_flashcards = combined
             st.success("✅ Flashcard added!")
             st.rerun()
+
 
 
 
