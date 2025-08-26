@@ -55,6 +55,17 @@ def load_and_vectorize_chunks():
 chunks, chunk_texts, chunk_sources, vectorizer, tfidf_matrix = load_and_vectorize_chunks()
 
 @st.cache_data
+def load_study_data():
+    with open("ppl_study_topics_enriched.json", "r", encoding="utf-8") as f:
+        study_topics = json.load(f)
+    with open("cars_parsed_complete.json", "r", encoding="utf-8") as f:
+        cars_data = json.load(f)
+    cars_index = {item["section"]: item for item in cars_data}
+    return study_topics, cars_index
+
+study_topics, cars_index = load_study_data()
+
+@st.cache_data
 def load_sample_exam_questions():
     url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/sample_exam_structured.json"
     return requests.get(url).json()
@@ -238,7 +249,7 @@ Study Source(s): {', '.join(sources)}"""
 # UI
 mode = st.sidebar.radio(
     "Choose Study Mode",
-    ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards"]
+    ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards", "📘 Study Plan Guide"]
 )
 # ---------------- AI Tutor with Persistent Q&A ----------------
 import time
@@ -773,6 +784,42 @@ elif mode == "🧩 Flashcards":
             st.success("✅ Flashcard added!")
             st.rerun()
 
+
+def study_plan_ui():
+    st.title("📘 Study Plan Guide")
+
+    if "study_progress" not in st.session_state:
+        st.session_state.study_progress = {}
+
+    categories = sorted(set(item["category"] for item in study_topics))
+    selected_category = st.selectbox("Choose Category", categories)
+
+    subcats = [item for item in study_topics if item["category"] == selected_category]
+    selected_subcat = st.selectbox("Choose Subcategory", sorted(set(x["subcategory"] for x in subcats)))
+
+    sections = [item for item in subcats if item["subcategory"] == selected_subcat]
+    selected_section = st.selectbox("Choose Section", sorted(set(x["section"] for x in sections)))
+
+    topics = [item for item in sections if item["section"] == selected_section]
+    selected_topic = st.selectbox("Choose Topic", [t["topic"] for t in topics])
+
+    topic_entry = next(t for t in topics if t["topic"] == selected_topic)
+    ref = topic_entry.get("reference", None)
+
+    topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
+    checked = st.session_state.study_progress.get(topic_key, False)
+    new_status = st.checkbox("✅ Mark as Studied", value=checked)
+    st.session_state.study_progress[topic_key] = new_status
+
+    total_topics = len(study_topics)
+    studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
+    st.progress(studied_count / total_topics)
+
+    if ref and ref in cars_index:
+        st.subheader(f"Reference: CARS {ref}")
+        st.write(cars_index[ref]["content"])
+    else:
+        st.warning("⚠️ No matching CARS content found yet")
 
 
 
