@@ -784,6 +784,8 @@ elif mode == "🧩 Flashcards":
             st.success("✅ Flashcard added!")
             st.rerun()
 
+elif mode == "📘 Study Plan Guide":
+    study_plan_ui()
 
 def study_plan_ui():
     st.title("📘 Study Plan Guide")
@@ -820,6 +822,7 @@ def study_plan_ui():
         st.write(cars_index[ref]["content"])
     else:
         st.warning("⚠️ No matching CARS content found yet")
+
 
 
 
