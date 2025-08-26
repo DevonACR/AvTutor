@@ -246,6 +246,42 @@ Study Source(s): {', '.join(sources)}"""
     
     return result
 
+def study_plan_ui():
+    st.title("📘 Study Plan Guide")
+
+    if "study_progress" not in st.session_state:
+        st.session_state.study_progress = {}
+
+    categories = sorted(set(item["category"] for item in study_topics))
+    selected_category = st.selectbox("Choose Category", categories)
+
+    subcats = [item for item in study_topics if item["category"] == selected_category]
+    selected_subcat = st.selectbox("Choose Subcategory", sorted(set(x["subcategory"] for x in subcats)))
+
+    sections = [item for item in subcats if item["subcategory"] == selected_subcat]
+    selected_section = st.selectbox("Choose Section", sorted(set(x["section"] for x in sections)))
+
+    topics = [item for item in sections if item["section"] == selected_section]
+    selected_topic = st.selectbox("Choose Topic", [t["topic"] for t in topics])
+
+    topic_entry = next(t for t in topics if t["topic"] == selected_topic)
+    ref = topic_entry.get("reference", None)
+
+    topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
+    checked = st.session_state.study_progress.get(topic_key, False)
+    new_status = st.checkbox("✅ Mark as Studied", value=checked)
+    st.session_state.study_progress[topic_key] = new_status
+
+    total_topics = len(study_topics)
+    studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
+    st.progress(studied_count / total_topics)
+
+    if ref and ref in cars_index:
+        st.subheader(f"Reference: CARS {ref}")
+        st.write(cars_index[ref]["content"])
+    else:
+        st.warning("⚠️ No matching CARS content found yet")
+
 # UI
 mode = st.sidebar.radio(
     "Choose Study Mode",
@@ -787,41 +823,6 @@ elif mode == "🧩 Flashcards":
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
 
-def study_plan_ui():
-    st.title("📘 Study Plan Guide")
-
-    if "study_progress" not in st.session_state:
-        st.session_state.study_progress = {}
-
-    categories = sorted(set(item["category"] for item in study_topics))
-    selected_category = st.selectbox("Choose Category", categories)
-
-    subcats = [item for item in study_topics if item["category"] == selected_category]
-    selected_subcat = st.selectbox("Choose Subcategory", sorted(set(x["subcategory"] for x in subcats)))
-
-    sections = [item for item in subcats if item["subcategory"] == selected_subcat]
-    selected_section = st.selectbox("Choose Section", sorted(set(x["section"] for x in sections)))
-
-    topics = [item for item in sections if item["section"] == selected_section]
-    selected_topic = st.selectbox("Choose Topic", [t["topic"] for t in topics])
-
-    topic_entry = next(t for t in topics if t["topic"] == selected_topic)
-    ref = topic_entry.get("reference", None)
-
-    topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
-    checked = st.session_state.study_progress.get(topic_key, False)
-    new_status = st.checkbox("✅ Mark as Studied", value=checked)
-    st.session_state.study_progress[topic_key] = new_status
-
-    total_topics = len(study_topics)
-    studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
-    st.progress(studied_count / total_topics)
-
-    if ref and ref in cars_index:
-        st.subheader(f"Reference: CARS {ref}")
-        st.write(cars_index[ref]["content"])
-    else:
-        st.warning("⚠️ No matching CARS content found yet")
 
 
 
