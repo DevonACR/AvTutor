@@ -267,6 +267,113 @@ def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
     # Get top results
     top_indices = similarities.argsort()[-k:][::-1]
     
+    # Return results with similarity scoresimport streamlit as st
+st.set_page_config(page_title="Aviation Tutor 🇨🇦", layout="centered")
+
+import json
+import random
+import requests
+import os
+import base64
+import time  
+import re
+from typing import List, Dict
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# ✅ DECODE GOOGLE CREDENTIALS
+b64_key = st.secrets["GOOGLE_KEY_B64"]
+decoded_key = base64.b64decode(b64_key)
+with open("/tmp/gemini-key.json", "wb") as f:
+    f.write(decoded_key)
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/tmp/gemini-key.json"
+
+# ✅ Import and initialize VertexAI
+from vertexai.generative_models import GenerativeModel
+import vertexai
+vertexai.init(project="gen-lang-client-0636505424", location="us-central1")
+gemini_model = GenerativeModel(model_name="gemini-2.5-flash-lite")
+
+@st.cache_data
+def load_and_vectorize_chunks():
+    """Load chunks and pre-compute TF-IDF vectorization (runs once per app restart)."""
+    
+    # Load the chunks
+    with open("tc_chunks.json", "r", encoding="utf-8") as f:
+        chunks = json.load(f)
+    
+    # Extract text and metadata
+    chunk_texts = [chunk['content'] for chunk in chunks]
+    chunk_sources = [chunk.get('source', 'Unknown') for chunk in chunks]
+    
+    # Pre-compute TF-IDF matrix (this is the expensive operation)
+    vectorizer = TfidfVectorizer(
+        max_features=10000,     # Limit vocabulary size for memory efficiency
+        stop_words='english',   # Remove common words
+        ngram_range=(1, 2),     # Include single words and pairs
+        min_df=2,               # Ignore very rare terms
+        max_df=0.95            # Ignore very common terms
+    )
+    
+    # This expensive operation happens ONCE when app starts
+    tfidf_matrix = vectorizer.fit_transform(chunk_texts)
+    
+    return chunks, chunk_texts, chunk_sources, vectorizer, tfidf_matrix
+
+# Load everything once at startup
+chunks, chunk_texts, chunk_sources, vectorizer, tfidf_matrix = load_and_vectorize_chunks()
+
+@st.cache_data
+def load_study_data():
+    try:
+        with open("ppl_study_topics_enriched.json", "r", encoding="utf-8") as f:
+            study_topics = json.load(f)
+    except FileNotFoundError:
+        st.warning("Study Plan data not found. Using empty fallback.")
+        study_topics = []
+
+    # Load CARS index (changed from cars_data to cars_index to match your new structure)
+    try:
+        with open("cars_index.json", "r", encoding="utf-8") as f:
+            cars_index = json.load(f)
+    except FileNotFoundError:
+        st.warning("CARS index not found. Using empty fallback.")
+        cars_index = {}
+
+    return study_topics, cars_index
+
+study_topics, cars_index = load_study_data()
+
+@st.cache_data
+def load_sample_exam_questions():
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/sample_exam_structured.json"
+    return requests.get(url).json()
+
+@st.cache_data
+def load_flashcards():
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_flashcards.json"
+    res = requests.get(url)
+    return res.json() if res.status_code == 200 else []
+
+@st.cache_data
+def load_generated_quiz_questions():
+    url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_quiz_questions.json"
+    res = requests.get(url)
+    return res.json() if res.status_code == 200 else []
+
+def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
+    """Lightning-fast search using pre-computed vectors."""
+    
+    # Transform query using the EXISTING vectorizer (fast!)
+    query_vec = vectorizer.transform([query])
+    
+    # Compute similarities (fast!)
+    similarities = cosine_similarity(query_vec, tfidf_matrix).flatten()
+    
+    # Get top results
+    top_indices = similarities.argsort()[-k:][::-1]
+    
     # Return results with similarity scores
     results = []
     for i in top_indices:
@@ -277,9 +384,71 @@ def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
         })
     
     return results
-    
+
 def get_categories():
     return sorted(set(chunk.get("category", "General") for chunk in chunks))
+
+def ask_tutor_optimized(question: str, k: int = 2) -> str:
+    start_time = time.time()
+
+    # Fast search for context
+    search_start = time.time()
+    top_chunks = search_chunks_fast(question, k=k)
+    search_time = time.time() - search_start
+
+    # Prepare context (truncate for speed)
+    prep_start = time.time()
+    context_parts = []
+    for chunk in top_chunks:
+        content = chunk["content"]
+        if len(content) > 250:
+            content = content[:250] + "..."
+        context_parts.append(content)
+    context = "\n\n".join(context_parts)
+    sources = list(set([chunk['source'] for chunk in top_chunks]))
+    prep_time = time.time() - prep_start
+
+    # GPT prompt
+    prompt = f"""You are a Canadian PPL aviation tutor. Give clear, practical explanations.
+
+Context:
+{context}
+
+Question: {question}
+
+Provide a concise but complete answer. End with:
+Study Source(s): {', '.join(sources)}"""
+
+    # API call
+    api_start = time.time()
+    try:
+        response = gemini_model.generate_content(prompt)
+        result = response.text.strip()
+    except Exception as e:
+        result = f"⚠️ Gemini Error: {e}"
+    api_time = time.time() - api_start
+    total_time = time.time() - start_time
+
+    # Performance metrics
+    st.write("## ⏱️ Performance Breakdown")
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("🔍 Search", f"{search_time:.2f}s")
+    with col2:
+        st.metric("📝 Prep", f"{prep_time:.2f}s")
+    with col3:
+        st.metric("🤖 API", f"{api_time:.2f}s")
+    with col4:
+        st.metric("⏰ Total", f"{total_time:.2f}s")
+
+    if total_time < 2:
+        st.success("⚡ Excellent performance! Under 2 seconds.")
+    elif total_time < 3:
+        st.info("✅ Good performance! Under 3 seconds.")
+    else:
+        st.warning("🐌 Still room for improvement.")
+
+    return result
 
 def ask_tutor_expanded(original_question, original_answer):
     """Generate an expanded, detailed explanation based on the original Q&A."""
@@ -350,68 +519,114 @@ Study Source(s): {', '.join(sources)}"""
     
     return result
 
-# ✅ Top-level function to generate tutor response
-def ask_tutor_optimized(question: str, k: int = 2) -> str:
-    start_time = time.time()
+def study_plan_ui():
+    st.subheader("📘 Study Plan Guide")
 
-    # Fast search for context
-    search_start = time.time()
-    top_chunks = search_chunks_fast(question, k=k)
-    search_time = time.time() - search_start
+    if "study_progress" not in st.session_state:
+        st.session_state.study_progress = {}
 
-    # Prepare context (truncate for speed)
-    prep_start = time.time()
-    context_parts = []
-    for chunk in top_chunks:
-        content = chunk["content"]
-        if len(content) > 250:
-            content = content[:250] + "..."
-        context_parts.append(content)
-    context = "\n\n".join(context_parts)
-    sources = list(set([chunk['source'] for chunk in top_chunks]))
-    prep_time = time.time() - prep_start
+    # Check if study_topics is empty or not a list
+    if not study_topics or not isinstance(study_topics, list):
+        st.error("⚠️ Study topics data is not properly loaded or is empty.")
+        return
 
-    # GPT prompt
-    prompt = f"""You are a Canadian PPL aviation tutor. Give clear, practical explanations.
+    # Step 1: Categories
+    categories = sorted(set(item["category"] for item in study_topics))
+    selected_category = st.selectbox("Choose Category", categories)
 
-Context:
-{context}
+    # Step 2: Subcategories
+    subcats = [item for item in study_topics if item["category"] == selected_category]
+    available_subcats = sorted(set(x["subcategory"] for x in subcats))
+    selected_subcat = st.selectbox("Choose Subcategory", available_subcats)
 
-Question: {question}
+    # Step 3: Sections
+    sections = [item for item in subcats if item["subcategory"] == selected_subcat]
+    available_sections = sorted(set(x["section"] for x in sections))
+    selected_section = st.selectbox("Choose Section", available_sections)
 
-Provide a concise but complete answer. End with:
-Study Source(s): {', '.join(sources)}"""
-
-    # API call
-    api_start = time.time()
+    # Step 4: Find the specific section entry and extract topics
     try:
-        response = gemini_model.generate_content(prompt)
-        result = response.text.strip()
-    except Exception as e:
-        result = f"⚠️ Gemini Error: {e}"
-    api_time = time.time() - api_start
-    total_time = time.time() - start_time
+        # Find the exact section entry that matches our selection
+        section_entry = next(
+            s for s in sections 
+            if s["section"] == selected_section and s["subcategory"] == selected_subcat
+        )
+        
+        # Extract the nested topics list
+        topics_list = section_entry.get("topics", [])
+        
+        if not topics_list:
+            st.warning("⚠️ No topics found for this section.")
+            return
+        
+        # Step 5: Topics dropdown
+        topic_options = [t["topic"] for t in topics_list]
+        selected_topic = st.selectbox("Choose Topic", topic_options)
+        
+        # Find the selected topic entry
+        topic_entry = next(t for t in topics_list if t["topic"] == selected_topic)
+        
+    except StopIteration:
+        st.error("⚠️ Could not find matching section entry.")
+        return
+    except KeyError as e:
+        st.error(f"⚠️ Missing expected key in data structure: {e}")
+        return
 
-    # Performance metrics
-    st.write("## ⏱️ Performance Breakdown")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.metric("🔍 Search", f"{search_time:.2f}s")
-    with col2:
-        st.metric("📝 Prep", f"{prep_time:.2f}s")
-    with col3:
-        st.metric("🤖 API", f"{api_time:.2f}s")
-    with col4:
-        st.metric("⏰ Total", f"{total_time:.2f}s")
+    # Progress tracking
+    topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
+    checked = st.session_state.study_progress.get(topic_key, False)
+    new_status = st.checkbox("✅ Mark as Studied", value=checked)
+    st.session_state.study_progress[topic_key] = new_status
 
-    if total_time < 2:
-        st.success("⚡ Excellent performance! Under 2 seconds.")
-    elif total_time < 3:
-        st.info("✅ Good performance! Under 3 seconds.")
+    # Progress bar
+    total_topics = sum(len(item.get("topics", [])) for item in study_topics)
+    studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
+    st.progress(studied_count / total_topics if total_topics > 0 else 0, 
+                text=f"Progress: {studied_count}/{total_topics} topics studied")
+
+    # Display reference content using cars_index
+    references = topic_entry.get("references", [])
+    if references:
+        st.subheader("📚 Study References")
+        for ref in references:
+            if ref in cars_index:
+                st.subheader(f"📖 CARS Reference: {ref}")
+                
+                # Display the content from cars_index
+                cars_content = cars_index[ref]
+                if isinstance(cars_content, dict):
+                    # If it's a structured object, display nicely
+                    if 'title' in cars_content:
+                        st.markdown(f"**{cars_content['title']}**")
+                    if 'content' in cars_content:
+                        st.write(cars_content['content'])
+                    elif 'text' in cars_content:
+                        st.write(cars_content['text'])
+                    else:
+                        # Display all key-value pairs
+                        for key, value in cars_content.items():
+                            if key != 'title':
+                                st.write(f"**{key.title()}:** {value}")
+                elif isinstance(cars_content, str):
+                    st.write(cars_content)
+                else:
+                    st.write(str(cars_content))
+                
+                st.markdown("---")
+            else:
+                st.info(f"📘 Reference: CARS {ref} (content not yet available)")
     else:
-        st.warning("🐌 Still room for improvement.")
-
-    return result
+        st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")
+    
+    # Optional: Show topic hierarchy for clarity
+    with st.expander("🗂️ Current Topic Path"):
+        st.write(f"**Category:** {selected_category}")
+        st.write(f"**Subcategory:** {selected_subcat}")
+        st.write(f"**Section:** {selected_section}")
+        st.write(f"**Topic:** {selected_topic}")
+        if references:
+            st.write(f"**References:** {', '.join(references)}")
 
 # UI
 mode = st.sidebar.radio(
@@ -447,7 +662,6 @@ if mode == "💬 AI Tutor":
             st.session_state["tutor_input"] = query
             with st.spinner("Explaining like a ground school instructor..."):
                 st.session_state["tutor_answer"] = ask_tutor_optimized(query)
-                st.session_state["simplified_answer"] = ""
 
     # Auto-submit when input changes
     if user_query and user_query != st.session_state["tutor_input"]:
@@ -506,13 +720,16 @@ if mode == "💬 AI Tutor":
         st.info("This expanded explanation uses more context and may take longer to generate.")
         st.write(st.session_state["expanded_answer"])
 
-    # Single clear button when no extra content
+    # Clear button logic
     if not st.session_state.get("simplified_answer") and not st.session_state.get("expanded_answer"):
-        if st.button("🗑 Clear"):
-            for k in ["tutor_input", "tutor_answer", "simplified_answer", "expanded_answer", "tutor_temp"]:
-                st.session_state.pop(k, None)
-            st.rerun()
-    else:
+        if st.session_state.get("tutor_answer"):  # Only show clear button if there's an answer
+            if st.button("🗑 Clear"):
+                for k in ["tutor_input", "tutor_answer", "simplified_answer", "expanded_answer", "tutor_temp"]:
+                    st.session_state.pop(k, None)
+                st.rerun()
+    
+    # Show help text only when appropriate
+    if not st.session_state.get("tutor_answer"):
         st.info("Ask a question above to get an explanation. Use 'Simplify' for beginner-friendly wording.")
 
 elif mode == "📚 Study by Category":
@@ -559,7 +776,7 @@ elif mode == "🧠 Quiz Me":
     quiz = st.session_state.quiz
     current_q = st.session_state.quiz_index
 
-    # ✅ Show results if user has submitted all questions
+    # Show results if user has submitted all questions
     if len(st.session_state.quiz_submitted) == len(quiz):
         total = len(quiz)
         correct = 0
@@ -583,7 +800,7 @@ elif mode == "🧠 Quiz Me":
             st.rerun()
         st.stop()
 
-    # ✅ Continue with question display logic
+    # Continue with question display logic
     if current_q >= len(quiz):
         current_q = len(quiz) - 1
         st.session_state.quiz_index = current_q
@@ -710,7 +927,7 @@ elif mode == "🧪 PPL Sample Exams":
         elif "reference" in current_question:
             st.caption(f"📘 Reference: {current_question['reference']}")
 
-    # ✅ Final result if all answers have been submitted
+    # Final result if all answers have been submitted
     if len(st.session_state.sample_exam_submitted) == num_questions:
         correct_total = 0
         incorrect = []
@@ -760,7 +977,7 @@ elif mode == "🧪 PPL Sample Exams":
 elif mode == "🧩 Flashcards":
     st.subheader("🧩 Flashcard Study Mode")
 
-    # ✅ Session state initialization
+    # Session state initialization
     if "flashcards" not in st.session_state:
         st.session_state.flashcards = load_flashcards()
     if "user_flashcards" not in st.session_state:
@@ -778,8 +995,7 @@ elif mode == "🧩 Flashcards":
 
     all_flashcards = st.session_state.shuffled_flashcards
 
-    
-    # ✅ Topic filter
+    # Topic filter
     available_topics = sorted(set(card.get("topic", "Unknown") for card in all_flashcards))
     selected_topic = st.selectbox("📘 Filter by Topic", ["All"] + available_topics)
 
@@ -789,7 +1005,7 @@ elif mode == "🧩 Flashcards":
         and i not in st.session_state.known_cards
     ]
 
-    # ✅ Progress bar (based on all_flashcards, not filtered stack)
+    # Progress bar (based on all_flashcards, not filtered stack)
     total = len(all_flashcards)
     known = len(st.session_state.known_cards)
     st.progress(known / total if total else 0, text=f"{known}/{total} cards marked as known")
@@ -845,7 +1061,7 @@ elif mode == "🧩 Flashcards":
         st.session_state.show_answer = False
         st.rerun()
 
-    # ➕ Flashcard creation form
+    # Flashcard creation form
     with st.expander("➕ Create Your Own Flashcard"):
         q = st.text_input("📝 Question")
         a = st.text_area("💡 Answer")
