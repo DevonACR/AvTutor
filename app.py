@@ -56,11 +56,20 @@ chunks, chunk_texts, chunk_sources, vectorizer, tfidf_matrix = load_and_vectoriz
 
 @st.cache_data
 def load_study_data():
-    with open("ppl_study_topics_enriched.json", "r", encoding="utf-8") as f:
-        study_topics = json.load(f)
-    with open("cars_parsed_complete.json", "r", encoding="utf-8") as f:
-        cars_data = json.load(f)
-    cars_index = {item["section"]: item for item in cars_data}
+    try:
+        with open("ppl_study_topics_enriched.json", "r", encoding="utf-8") as f:
+            study_topics = json.load(f)
+    except FileNotFoundError:
+        st.warning("Study Plan data not found. Using empty fallback.")
+        study_topics = {}
+
+    try:
+        with open("cars_index.json", "r", encoding="utf-8") as f:
+            cars_index = json.load(f)
+    except FileNotFoundError:
+        st.warning("CARS index not found. Using empty fallback.")
+        cars_index = {}
+
     return study_topics, cars_index
 
 study_topics, cars_index = load_study_data()
@@ -822,6 +831,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
