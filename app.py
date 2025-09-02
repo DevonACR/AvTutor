@@ -92,40 +92,85 @@ def load_generated_quiz_questions():
     return res.json() if res.status_code == 200 else []
 
 def study_plan_ui():
-    st.title("📘 Study Plan Guide")
+    st.subheader("📘 Study Plan Guide")
 
     if "study_progress" not in st.session_state:
         st.session_state.study_progress = {}
 
+    # Step 1: Categories
     categories = sorted(set(item["category"] for item in study_topics))
     selected_category = st.selectbox("Choose Category", categories)
 
+    # Step 2: Subcategories
     subcats = [item for item in study_topics if item["category"] == selected_category]
-    selected_subcat = st.selectbox("Choose Subcategory", sorted(set(x["subcategory"] for x in subcats)))
+    available_subcats = sorted(set(x["subcategory"] for x in subcats))
+    selected_subcat = st.selectbox("Choose Subcategory", available_subcats)
 
+    # Step 3: Sections
     sections = [item for item in subcats if item["subcategory"] == selected_subcat]
-    selected_section = st.selectbox("Choose Section", sorted(set(x["section"] for x in sections)))
+    available_sections = sorted(set(x["section"] for x in sections))
+    selected_section = st.selectbox("Choose Section", available_sections)
 
-    topics = [item for item in sections if item["section"] == selected_section]
-    selected_topic = st.selectbox("Choose Topic", [t["topic"] for t in topics])
+    # Step 4: Find the specific section entry and extract topics
+    try:
+        # Find the exact section entry that matches our selection
+        section_entry = next(
+            s for s in sections 
+            if s["section"] == selected_section and s["subcategory"] == selected_subcat
+        )
+        
+        # Extract the nested topics list
+        topics_list = section_entry.get("topics", [])
+        
+        if not topics_list:
+            st.warning("⚠️ No topics found for this section.")
+            return
+        
+        # Step 5: Topics dropdown
+        topic_options = [t["topic"] for t in topics_list]
+        selected_topic = st.selectbox("Choose Topic", topic_options)
+        
+        # Find the selected topic entry
+        topic_entry = next(t for t in topics_list if t["topic"] == selected_topic)
+        
+    except StopIteration:
+        st.error("⚠️ Could not find matching section entry.")
+        return
+    except KeyError as e:
+        st.error(f"⚠️ Missing expected key in data structure: {e}")
+        return
 
-    topic_entry = next(t for t in topics if t["topic"] == selected_topic)
-    ref = topic_entry.get("reference", None)
-
+    # Progress tracking
     topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
     checked = st.session_state.study_progress.get(topic_key, False)
     new_status = st.checkbox("✅ Mark as Studied", value=checked)
     st.session_state.study_progress[topic_key] = new_status
 
-    total_topics = len(study_topics)
+    # Progress bar
+    total_topics = sum(len(item.get("topics", [])) for item in study_topics)
     studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
-    st.progress(studied_count / total_topics)
+    st.progress(studied_count / total_topics if total_topics > 0 else 0, 
+                text=f"Progress: {studied_count}/{total_topics} topics studied")
 
-    if ref and ref in cars_index:
-        st.subheader(f"Reference: CARS {ref}")
-        st.write(cars_index[ref]["content"])
+    # Display reference content if available
+    references = topic_entry.get("references", [])
+    if references:
+        st.subheader("📚 Study References")
+        for ref in references:
+            if ref in cars_index:
+                st.subheader(f"Reference: CARS {ref}")
+                st.write(cars_index[ref]["content"])
+            else:
+                st.info(f"📘 Reference: CARS {ref} (content not yet available)")
     else:
-        st.warning("⚠️ No matching CARS content found yet")
+        st.info("📘 No specific references listed for this topic.")
+        
+    # Optional: Show topic hierarchy for clarity
+    with st.expander("🗂️ Current Topic Path"):
+        st.write(f"**Category:** {selected_category}")
+        st.write(f"**Subcategory:** {selected_subcat}")
+        st.write(f"**Section:** {selected_section}")
+        st.write(f"**Topic:** {selected_topic}")
 
 def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
     """Lightning-fast search using pre-computed vectors."""
@@ -831,6 +876,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
