@@ -7,6 +7,7 @@ import requests
 import os
 import base64
 import time  
+import re
 from typing import List, Dict
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -63,16 +64,17 @@ def load_study_data():
         st.warning("Study Plan data not found. Using empty fallback.")
         study_topics = {}
 
+    # Load the new CARS data
     try:
-        with open("cars_index.json", "r", encoding="utf-8") as f:
-            cars_index = json.load(f)
+        with open("cars_parsed_complete.json", "r", encoding="utf-8") as f:
+            cars_data = json.load(f)
     except FileNotFoundError:
-        st.warning("CARS index not found. Using empty fallback.")
-        cars_index = {}
+        st.warning("CARS data not found. Using empty fallback.")
+        cars_data = {}
 
-    return study_topics, cars_index
+    return study_topics, cars_data
 
-study_topics, cars_index = load_study_data()
+study_topics, cars_data = load_study_data()
 
 @st.cache_data
 def load_sample_exam_questions():
@@ -90,6 +92,56 @@ def load_generated_quiz_questions():
     url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/generated_quiz_questions.json"
     res = requests.get(url)
     return res.json() if res.status_code == 200 else []
+
+def find_matching_cars_content(topic_text, references):
+    """
+    Find matching CARS content based on topic text and references.
+    Uses fuzzy matching to handle different formatting variations.
+    """
+    matched_content = []
+    
+    # If we have specific references, try to match those first
+    for ref in references:
+        # Clean the reference (remove extra spaces, normalize format)
+        ref_clean = re.sub(r'\s+', ' ', str(ref).strip())
+        
+        # Try different matching patterns
+        patterns_to_try = [
+            ref_clean,  # Exact match
+            ref_clean.replace('.', ''),  # Remove dots
+            ref_clean.replace('-', ''),  # Remove dashes
+            ref_clean.replace(' ', ''),  # Remove spaces
+        ]
+        
+        for pattern in patterns_to_try:
+            for cars_key, cars_content in cars_data.items():
+                # Check if pattern matches the key or appears in the content
+                if (pattern.lower() in cars_key.lower() or 
+                    pattern.lower() in str(cars_content).lower()[:100]):
+                    matched_content.append({
+                        'reference': ref,
+                        'cars_key': cars_key,
+                        'content': cars_content
+                    })
+                    break
+            if matched_content:  # Stop if we found a match for this reference
+                break
+    
+    # If no specific reference matches, try fuzzy matching on topic text
+    if not matched_content:
+        topic_words = re.findall(r'\b\d+(?:\.\d+)*\b|\b[A-Z][a-z]+\b', topic_text)
+        
+        for word in topic_words:
+            for cars_key, cars_content in cars_data.items():
+                if word.lower() in cars_key.lower():
+                    matched_content.append({
+                        'reference': word,
+                        'cars_key': cars_key,
+                        'content': cars_content
+                    })
+                    break
+    
+    return matched_content
 
 def study_plan_ui():
     st.subheader("📘 Study Plan Guide")
@@ -152,25 +204,56 @@ def study_plan_ui():
     st.progress(studied_count / total_topics if total_topics > 0 else 0, 
                 text=f"Progress: {studied_count}/{total_topics} topics studied")
 
-    # Display reference content if available
+    # NEW: Display CARS content using improved matching
     references = topic_entry.get("references", [])
-    if references:
+    
+    if references or cars_data:
         st.subheader("📚 Study References")
-        for ref in references:
-            if ref in cars_index:
-                st.subheader(f"Reference: CARS {ref}")
-                st.write(cars_index[ref]["content"])
-            else:
-                st.info(f"📘 Reference: CARS {ref} (content not yet available)")
-    else:
-        st.info("📘 No specific references listed for this topic.")
         
+        # Try to find matching CARS content
+        matched_content = find_matching_cars_content(selected_topic, references)
+        
+        if matched_content:
+            for match in matched_content:
+                st.subheader(f"📖 CARS Reference: {match['reference']}")
+                
+                # Display the content based on its structure
+                content = match['content']
+                if isinstance(content, dict):
+                    # If it's a structured object, display nicely
+                    if 'title' in content:
+                        st.markdown(f"**{content['title']}**")
+                    if 'content' in content:
+                        st.write(content['content'])
+                    elif 'text' in content:
+                        st.write(content['text'])
+                    else:
+                        # Display all key-value pairs
+                        for key, value in content.items():
+                            if key != 'title':
+                                st.write(f"**{key.title()}:** {value}")
+                elif isinstance(content, str):
+                    st.write(content)
+                else:
+                    st.write(str(content))
+                
+                st.markdown("---")
+        else:
+            # Show references even if no content found
+            if references:
+                st.info("📘 Study References: " + ", ".join(f"CARS {ref}" for ref in references))
+                st.write("*Content linking in progress. Please use the AI Tutor above to ask specific questions about these references.*")
+            else:
+                st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")
+    
     # Optional: Show topic hierarchy for clarity
     with st.expander("🗂️ Current Topic Path"):
         st.write(f"**Category:** {selected_category}")
         st.write(f"**Subcategory:** {selected_subcat}")
         st.write(f"**Section:** {selected_section}")
         st.write(f"**Topic:** {selected_topic}")
+        if references:
+            st.write(f"**References:** {', '.join(references)}")
 
 def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
     """Lightning-fast search using pre-computed vectors."""
@@ -183,73 +266,6 @@ def search_chunks_fast(query: str, k: int = 4) -> List[Dict]:
     
     # Get top results
     top_indices = similarities.argsort()[-k:][::-1]
-
-    def ask_tutor_optimized(question):
-        start_time = time.time()
-    
-    # Fast search (should be ~0.1s instead of 1.4s!)
-    search_start = time.time()
-    top_chunks = search_chunks_fast(question, k=2)
-    search_time = time.time() - search_start
-    
-    # Prepare context (with size limits)
-    prep_start = time.time()
-    context_parts = []
-    for chunk in top_chunks:
-        content = chunk["content"]
-        # Limit each chunk to 250 characters for maximum speed
-        if len(content) > 250:
-            content = content[:250] + "..."
-        context_parts.append(content)
-    
-    context = "\n\n".join(context_parts)
-    sources = list(set([chunk['source'] for chunk in top_chunks]))
-    
-    prompt = f"""You are a Canadian PPL aviation tutor. Give clear, practical explanations.
-
-Context:
-{context}
-
-Question: {question}
-
-Provide a concise but complete answer. End with:
-Study Source(s): {', '.join(sources)}"""
-    
-    prep_time = time.time() - prep_start
-    
-    # API call
-    api_start = time.time()
-    try:
-        response = gemini_model.generate_content(prompt)
-        result = response.text.strip()
-    except Exception as e:
-        result = f"⚠️ Gemini Error: {e}"
-    
-    api_time = time.time() - api_start
-    total_time = time.time() - start_time
-    
-    # Display performance metrics
-    st.write("## ⏱️ Performance Breakdown")
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        st.metric("🔍 Search", f"{search_time:.2f}s")
-    with col2:
-        st.metric("📝 Prep", f"{prep_time:.2f}s")
-    with col3:
-        st.metric("🤖 API", f"{api_time:.2f}s")
-    with col4:
-        st.metric("⏰ Total", f"{total_time:.2f}s")
-    
-    # Performance feedback
-    if total_time < 2:
-        st.success("⚡ Excellent performance! Under 2 seconds.")
-    elif total_time < 3:
-        st.info("✅ Good performance! Under 3 seconds.")
-    else:
-        st.warning("🐌 Still room for improvement.")
-    
-    return result
     
     # Return results with similarity scores
     results = []
@@ -264,8 +280,6 @@ Study Source(s): {', '.join(sources)}"""
     
 def get_categories():
     return sorted(set(chunk.get("category", "General") for chunk in chunks))
-
-import time  # Add this at the top with your other imports
 
 def ask_tutor_expanded(original_question, original_answer):
     """Generate an expanded, detailed explanation based on the original Q&A."""
@@ -336,30 +350,6 @@ Study Source(s): {', '.join(sources)}"""
     
     return result
 
-# UI
-mode = st.sidebar.radio(
-    "Choose Study Mode",
-    ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards", "📘 Study Plan Guide"]
-)
-# ---------------- AI Tutor with Persistent Q&A ----------------
-import time
-
-# ✅ Top-level function to search chunks
-def search_chunks_fast(query: str, k: int = 4):
-    """Return top-k chunks based on TF-IDF similarity."""
-    query_vec = vectorizer.transform([query])
-    similarities = cosine_similarity(query_vec, tfidf_matrix).flatten()
-    top_indices = similarities.argsort()[-k:][::-1]
-
-    results = []
-    for i in top_indices:
-        results.append({
-            "content": chunk_texts[i],
-            "source": chunk_sources[i],
-            "similarity_score": float(similarities[i])
-        })
-    return results
-
 # ✅ Top-level function to generate tutor response
 def ask_tutor_optimized(question: str, k: int = 2) -> str:
     start_time = time.time()
@@ -422,6 +412,12 @@ Study Source(s): {', '.join(sources)}"""
         st.warning("🐌 Still room for improvement.")
 
     return result
+
+# UI
+mode = st.sidebar.radio(
+    "Choose Study Mode",
+    ["💬 AI Tutor", "🧠 Quiz Me", "📚 Study by Category", "🧪 PPL Sample Exams", "🧩 Flashcards", "📘 Study Plan Guide"]
+)
 
 # ---------------- AI Tutor with Persistent Q&A ----------------
 if mode == "💬 AI Tutor":
@@ -518,10 +514,6 @@ if mode == "💬 AI Tutor":
             st.rerun()
     else:
         st.info("Ask a question above to get an explanation. Use 'Simplify' for beginner-friendly wording.")
-
-
-
-
 
 elif mode == "📚 Study by Category":
     st.subheader("📚 Study Notes by Category")
@@ -654,7 +646,6 @@ elif mode == "🧠 Quiz Me":
         if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1)):
             st.session_state.quiz_index = min(len(quiz) - 1, current_q + 1)
             st.rerun()
-
 
 elif mode == "🧪 PPL Sample Exams":
     st.subheader("🧪 Official Sample Exam Practice")
@@ -876,27 +867,3 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
