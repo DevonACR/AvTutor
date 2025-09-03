@@ -360,12 +360,12 @@ def study_plan_ui():
         st.progress(studied_count / total_topics if total_topics > 0 else 0, 
                     text=f"Progress: {studied_count}/{total_topics} topics studied")
 
-# Display CARS references using cars_parsed_complete
-references = topic_entry.get("references", [])
-if references:
-    st.subheader("📚 Study References")
-    st.write("DEBUG: references =", references)
-    st.write("DEBUG: cars_parsed_complete keys (first 10) =", list(cars_parsed_complete.keys())[:10])
+    # Display CARS references using cars_parsed_complete
+    references = topic_entry.get("references", [])
+    if references:
+        st.subheader("📚 Study References")
+        st.write("DEBUG: references =", references)
+        st.write("DEBUG: cars_parsed_complete keys (first 10) =", list(cars_parsed_complete.keys())[:10])
     for ref in references:
         # Try direct match, and common normalizations
         possible_keys = [
@@ -867,6 +867,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
