@@ -309,7 +309,7 @@ def study_plan_ui():
 
     user_checked = st.checkbox("✅ Mark as Studied", value=default_checked)
     if user_checked != default_checked:
-    st.session_state.study_progress[topic_key] = user_checked
+        st.session_state.study_progress[topic_key] = user_checked
 
     # Progress bar
     total_topics = sum(len(item.get("topics", [])) for item in study_topics)
@@ -809,6 +809,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
