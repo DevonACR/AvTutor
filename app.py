@@ -193,11 +193,14 @@ def study_plan_ui():
         return
 
     # Progress tracking
-    topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
-    checked = st.session_state.study_progress.get(topic_key, False)
-    new_status = st.checkbox("✅ Mark as Studied", value=checked)
-    st.session_state.study_progress[topic_key] = new_status
+topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
+checked = st.session_state.study_progress.get(topic_key, False)
+new_status = st.checkbox("✅ Mark as Studied", value=checked, key=f"study_checkbox_{topic_key}")
 
+# Only update session state if checkbox value actually changed
+if new_status != checked:
+    st.session_state.study_progress[topic_key] = new_status
+    
     # Progress bar
     total_topics = sum(len(item.get("topics", [])) for item in study_topics)
     studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
@@ -1083,3 +1086,4 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
