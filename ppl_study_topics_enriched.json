@@ -7,27 +7,39 @@
     "topics": [
       {
         "topic": "101 − INTERPRETATION",
-        "references": []
+        "references": [
+          "101"
+        ]
       },
       {
         "topic": "101.01 Interpretation",
-        "references": []
+        "references": [
+          "101.01"
+        ]
       },
       {
         "topic": "103 − ADMINISTRATION AND COMPLIANCE",
-        "references": []
+        "references": [
+          "103"
+        ]
       },
       {
         "topic": "103.02 Inspection of Aircraft, Requests for Production of Documents and Prohibitions",
-        "references": []
+        "references": [
+          "103.02"
+        ]
       },
       {
         "topic": "103.03 Return of Canadian Aviation Documents",
-        "references": []
+        "references": [
+          "103.03"
+        ]
       },
       {
         "topic": "103.04 Record Keeping PART II – AIRCRAFT IDENTIFICATION AND REGISTRATION AND OPERATION",
-        "references": []
+        "references": [
+          "103.04"
+        ]
       }
     ]
   },
@@ -39,11 +51,15 @@
     "topics": [
       {
         "topic": "202.01 Requirements for Marks on Aircraft",
-        "references": []
+        "references": [
+          "202.01"
+        ]
       },
       {
         "topic": "202.26 Carrying Certificate of Registration on Board the Aircraft",
-        "references": []
+        "references": [
+          "202.26"
+        ]
       }
     ]
   },
@@ -55,51 +71,75 @@
     "topics": [
       {
         "topic": "300 − INTERPRETATION",
-        "references": []
+        "references": [
+          "300"
+        ]
       },
       {
         "topic": "300.01 Interpretation",
-        "references": []
+        "references": [
+          "300.01"
+        ]
       },
       {
         "topic": "301 − AERODROMES",
-        "references": []
+        "references": [
+          "301"
+        ]
       },
       {
         "topic": "301.01 Application",
-        "references": []
+        "references": [
+          "301.01"
+        ]
       },
       {
         "topic": "301.04 Markers and Markings",
-        "references": []
+        "references": [
+          "301.04"
+        ]
       },
       {
         "topic": "301.06 Wind Direction Indicator",
-        "references": []
+        "references": [
+          "301.06"
+        ]
       },
       {
         "topic": "301.07 Lighting",
-        "references": []
+        "references": [
+          "301.07"
+        ]
       },
       {
         "topic": "301.08 Prohibitions",
-        "references": []
+        "references": [
+          "301.08"
+        ]
       },
       {
         "topic": "301.09 Fire Prevention",
-        "references": []
+        "references": [
+          "301.09"
+        ]
       },
       {
         "topic": "302 − AIRPORTS",
-        "references": []
+        "references": [
+          "302"
+        ]
       },
       {
         "topic": "302.10 Prohibitions",
-        "references": []
+        "references": [
+          "302.10"
+        ]
       },
       {
         "topic": "302.11 Fire Prevention",
-        "references": []
+        "references": [
+          "302.11"
+        ]
       }
     ]
   },
@@ -111,59 +151,87 @@
     "topics": [
       {
         "topic": "400 − GENERAL",
-        "references": []
+        "references": [
+          "400"
+        ]
       },
       {
         "topic": "400.01 Interpretation",
-        "references": []
+        "references": [
+          "400.01"
+        ]
       },
       {
         "topic": "401 − FLIGHT CREW PERMITS, LICENSES AND RATINGS",
-        "references": []
+        "references": [
+          "401"
+        ]
       },
       {
         "topic": "401.03 Requirement to Hold a Flight Crew Permit, Licence or Rating",
-        "references": []
+        "references": [
+          "401.03"
+        ]
       },
       {
         "topic": "401.04 Flight Crew Members of Aircraft Registered in Contracting States other than Canada",
-        "references": []
+        "references": [
+          "401.04"
+        ]
       },
       {
         "topic": "401.05 Recency Requirements",
-        "references": []
+        "references": [
+          "401.05"
+        ]
       },
       {
         "topic": "401.08 Personal Logs",
-        "references": []
+        "references": [
+          "401.08"
+        ]
       },
       {
         "topic": "401.26 Aeroplane - Privileges (Private Pilot Licence)",
-        "references": []
+        "references": [
+          "401.26"
+        ]
       },
       {
         "topic": "401.45 Privileges (Visual Flight Rules (VFR) Over-the-Top)",
-        "references": []
+        "references": [
+          "401.45"
+        ]
       },
       {
         "topic": "404 − MEDICAL REQUIREMENTS",
-        "references": []
+        "references": [
+          "404"
+        ]
       },
       {
         "topic": "404.03 Requirement to Hold a Medical Certificate",
-        "references": []
+        "references": [
+          "404.03"
+        ]
       },
       {
         "topic": "404.04 Issuance, Renewal and Validity Period of Medical Certificate",
-        "references": []
+        "references": [
+          "404.04"
+        ]
       },
       {
         "topic": "404.06 Prohibition Regarding Exercise of Privileges",
-        "references": []
+        "references": [
+          "404.06"
+        ]
       },
       {
         "topic": "404.18 Permission to Continue to Exercise the Privileges of a Permit, Licence or Rating",
-        "references": []
+        "references": [
+          "404.18"
+        ]
       }
     ]
   },
@@ -175,55 +243,81 @@
     "topics": [
       {
         "topic": "600 − INTERPRETATION",
-        "references": []
+        "references": [
+          "600"
+        ]
       },
       {
         "topic": "600.01 Interpretation",
-        "references": []
+        "references": [
+          "600.01"
+        ]
       },
       {
         "topic": "601 − AIRSPACE STRUCTURE, CLASSIFICATION AND USE",
-        "references": []
+        "references": [
+          "601"
+        ]
       },
       {
         "topic": "601.01 Airspace Structure",
-        "references": []
+        "references": [
+          "601.01"
+        ]
       },
       {
         "topic": "601.02 Airspace Classification",
-        "references": []
+        "references": [
+          "601.02"
+        ]
       },
       {
         "topic": "601.03 Transponder Airspace",
-        "references": []
+        "references": [
+          "601.03"
+        ]
       },
       {
         "topic": "601.04 IFR or VFR Flight in Class F Special Use Restricted Airspace or Class F Special Use Advisory Airspace",
-        "references": []
+        "references": [
+          "601.04"
+        ]
       },
       {
         "topic": "601.06 VFR Flight in Class A Airspace",
-        "references": []
+        "references": [
+          "601.06"
+        ]
       },
       {
         "topic": "601.07 VFR Flight in Class B Airspace",
-        "references": []
+        "references": [
+          "601.07"
+        ]
       },
       {
         "topic": "601.08 VFR Flight in Class C Airspace",
-        "references": []
+        "references": [
+          "601.08"
+        ]
       },
       {
         "topic": "601.09 VFR Flight in Class D Airspace",
-        "references": []
+        "references": [
+          "601.09"
+        ]
       },
       {
         "topic": "601.15 Forest Fire Aircraft Operating Restrictions",
-        "references": []
+        "references": [
+          "601.15"
+        ]
       },
       {
         "topic": "601.16 Issuance of NOTAM for Forest Fire Aircraft Operating Restrictions",
-        "references": []
+        "references": [
+          "601.16"
+        ]
       }
     ]
   },
@@ -235,131 +329,195 @@
     "topics": [
       {
         "topic": "602.01 Reckless or Negligent Operation of Aircraft",
-        "references": []
+        "references": [
+          "602.01"
+        ]
       },
       {
         "topic": "602.02 Fitness of Flight Crew Members",
-        "references": []
+        "references": [
+          "602.02"
+        ]
       },
       {
         "topic": "602.03 Alcohol or Drugs − Crew Members",
-        "references": []
+        "references": [
+          "602.03"
+        ]
       },
       {
         "topic": "602.04 Alcohol or Drugs − Passengers",
-        "references": []
+        "references": [
+          "602.04"
+        ]
       },
       {
         "topic": "602.05 Compliance with Instructions",
-        "references": []
+        "references": [
+          "602.05"
+        ]
       },
       {
         "topic": "602.06 Smoking",
-        "references": []
+        "references": [
+          "602.06"
+        ]
       },
       {
         "topic": "602.07 Aircraft Operating Limitations",
-        "references": []
+        "references": [
+          "602.07"
+        ]
       },
       {
         "topic": "602.08 Portable Electronic Devices",
-        "references": []
+        "references": [
+          "602.08"
+        ]
       },
       {
         "topic": "602.09 Fuelling with Engines Running",
-        "references": []
+        "references": [
+          "602.09"
+        ]
       },
       {
         "topic": "602.10 Starting and Ground Running of Aircraft Engines",
-        "references": []
+        "references": [
+          "602.10"
+        ]
       },
       {
         "topic": "602.11 Aircraft Icing",
-        "references": []
+        "references": [
+          "602.11"
+        ]
       },
       {
         "topic": "602.12 Overflight of Built-up Areas or Open-Air Assemblies of Persons during Take-offs, Approaches and Landings",
-        "references": []
+        "references": [
+          "602.12"
+        ]
       },
       {
         "topic": "602.13 Take-offs, Approaches and Landings within Built-up Areas of Cities and Towns",
-        "references": []
+        "references": [
+          "602.13"
+        ]
       },
       {
         "topic": "602.14 Minimum Altitude and Distances",
-        "references": []
+        "references": [
+          "602.14"
+        ]
       },
       {
         "topic": "602.15 Permissible Low Altitude Flight",
-        "references": []
+        "references": [
+          "602.15"
+        ]
       },
       {
         "topic": "602.19 Right-of-Way − General",
-        "references": []
+        "references": [
+          "602.19"
+        ]
       },
       {
         "topic": "602.20 Right-of-Way − Aircraft Manoeuvring on Water",
-        "references": []
+        "references": [
+          "602.20"
+        ]
       },
       {
         "topic": "602.21 Avoidance of Collision",
-        "references": []
+        "references": [
+          "602.21"
+        ]
       },
       {
         "topic": "602.22 Towing",
-        "references": []
+        "references": [
+          "602.22"
+        ]
       },
       {
         "topic": "602.23 Dropping of Objects",
-        "references": []
+        "references": [
+          "602.23"
+        ]
       },
       {
         "topic": "602.24 Formation Flight",
-        "references": []
+        "references": [
+          "602.24"
+        ]
       },
       {
         "topic": "602.25 Entering or Leaving an Aircraft in Flight",
-        "references": []
+        "references": [
+          "602.25"
+        ]
       },
       {
         "topic": "602.26 Parachute Descents",
-        "references": []
+        "references": [
+          "602.26"
+        ]
       },
       {
         "topic": "602.27 Aerobatic Manoeuvres − Prohibited Areas and Flight Conditions",
-        "references": []
+        "references": [
+          "602.27"
+        ]
       },
       {
         "topic": "602.28 Aerobatic Manoeuvres with Passengers",
-        "references": []
+        "references": [
+          "602.28"
+        ]
       },
       {
         "topic": "602.31 Compliance with Air Traffic Control Instructions and Clearances",
-        "references": []
+        "references": [
+          "602.31"
+        ]
       },
       {
         "topic": "602.32 Airspeed Limitations",
-        "references": []
+        "references": [
+          "602.32"
+        ]
       },
       {
         "topic": "602.34 Cruising Altitudes and Cruising Flight Levels",
-        "references": []
+        "references": [
+          "602.34"
+        ]
       },
       {
         "topic": "602.35 Altimeter-setting and Operating Procedures in the Altimeter-setting Region",
-        "references": []
+        "references": [
+          "602.35"
+        ]
       },
       {
         "topic": "602.36 Altimeter-setting and Operating Procedures in the Standard Pressure Region",
-        "references": []
+        "references": [
+          "602.36"
+        ]
       },
       {
         "topic": "602.37 Altimeter-setting and Operating Procedures in Transition between Regions",
-        "references": []
+        "references": [
+          "602.37"
+        ]
       },
       {
         "topic": "602.40 Landing at or Take-off from an Aerodrome at Night",
-        "references": []
+        "references": [
+          "602.40"
+        ]
       }
     ]
   },
@@ -371,27 +529,39 @@
     "topics": [
       {
         "topic": "602.58 Prohibition",
-        "references": []
+        "references": [
+          "602.58"
+        ]
       },
       {
         "topic": "602.59 Equipment Standards",
-        "references": []
+        "references": [
+          "602.59"
+        ]
       },
       {
         "topic": "602.60 Requirements for Power-driven Aircraft",
-        "references": []
+        "references": [
+          "602.60"
+        ]
       },
       {
         "topic": "602.61 Survival Equipment − Flights over Land",
-        "references": []
+        "references": [
+          "602.61"
+        ]
       },
       {
         "topic": "602.62 Life Preservers and Flotation Devices",
-        "references": []
+        "references": [
+          "602.62"
+        ]
       },
       {
         "topic": "602.63 Life Rafts and Survival Equipment – Flight over Water",
-        "references": []
+        "references": [
+          "602.63"
+        ]
       }
     ]
   },
@@ -403,43 +573,63 @@
     "topics": [
       {
         "topic": "602.70 Interpretation",
-        "references": []
+        "references": [
+          "602.70"
+        ]
       },
       {
         "topic": "602.71 Pre-flight Information",
-        "references": []
+        "references": [
+          "602.71"
+        ]
       },
       {
         "topic": "602.72 Weather Information",
-        "references": []
+        "references": [
+          "602.72"
+        ]
       },
       {
         "topic": "602.73 Requirements to File a Flight Plan or a Flight Itinerary",
-        "references": []
+        "references": [
+          "602.73"
+        ]
       },
       {
         "topic": "602.74 Contents of a Flight Plan or a Flight Itinerary",
-        "references": []
+        "references": [
+          "602.74"
+        ]
       },
       {
         "topic": "602.75 Filing of a Flight Plan or a Flight Itinerary",
-        "references": []
+        "references": [
+          "602.75"
+        ]
       },
       {
         "topic": "602.76 Changes in the Flight Plan",
-        "references": []
+        "references": [
+          "602.76"
+        ]
       },
       {
         "topic": "602.77 Requirement to File an Arrival Report",
-        "references": []
+        "references": [
+          "602.77"
+        ]
       },
       {
         "topic": "602.78 Contents of an Arrival Report",
-        "references": []
+        "references": [
+          "602.78"
+        ]
       },
       {
         "topic": "602.79 Overdue Aircraft Report",
-        "references": []
+        "references": [
+          "602.79"
+        ]
       }
     ]
   },
@@ -451,15 +641,21 @@
     "topics": [
       {
         "topic": "602.86 Carry-on Baggage, Equipment and Cargo",
-        "references": []
+        "references": [
+          "602.86"
+        ]
       },
       {
         "topic": "602.88 Fuel Requirements",
-        "references": []
+        "references": [
+          "602.88"
+        ]
       },
       {
         "topic": "602.89 Passenger Briefings",
-        "references": []
+        "references": [
+          "602.89"
+        ]
       }
     ]
   },
@@ -471,35 +667,51 @@
     "topics": [
       {
         "topic": "602.96 General",
-        "references": []
+        "references": [
+          "602.96"
+        ]
       },
       {
         "topic": "602.97 VFR and IFR Aircraft Operations at Uncontrolled Aerodromes within a MF Area (Mandatory Frequency Area)",
-        "references": []
+        "references": [
+          "602.97"
+        ]
       },
       {
         "topic": "602.98 General MF Reporting Requirements",
-        "references": []
+        "references": [
+          "602.98"
+        ]
       },
       {
         "topic": "602.99 MF Reporting Procedures before Entering Manoeuvring Area",
-        "references": []
+        "references": [
+          "602.99"
+        ]
       },
       {
         "topic": "602.100 MF Reporting Procedures on Departure",
-        "references": []
+        "references": [
+          "602.100"
+        ]
       },
       {
         "topic": "602.101 MF Reporting Procedures on Arrival",
-        "references": []
+        "references": [
+          "602.101"
+        ]
       },
       {
         "topic": "602.102 MF Reporting Procedures when Flying Continuous Circuits",
-        "references": []
+        "references": [
+          "602.102"
+        ]
       },
       {
         "topic": "602.103 Reporting Procedures when Flying through an MF Area",
-        "references": []
+        "references": [
+          "602.103"
+        ]
       }
     ]
   },
@@ -511,19 +723,27 @@
     "topics": [
       {
         "topic": "602.114 Minimum Visual Meteorological Conditions for VFR Flight in VFR Flight in Controlled Airspace",
-        "references": []
+        "references": [
+          "602.114"
+        ]
       },
       {
         "topic": "602.115 Minimum Visual Meteorological Conditions for VFR Flight in Uncontrolled Airspace",
-        "references": []
+        "references": [
+          "602.115"
+        ]
       },
       {
         "topic": "602.116 VFR Over-the-Top",
-        "references": []
+        "references": [
+          "602.116"
+        ]
       },
       {
         "topic": "602.117 Special VFR Flight",
-        "references": []
+        "references": [
+          "602.117"
+        ]
       }
     ]
   },
@@ -535,11 +755,15 @@
     "topics": [
       {
         "topic": "602.136 Continuous Listening Watch",
-        "references": []
+        "references": [
+          "602.136"
+        ]
       },
       {
         "topic": "602.138 Two-way Radiocommunication Failure in VFR Flight",
-        "references": []
+        "references": [
+          "602.138"
+        ]
       }
     ]
   },
@@ -551,23 +775,33 @@
     "topics": [
       {
         "topic": "602.143 Emergency Radio Frequency Capability",
-        "references": []
+        "references": [
+          "602.143"
+        ]
       },
       {
         "topic": "602.144 Interception Signals, Interception of Aircraft and Instructions to Land",
-        "references": []
+        "references": [
+          "602.144"
+        ]
       },
       {
         "topic": "602.145 ADIZ",
-        "references": []
+        "references": [
+          "602.145"
+        ]
       },
       {
         "topic": "602.146 ESCAT Plan",
-        "references": []
+        "references": [
+          "602.146"
+        ]
       },
       {
         "topic": "605 − AIRCRAFT REQUIREMENTS",
-        "references": []
+        "references": [
+          "605"
+        ]
       }
     ]
   },
@@ -579,19 +813,27 @@
     "topics": [
       {
         "topic": "605.03 Flight Authority",
-        "references": []
+        "references": [
+          "605.03"
+        ]
       },
       {
         "topic": "605.04 Availability of Aircraft Flight Manual",
-        "references": []
+        "references": [
+          "605.04"
+        ]
       },
       {
         "topic": "605.05 Markings and Placards",
-        "references": []
+        "references": [
+          "605.05"
+        ]
       },
       {
         "topic": "605.08 Unserviceable and Removed Equipment − General",
-        "references": []
+        "references": [
+          "605.08"
+        ]
       }
     ]
   },
@@ -603,59 +845,87 @@
     "topics": [
       {
         "topic": "605.14 Power-driven Aircraft − Day VFR",
-        "references": []
+        "references": [
+          "605.14"
+        ]
       },
       {
         "topic": "605.15 Power-driven Aircraft – VFR OTT (Over-the-Top)",
-        "references": []
+        "references": [
+          "605.15"
+        ]
       },
       {
         "topic": "605.16 Power-driven Aircraft – Night VFR",
-        "references": []
+        "references": [
+          "605.16"
+        ]
       },
       {
         "topic": "605.17 Use of Position and Anti-collision Lights",
-        "references": []
+        "references": [
+          "605.17"
+        ]
       },
       {
         "topic": "605.22 Seat and Safety Belt Requirements",
-        "references": []
+        "references": [
+          "605.22"
+        ]
       },
       {
         "topic": "605.24 Shoulder Harness Requirements",
-        "references": []
+        "references": [
+          "605.24"
+        ]
       },
       {
         "topic": "605.25 General use of Safety Belts and Restraint Systems",
-        "references": []
+        "references": [
+          "605.25"
+        ]
       },
       {
         "topic": "605.28 Child Restraint System",
-        "references": []
+        "references": [
+          "605.28"
+        ]
       },
       {
         "topic": "605.29 Flight Control Locks",
-        "references": []
+        "references": [
+          "605.29"
+        ]
       },
       {
         "topic": "605.31 Oxygen Equipment and Supply",
-        "references": []
+        "references": [
+          "605.31"
+        ]
       },
       {
         "topic": "605.32 Use of Oxygen",
-        "references": []
+        "references": [
+          "605.32"
+        ]
       },
       {
         "topic": "605.35 Transponder and Automatic Pressure-altitude Reporting Equipment",
-        "references": []
+        "references": [
+          "605.35"
+        ]
       },
       {
         "topic": "605.38 ELT",
-        "references": []
+        "references": [
+          "605.38"
+        ]
       },
       {
         "topic": "605.40 ELT Activation",
-        "references": []
+        "references": [
+          "605.40"
+        ]
       }
     ]
   },
@@ -667,19 +937,27 @@
     "topics": [
       {
         "topic": "605.84 Aircraft Maintenance − General",
-        "references": []
+        "references": [
+          "605.84"
+        ]
       },
       {
         "topic": "605.85 Maintenance Release and Elementary Work",
-        "references": []
+        "references": [
+          "605.85"
+        ]
       },
       {
         "topic": "605.86 Maintenance Schedule",
-        "references": []
+        "references": [
+          "605.86"
+        ]
       },
       {
         "topic": "605.88 Inspection after Abnormal Occurrences",
-        "references": []
+        "references": [
+          "605.88"
+        ]
       }
     ]
   },
@@ -691,31 +969,45 @@
     "topics": [
       {
         "topic": "605.92 Requirement to Keep Technical Records",
-        "references": []
+        "references": [
+          "605.92"
+        ]
       },
       {
         "topic": "605.93 Technical Records − General",
-        "references": []
+        "references": [
+          "605.93"
+        ]
       },
       {
         "topic": "605.94 Journey Log Requirements",
-        "references": []
+        "references": [
+          "605.94"
+        ]
       },
       {
         "topic": "605.95 Journey Log − Carrying on Board",
-        "references": []
+        "references": [
+          "605.95"
+        ]
       },
       {
         "topic": "605.97 Transfer of Records",
-        "references": []
+        "references": [
+          "605.97"
+        ]
       },
       {
         "topic": "606 − MISCELLANEOUS",
-        "references": []
+        "references": [
+          "606"
+        ]
       },
       {
         "topic": "606.02 Liability Insurance",
-        "references": []
+        "references": [
+          "606.02"
+        ]
       }
     ]
   },
