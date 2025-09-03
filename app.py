@@ -318,48 +318,40 @@ def study_plan_ui():
         # Find the selected topic entry
         topic_entry = next(t for t in topics_list if t["topic"] == selected_topic)
         
-    except StopIteration:
-        st.error("⚠️ Could not find matching section entry.")
-        return
-    except KeyError as e:
-        st.error(f"⚠️ Missing expected key in data structure: {e}")
-        return
+        # 1. Set a unique key for each topic
+        topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
 
-    # --- FIXED INDENTATION BELOW ---
-    # 1. Set a unique key for each topic
-    topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
+        # 2. Get the current value from study_progress (default False)
+        current_val = st.session_state.study_progress.get(topic_key, False)
 
-    # 2. Get the current value from study_progress (default False)
-    current_val = st.session_state.study_progress.get(topic_key, False)
+        # 3. Draw the checkbox, using only the value from study_progress!
+        checked = st.checkbox(
+            "✅ Mark as Studied",
+            value=current_val,
+            key=f"studied_{hash(topic_key)}"
+        )
 
-    # 3. Draw the checkbox, using only the value from study_progress!
-    checked = st.checkbox(
-        "✅ Mark as Studied",
-        value=current_val,
-        key=f"studied_{hash(topic_key)}"
-    )
+        # 4. Only update study_progress if the value changed
+        if checked != current_val:
+            st.session_state.study_progress[topic_key] = checked
 
-    # 4. Only update study_progress if the value changed
-    if checked != current_val:
-        st.session_state.study_progress[topic_key] = checked
+        # Progress bar
+        total_topics = sum(len(item.get("topics", [])) for item in study_topics)
+        studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
+        st.progress(studied_count / total_topics if total_topics > 0 else 0, 
+                    text=f"Progress: {studied_count}/{total_topics} topics studied")
 
-    # Progress bar
-    total_topics = sum(len(item.get("topics", [])) for item in study_topics)
-    studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
-    st.progress(studied_count / total_topics if total_topics > 0 else 0, 
-                text=f"Progress: {studied_count}/{total_topics} topics studied")
-
-    # Display CARS references using cars_parsed_complete
-    references = topic_entry.get("references", [])
-    if references:
-        st.subheader("📚 Study References")
-        for ref in references:
-            if ref in cars_parsed_complete:
-                with st.expander(f"📖 CARS Reference: {ref}"):
-                    cars_content = cars_parsed_complete[ref]
-                    if isinstance(cars_content, dict):
-                        if 'title' in cars_content:
-                            st.markdown(f"**{cars_content['title']}**")
+        # Display CARS references using cars_parsed_complete
+        references = topic_entry.get("references", [])
+        if references:
+            st.subheader("📚 Study References")
+            for ref in references:
+                if ref in cars_parsed_complete:
+                    with st.expander(f"📖 CARS Reference: {ref}"):
+                        cars_content = cars_parsed_complete[ref]
+                        if isinstance(cars_content, dict):
+                            if 'title' in cars_content:
+                                st.markdown(f"**{cars_content['title']}**")
                             if 'content' in cars_content:
                                 st.write(cars_content['content'])
                             elif 'text' in cars_content:
@@ -368,23 +360,30 @@ def study_plan_ui():
                                 for key, value in cars_content.items():
                                     if key != 'title':
                                         st.write(f"**{key.title()}:** {value}")
-                                    elif isinstance(cars_content, str):
-                                        st.write(cars_content)
-                                    else:
-                                        st.write(str(cars_content))
-            else:
-                st.info(f"📘 Reference: CARS {ref} (content not yet available)")
-            else:
-                st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")    
+                        elif isinstance(cars_content, str):
+                            st.write(cars_content)
+                        else:
+                            st.write(str(cars_content))
+                else:
+                    st.info(f"📘 Reference: CARS {ref} (content not yet available)")
+        else:
+            st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")    
 
-    # Optional: Show topic hierarchy for clarity
-    with st.expander("🗂️ Current Topic Path"):
-        st.write(f"**Category:** {selected_category}")
-        st.write(f"**Subcategory:** {selected_subcat}")
-        st.write(f"**Section:** {selected_section}")
-        st.write(f"**Topic:** {selected_topic}")
-        if references:
-            st.write(f"**References:** {', '.join(references)}")
+        # Optional: Show topic hierarchy for clarity
+        with st.expander("🗂️ Current Topic Path"):
+            st.write(f"**Category:** {selected_category}")
+            st.write(f"**Subcategory:** {selected_subcat}")
+            st.write(f"**Section:** {selected_section}")
+            st.write(f"**Topic:** {selected_topic}")
+            if references:
+                st.write(f"**References:** {', '.join(references)}")
+
+    except StopIteration:
+        st.error("⚠️ Could not find matching section entry.")
+        return
+    except KeyError as e:
+        st.error(f"⚠️ Missing expected key in data structure: {e}")
+        return
 
 # UI
 mode = st.sidebar.radio(
@@ -835,17 +834,3 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
