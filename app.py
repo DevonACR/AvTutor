@@ -259,7 +259,7 @@ Study Source(s): {', '.join(sources)}"""
 
 def study_plan_ui():
     st.subheader("📘 Study Plan Guide")
-
+    
     if "study_progress" not in st.session_state:
         st.session_state.study_progress = {}
 
@@ -366,8 +366,6 @@ def study_plan_ui():
         references = topic_entry.get("references", [])
         if references:
             st.subheader("📚 Study References")
-            st.write("DEBUG: references =", references)
-            st.write("DEBUG: cars_parsed_complete keys (first 10) =", list(cars_parsed_complete.keys())[:10])
             for ref in references:
                 # Try direct match, and common normalizations
                 possible_keys = [
@@ -869,6 +867,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
