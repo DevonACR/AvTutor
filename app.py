@@ -218,7 +218,7 @@ studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
 st.progress(studied_count / total_topics if total_topics > 0 else 0, 
             text=f"Progress: {studied_count}/{total_topics} topics studied")
     # NEW: Display CARS content using improved matching
-    references = topic_entry.get("references", [])
+references = topic_entry.get("references", [])
     
     if references or cars_data:
         st.subheader("📚 Study References")
@@ -1096,6 +1096,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
