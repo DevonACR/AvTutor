@@ -220,7 +220,7 @@ st.progress(studied_count / total_topics if total_topics > 0 else 0,
     # NEW: Display CARS content using improved matching
 references = topic_entry.get("references", [])
     
-    if references or cars_data:
+if references or cars_data:
         st.subheader("📚 Study References")
         
         # Try to find matching CARS content
@@ -1096,6 +1096,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
