@@ -77,6 +77,13 @@ def load_study_data():
 study_topics, cars_index = load_study_data()
 
 @st.cache_data
+def load_cars_parsed_complete():
+    with open("cars_parsed_complete.json", "r", encoding="utf-8") as f:
+        return json.load(f)
+
+cars_parsed_complete = load_cars_parsed_complete()
+
+@st.cache_data
 def load_sample_exam_questions():
     url = "https://raw.githubusercontent.com/DevonACR/AvTutor/main/sample_exam_structured.json"
     return requests.get(url).json()
@@ -342,18 +349,15 @@ def study_plan_ui():
     st.progress(studied_count / total_topics if total_topics > 0 else 0, 
                 text=f"Progress: {studied_count}/{total_topics} topics studied")
 
-    # Display reference content using cars_index
-    references = topic_entry.get("references", [])
-    if references:
-        st.subheader("📚 Study References")
-        for ref in references:
-            if ref in cars_index:
-                st.subheader(f"📖 CARS Reference: {ref}")
-                
-                # Display the content from cars_index
-                cars_content = cars_index[ref]
+# Display CARS references using cars_parsed_complete
+references = topic_entry.get("references", [])
+if references:
+    st.subheader("📚 Study References")
+    for ref in references:
+        if ref in cars_parsed_complete:
+            with st.expander(f"📖 CARS Reference: {ref}"):
+                cars_content = cars_parsed_complete[ref]
                 if isinstance(cars_content, dict):
-                    # If it's a structured object, display nicely
                     if 'title' in cars_content:
                         st.markdown(f"**{cars_content['title']}**")
                     if 'content' in cars_content:
@@ -361,7 +365,6 @@ def study_plan_ui():
                     elif 'text' in cars_content:
                         st.write(cars_content['text'])
                     else:
-                        # Display all key-value pairs
                         for key, value in cars_content.items():
                             if key != 'title':
                                 st.write(f"**{key.title()}:** {value}")
@@ -369,12 +372,10 @@ def study_plan_ui():
                     st.write(cars_content)
                 else:
                     st.write(str(cars_content))
-                
-                st.markdown("---")
-            else:
-                st.info(f"📘 Reference: CARS {ref} (content not yet available)")
-    else:
-        st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")
+        else:
+            st.info(f"📘 Reference: CARS {ref} (content not yet available)")
+else:
+    st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")
     
     # Optional: Show topic hierarchy for clarity
     with st.expander("🗂️ Current Topic Path"):
@@ -834,6 +835,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
