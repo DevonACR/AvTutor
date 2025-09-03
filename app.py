@@ -309,23 +309,23 @@ def study_plan_ui():
 
     # Filter for the exact section entry (and subsection, if applicable)
     try:
-filtered_sections = [
-    s for s in sections 
-    if s.get("section", "").strip() == selected_section and 
-       (selected_subsection == "All" or (s.get("subsection") and s["subsection"].strip() == selected_subsection))
-]
-if not filtered_sections:
-    st.warning("⚠️ No section entries found for this selection.")
-    return
+        filtered_sections = [
+            s for s in sections 
+            if s.get("section", "").strip() == selected_section and 
+            (selected_subsection == "All" or (s.get("subsection") and s["subsection"].strip() == selected_subsection))
+        ]
+        if not filtered_sections:
+            st.warning("⚠️ No section entries found for this selection.")
+            return
 
-# If "All", aggregate topics from all matching sections/subsections
-if selected_subsection == "All":
-    topics_list = []
-    for section_entry in filtered_sections:
-        topics_list.extend(section_entry.get("topics", []))
-else:
-    section_entry = filtered_sections[0]
-    topics_list = section_entry.get("topics", [])
+        # If "All", aggregate topics from all matching sections/subsections
+        if selected_subsection == "All":
+            topics_list = []
+            for section_entry in filtered_sections:
+                topics_list.extend(section_entry.get("topics", []))
+        else:
+            section_entry = filtered_sections[0]
+            topics_list = section_entry.get("topics", [])
         
         if not topics_list:
             st.warning("⚠️ No topics found for this section.")
@@ -854,5 +854,6 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
