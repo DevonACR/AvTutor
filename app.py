@@ -193,7 +193,7 @@ def study_plan_ui():
         return
 
    # FIXED: Progress tracking with unique key and proper state management
-   topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
+topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
    checkbox_key = f"studied_{hash(topic_key)}"  # Create unique key based on topic path
 
     # Initialize checkbox state ONLY if it doesn't exist (prevents auto-checking)
@@ -1097,5 +1097,6 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
