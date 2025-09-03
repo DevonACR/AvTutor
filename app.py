@@ -192,32 +192,31 @@ def study_plan_ui():
         st.error(f"⚠️ Missing expected key in data structure: {e}")
         return
 
-   # FIXED: Progress tracking with unique key and proper state management
+  # FIXED: Progress tracking with unique key and proper state management
 topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
 checkbox_key = f"studied_{hash(topic_key)}"  # Create unique key based on topic path
 
-    # Initialize checkbox state ONLY if it doesn't exist (prevents auto-checking)
+# Initialize checkbox state ONLY if it doesn't exist (prevents auto-checking)
 if checkbox_key not in st.session_state:
     st.session_state[checkbox_key] = False
 
-    # Create checkbox with explicit key and controlled value
-    new_status = st.checkbox(
+# Create checkbox with explicit key and controlled value
+new_status = st.checkbox(
     "✅ Mark as Studied", 
     value=st.session_state[checkbox_key],  # Use explicit value from session state
     key=checkbox_key  # Use unique key
 )
 
-    # Only update session state if the value actually changed
-    if new_status != st.session_state[checkbox_key]:
-        st.session_state[checkbox_key] = new_status
-        st.session_state.study_progress[topic_key] = new_status
-    
-    # Progress bar
-    total_topics = sum(len(item.get("topics", [])) for item in study_topics)
-    studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
-    st.progress(studied_count / total_topics if total_topics > 0 else 0, 
-                text=f"Progress: {studied_count}/{total_topics} topics studied")
+# Only update session state if the value actually changed
+if new_status != st.session_state[checkbox_key]:
+    st.session_state[checkbox_key] = new_status
+    st.session_state.study_progress[topic_key] = new_status
 
+# Progress bar
+total_topics = sum(len(item.get("topics", [])) for item in study_topics)
+studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
+st.progress(studied_count / total_topics if total_topics > 0 else 0, 
+            text=f"Progress: {studied_count}/{total_topics} topics studied")
     # NEW: Display CARS content using improved matching
     references = topic_entry.get("references", [])
     
@@ -1097,6 +1096,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
