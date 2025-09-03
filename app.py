@@ -209,8 +209,8 @@ if checkbox_key not in st.session_state:
 
     # Only update session state if the value actually changed
     if new_status != st.session_state[checkbox_key]:
-    st.session_state[checkbox_key] = new_status
-    st.session_state.study_progress[topic_key] = new_status
+        st.session_state[checkbox_key] = new_status
+        st.session_state.study_progress[topic_key] = new_status
     
     # Progress bar
     total_topics = sum(len(item.get("topics", [])) for item in study_topics)
@@ -1097,6 +1097,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
