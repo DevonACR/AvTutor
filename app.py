@@ -197,8 +197,8 @@ topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {se
 checkbox_key = f"studied_{hash(topic_key)}"  # Create unique key based on topic path
 
     # Initialize checkbox state ONLY if it doesn't exist (prevents auto-checking)
-    if checkbox_key not in st.session_state:
-        st.session_state[checkbox_key] = False
+if checkbox_key not in st.session_state:
+    st.session_state[checkbox_key] = False
 
     # Create checkbox with explicit key and controlled value
     new_status = st.checkbox(
@@ -1097,6 +1097,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
