@@ -66,7 +66,7 @@ def load_study_data():
 
     # Load CARS index (changed from cars_data to cars_index to match your new structure)
     try:
-        with open("cars_index.json", "r", encoding="utf-8") as f:
+        with open("cars_parsed_complete.json", "r", encoding="utf-8") as f:
             cars_index = json.load(f)
     except FileNotFoundError:
         st.warning("CARS index not found. Using empty fallback.")
@@ -834,6 +834,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
