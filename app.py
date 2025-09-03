@@ -357,50 +357,52 @@ def study_plan_ui():
         # Progress bar
         total_topics = sum(len(item.get("topics", [])) for item in study_topics)
         studied_count = sum(1 for v in st.session_state.study_progress.values() if v)
-        st.progress(studied_count / total_topics if total_topics > 0 else 0, 
-                    text=f"Progress: {studied_count}/{total_topics} topics studied")
+        st.progress(
+            studied_count / total_topics if total_topics > 0 else 0,
+            text=f"Progress: {studied_count}/{total_topics} topics studied"
+        )
 
-    # Display CARS references using cars_parsed_complete
-    references = topic_entry.get("references", [])
-    if references:
-        st.subheader("📚 Study References")
-        st.write("DEBUG: references =", references)
-        st.write("DEBUG: cars_parsed_complete keys (first 10) =", list(cars_parsed_complete.keys())[:10])
-    for ref in references:
-        # Try direct match, and common normalizations
-        possible_keys = [
-            ref,
-            ref.strip(),
-            ref.strip().replace("CAR ", "").replace("CARS ", ""),
-            ref.strip().replace("CAR ", "").replace("CARS ", "").replace(".", ""),
-            ref.strip().replace("CAR ", "").replace("CARS ", "").replace(".", "_"),
-        ]
-        found = False
-        for key in possible_keys:
-            if key in cars_parsed_complete:
-                found = True
-                with st.expander(f"📖 CARS Reference: {ref}"):
-                    cars_content = cars_parsed_complete[key]
-                    if isinstance(cars_content, dict):
-                        if 'title' in cars_content:
-                            st.markdown(f"**{cars_content['title']}**")
-                        if 'content' in cars_content:
-                            st.write(cars_content['content'])
-                        elif 'text' in cars_content:
-                            st.write(cars_content['text'])
-                        else:
-                            for k, v in cars_content.items():
-                                if k != 'title':
-                                    st.write(f"**{k.title()}:** {v}")
-                    elif isinstance(cars_content, str):
-                        st.write(cars_content)
-                    else:
-                        st.write(str(cars_content))
-                break
-        if not found:
-            st.info(f"📘 Reference: CARS {ref} (content not yet available)")
-else:
-    st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")  
+        # Display CARS references using cars_parsed_complete
+        references = topic_entry.get("references", [])
+        if references:
+            st.subheader("📚 Study References")
+            st.write("DEBUG: references =", references)
+            st.write("DEBUG: cars_parsed_complete keys (first 10) =", list(cars_parsed_complete.keys())[:10])
+            for ref in references:
+                # Try direct match, and common normalizations
+                possible_keys = [
+                    ref,
+                    ref.strip(),
+                    ref.strip().replace("CAR ", "").replace("CARS ", ""),
+                    ref.strip().replace("CAR ", "").replace("CARS ", "").replace(".", ""),
+                    ref.strip().replace("CAR ", "").replace("CARS ", "").replace(".", "_"),
+                ]
+                found = False
+                for key in possible_keys:
+                    if key in cars_parsed_complete:
+                        found = True
+                        with st.expander(f"📖 CARS Reference: {ref}"):
+                            cars_content = cars_parsed_complete[key]
+                            if isinstance(cars_content, dict):
+                                if 'title' in cars_content:
+                                    st.markdown(f"**{cars_content['title']}**")
+                                if 'content' in cars_content:
+                                    st.write(cars_content['content'])
+                                elif 'text' in cars_content:
+                                    st.write(cars_content['text'])
+                                else:
+                                    for k, v in cars_content.items():
+                                        if k != 'title':
+                                            st.write(f"**{k.title()}:** {v}")
+                            elif isinstance(cars_content, str):
+                                st.write(cars_content)
+                            else:
+                                st.write(str(cars_content))
+                        break
+                if not found:
+                    st.info(f"📘 Reference: CARS {ref} (content not yet available)")
+        else:
+            st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")  
 
         # Optional: Show topic hierarchy for clarity
         with st.expander("🗂️ Current Topic Path"):
@@ -867,6 +869,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
