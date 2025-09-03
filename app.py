@@ -261,6 +261,20 @@ def study_plan_ui():
         st.error("⚠️ Study topics data is not properly loaded or is empty.")
         return
 
+    # Option to show all studied topics
+    with st.expander("📋 Show All Studied Topics"):
+        studied = [k for k, v in st.session_state.study_progress.items() if v]
+        if studied:
+            st.markdown("### ✅ Studied Topics")
+            for topic_path in studied:
+                try:
+                    cat, subcat, section, topic = topic_path.split(" > ")
+                    st.write(f"- **Category:** {cat} | **Subcategory:** {subcat} | **Section:** {section} | **Topic:** {topic}")
+                except ValueError:
+                    st.write(f"- {topic_path}")
+        else:
+            st.info("No topics have been marked as studied yet.")
+
     # Step 1: Categories
     categories = sorted(set(item["category"] for item in study_topics))
     selected_category = st.selectbox("Choose Category", categories)
@@ -820,6 +834,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
