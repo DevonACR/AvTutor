@@ -282,27 +282,42 @@ def study_plan_ui():
         else:
             st.info("No topics have been marked as studied yet.")
 
+    # --- REVISED: Robust selector chain covering all sections in your data ---
+
     # Step 1: Categories
-    categories = sorted(set(item["category"] for item in study_topics))
+    categories = sorted(set(item["category"].strip() for item in study_topics if "category" in item))
     selected_category = st.selectbox("Choose Category", categories)
 
     # Step 2: Subcategories
-    subcats = [item for item in study_topics if item["category"] == selected_category]
-    available_subcats = sorted(set(x["subcategory"] for x in subcats))
+    subcats = [item for item in study_topics if item.get("category", "").strip() == selected_category]
+    available_subcats = sorted(set(x["subcategory"].strip() for x in subcats if "subcategory" in x))
     selected_subcat = st.selectbox("Choose Subcategory", available_subcats)
 
     # Step 3: Sections
-    sections = [item for item in subcats if item["subcategory"] == selected_subcat]
-    available_sections = sorted(set(x["section"] for x in sections))
+    sections = [item for item in subcats if item.get("subcategory", "").strip() == selected_subcat]
+    available_sections = sorted(set(x["section"].strip() for x in sections if "section" in x))
     selected_section = st.selectbox("Choose Section", available_sections)
 
-    # Step 4: Find the specific section entry and extract topics
+    # Step 4 (optional): Subsection support for future-proofing
+    subsections = sorted(set(
+        x["subsection"].strip() for x in sections if x.get("section", "").strip() == selected_section and x.get("subsection")
+    ))
+    if subsections:
+        selected_subsection = st.selectbox("Choose Subsection", ["All"] + subsections)
+    else:
+        selected_subsection = "All"
+
+    # Filter for the exact section entry (and subsection, if applicable)
     try:
-        # Find the exact section entry that matches our selection
-        section_entry = next(
+        filtered_sections = [
             s for s in sections 
-            if s["section"] == selected_section and s["subcategory"] == selected_subcat
-        )
+            if s.get("section", "").strip() == selected_section and 
+               (selected_subsection == "All" or (s.get("subsection") and s["subsection"].strip() == selected_subsection))
+        ]
+        if not filtered_sections:
+            st.warning("⚠️ No section entries found for this selection.")
+            return
+        section_entry = filtered_sections[0]
         
         # Extract the nested topics list
         topics_list = section_entry.get("topics", [])
@@ -834,3 +849,4 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
