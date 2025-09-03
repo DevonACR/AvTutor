@@ -304,16 +304,22 @@ def study_plan_ui():
         st.error(f"⚠️ Missing expected key in data structure: {e}")
         return
 
-    # Unique key for the topic
-    topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
-    default_checked = st.session_state.study_progress.get(topic_key, False)
+   # 1. Set a unique key for each topic
+   topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
 
-    # Render the checkbox
-    user_checked = st.checkbox("✅ Mark as Studied", value=default_checked)
+   # 2. Get the current value from study_progress (default False)
+   current_val = st.session_state.study_progress.get(topic_key, False)
 
-    # Only update when user changes the value
-    if user_checked != default_checked:
-        st.session_state.study_progress[topic_key] = user_checked
+   # 3. Draw the checkbox, using only the value from study_progress!
+   checked = st.checkbox(
+    "✅ Mark as Studied",
+    value=current_val,
+    key=f"studied_{hash(topic_key)}"
+)
+
+   # 4. Only update study_progress if the value changed
+   if checked != current_val:
+       st.session_state.study_progress[topic_key] = checked
 
     # Progress bar
     total_topics = sum(len(item.get("topics", [])) for item in study_topics)
@@ -813,6 +819,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
