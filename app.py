@@ -304,10 +304,14 @@ def study_plan_ui():
         st.error(f"⚠️ Missing expected key in data structure: {e}")
         return
 
+    # Unique key for the topic
     topic_key = f"{selected_category} > {selected_subcat} > {selected_section} > {selected_topic}"
     default_checked = st.session_state.study_progress.get(topic_key, False)
 
+    # Render the checkbox
     user_checked = st.checkbox("✅ Mark as Studied", value=default_checked)
+
+    # Only update when user changes the value
     if user_checked != default_checked:
         st.session_state.study_progress[topic_key] = user_checked
 
@@ -809,6 +813,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
