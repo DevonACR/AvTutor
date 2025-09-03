@@ -563,7 +563,7 @@ elif mode == "🧠 Quiz Me":
         key=q_key
     )
 
-        if st.button("✅ Submit Answer"):
+    if st.button("✅ Submit Answer"):
         st.session_state.quiz_answers[current_q] = user_selection
         st.session_state.quiz_submitted.add(current_q)
         st.rerun()
@@ -808,4 +808,5 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
