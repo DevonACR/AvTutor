@@ -372,10 +372,10 @@ def study_plan_ui():
                                         st.write(cars_content)
                                     else:
                                         st.write(str(cars_content))
-                                    else:
-                                        st.info(f"📘 Reference: CARS {ref} (content not yet available)")
-                            else:
-                                st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")    
+            else:
+                st.info(f"📘 Reference: CARS {ref} (content not yet available)")
+            else:
+                st.info("📘 No specific CARS references listed for this topic. Use the AI Tutor to explore related concepts.")    
 
     # Optional: Show topic hierarchy for clarity
     with st.expander("🗂️ Current Topic Path"):
@@ -835,6 +835,7 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
 
 
 
