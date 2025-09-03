@@ -563,15 +563,9 @@ elif mode == "🧠 Quiz Me":
         key=q_key
     )
 
-    if st.button("✅ Submit Answer"):
+        if st.button("✅ Submit Answer"):
         st.session_state.quiz_answers[current_q] = user_selection
         st.session_state.quiz_submitted.add(current_q)
-
-        if current_q + 1 >= len(quiz):
-            st.session_state.quiz_index = len(quiz)  # trigger results
-        else:
-            st.session_state.quiz_index = current_q + 1
-
         st.rerun()
 
     if current_q in st.session_state.quiz_submitted:
@@ -591,10 +585,10 @@ elif mode == "🧠 Quiz Me":
             st.session_state.quiz_index = max(0, current_q - 1)
             st.rerun()
     with col2:
-        if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1)):
+        if st.button("Next ➡️", disabled=(current_q == len(quiz) - 1 or current_q not in st.session_state.quiz_submitted)):
             st.session_state.quiz_index = min(len(quiz) - 1, current_q + 1)
             st.rerun()
-
+            
 elif mode == "🧪 PPL Sample Exams":
     st.subheader("🧪 Official Sample Exam Practice")
 
@@ -814,3 +808,4 @@ elif mode == "🧩 Flashcards":
 
 elif mode == "📘 Study Plan Guide":
     study_plan_ui()
+
